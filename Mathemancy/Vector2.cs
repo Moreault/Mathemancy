@@ -1,0 +1,81 @@
+﻿using ToolBX.Mathemancy.Expressions;
+
+namespace ToolBX.Mathemancy;
+
+public readonly record struct Vector2<T> where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+{
+    public static Vector2<T> Zero => default;
+
+    public T X { get; init; }
+
+    public T Y { get; init; }
+
+    public Vector2(T x, T y)
+    {
+        X = x;
+        Y = y;
+    }
+
+    public bool Equals(Vector2<T> other) => X.Equals(other.X) && Y.Equals(other.Y);
+
+    public override int GetHashCode() => HashCode.Combine(X, Y);
+
+    public static bool operator >(Vector2<T> a, Vector2<T> b) => a.X.IsGreaterThan(b.X) && a.Y.IsGreaterThan(b.Y);
+
+    public static bool operator <(Vector2<T> a, Vector2<T> b) => a.X.IsLesserThan(b.X) && a.Y.IsLesserThan(b.Y);
+
+    public static bool operator >=(Vector2<T> a, Vector2<T> b) => a.X.IsGreaterThanOrEqualTo(b.X) && a.Y.IsGreaterThanOrEqualTo(b.Y);
+
+    public static bool operator <=(Vector2<T> a, Vector2<T> b) => a.X.IsLesserThanOrEqualTo(b.X) && a.Y.IsLesserThanOrEqualTo(b.Y);
+
+    public static Vector2<T> operator +(Vector2<T> a, Vector2<T> b) => new(Operator<T>.Add(a.X, b.X), Operator<T>.Add(a.Y, b.Y));
+
+    public static Vector2<T> operator -(Vector2<T> a, Vector2<T> b) => new(Operator<T>.Subtract(a.X, b.X), Operator<T>.Subtract(a.Y, b.Y));
+
+    public static Vector2<T> operator -(Vector2<T> value) => new(Operator<T>.Negate(value.X), Operator<T>.Negate(value.Y));
+
+    public static Vector2<T> operator +(Vector2<T> a, T b) => new(Operator<T>.Add(a.X, b), Operator<T>.Add(a.Y, b));
+
+    public static Vector2<T> operator -(Vector2<T> a, T b) => new(Operator<T>.Subtract(a.X, b), Operator<T>.Subtract(a.Y, b));
+
+    public static Vector2<T> operator *(Vector2<T> a, Vector2<T> b) => new(Operator<T>.Multiply(a.X, b.X), Operator<T>.Multiply(a.Y, b.Y));
+
+    public static Vector2<T> operator /(Vector2<T> a, Vector2<T> b) => new(Operator<T>.Divide(a.X, b.X), Operator<T>.Divide(a.Y, b.Y));
+
+    public static Vector2<T> operator *(Vector2<T> a, T b) => new(Operator<T>.Multiply(a.X, b), Operator<T>.Multiply(a.Y, b));
+
+    public static Vector2<T> operator /(Vector2<T> a, T b) => new(Operator<T>.Divide(a.X, b), Operator<T>.Divide(a.Y, b));
+
+    public void Deconstruct(out T x, out T y)
+    {
+        x = X;
+        y = Y;
+    }
+
+    public override string ToString() => $"({X}, {Y})";
+
+    public Vector2<T> Clamp(Vector2<T> minimum, Vector2<T> maximum)
+    {
+        if (minimum.X.IsGreaterThan(maximum.X) || minimum.Y.IsGreaterThan(maximum.Y))
+            throw new ArgumentException($"Can't clamp vector : {nameof(minimum)} must be smaller than {nameof(maximum)}.");
+
+        var x = X;
+        if (X.IsLesserThan(minimum.X))
+            x = minimum.X;
+        else if (X.IsGreaterThan(maximum.X))
+            x = maximum.X;
+
+        var y = Y;
+        if (Y.IsLesserThan(minimum.Y))
+            y = minimum.Y;
+        else if (Y.IsGreaterThan(maximum.Y))
+            y = maximum.Y;
+
+        return new Vector2<T>(x, y);
+    }
+
+    public static implicit operator Vector2<T>(Vector3<T> value) => new(value.X, value.Y);
+
+    public Vector3<T> ToVector3() => new(X, Y, default);
+
+}
