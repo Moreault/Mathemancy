@@ -15,10 +15,15 @@
 		<RepositoryUrl>https://github.com/Moreault/Mathemancy</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/Moreault/Mathemancy</PackageProjectUrl>
 		<PackageIcon>mathemancy.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 	  <None Include="..\mathemancy.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\README.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
