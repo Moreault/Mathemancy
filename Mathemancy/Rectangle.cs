@@ -2,13 +2,9 @@
 
 namespace ToolBX.Mathemancy;
 
-public readonly record struct Rectangle<T> : IComparable<Rectangle<T>>, IComparable where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+public readonly record struct Rectangle<T>(Vector2<T> Position, Size<T> Size) : IComparable<Rectangle<T>>, IComparable where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
 {
     public static readonly Rectangle<T> Empty = new();
-
-    public Vector2<T> Position { get; init; }
-
-    public Size<T> Size { get; init; }
 
     public T X => Position.X;
 
@@ -36,12 +32,6 @@ public readonly record struct Rectangle<T> : IComparable<Rectangle<T>>, ICompara
 
     public Rectangle(T x, T y, T width, T height) : this(new Vector2<T>(x, y), new Size<T>(width, height))
     {
-    }
-
-    public Rectangle(Vector2<T> position, Size<T> size)
-    {
-        Position = position;
-        Size = size;
     }
 
     public Rectangle(Vector2<T> position, T width, T height) : this(position, new Size<T>(width, height))

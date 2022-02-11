@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mathemancy", "Mathemancy\Mathemancy.csproj", "{B61421FD-3964-4619-BE3F-BCF97A4695BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mathemancy.Tests", "Mathemancy.Tests\Mathemancy.Tests.csproj", "{CC0C448F-4496-4CD4-B226-7F86D10E157B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B61421FD-3964-4619-BE3F-BCF97A4695BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B61421FD-3964-4619-BE3F-BCF97A4695BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B61421FD-3964-4619-BE3F-BCF97A4695BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC0C448F-4496-4CD4-B226-7F86D10E157B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC0C448F-4496-4CD4-B226-7F86D10E157B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC0C448F-4496-4CD4-B226-7F86D10E157B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC0C448F-4496-4CD4-B226-7F86D10E157B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,17 +2,8 @@
 
 namespace ToolBX.Mathemancy;
 
-public readonly record struct Size<T> : IComparable<Size<T>>, IComparable where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+public readonly record struct Size<T>(T Width, T Height) : IComparable<Size<T>>, IComparable where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
 {
-    public T Width { get; init; }
-    public T Height { get; init; }
-
-    public Size(T width, T height)
-    {
-        Width = width;
-        Height = height;
-    }
-
     public int CompareTo(Size<T> other)
     {
         if (this > other) return 1;

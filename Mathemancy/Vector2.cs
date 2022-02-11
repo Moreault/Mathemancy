@@ -2,19 +2,9 @@
 
 namespace ToolBX.Mathemancy;
 
-public readonly record struct Vector2<T> where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+public readonly record struct Vector2<T>(T X, T Y) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
 {
     public static Vector2<T> Zero => default;
-
-    public T X { get; init; }
-
-    public T Y { get; init; }
-
-    public Vector2(T x, T y)
-    {
-        X = x;
-        Y = y;
-    }
 
     public bool Equals(Vector2<T> other) => X.Equals(other.X) && Y.Equals(other.Y);
 

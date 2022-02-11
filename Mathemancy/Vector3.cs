@@ -2,28 +2,15 @@
 
 namespace ToolBX.Mathemancy;
 
-public readonly record struct Vector3<T> where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+public readonly record struct Vector3<T>(T X, T Y, T Z) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
 {
     public static Vector3<T> Zero => default;
 
     public static Vector3<T> Forward => new(default, default, (T)(object)-1.0f);
 
-    public T X { get; init; }
-
-    public T Y { get; init; }
-
-    public T Z { get; init; }
-
     public Vector3(T x, T y) : this(x, y, default)
     {
 
-    }
-
-    public Vector3(T x, T y, T z)
-    {
-        X = x;
-        Y = y;
-        Z = z;
     }
 
     public bool Equals(Vector3<T> other) => X.Equals(other.X) && Y.Equals(other.Y) && Z.Equals(other.Z);
