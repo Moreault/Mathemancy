@@ -1,4 +1,5 @@
 ﻿using ToolBX.Mathemancy.Expressions;
+using ToolBX.Mathemancy.Resources;
 
 namespace ToolBX.Mathemancy;
 
@@ -47,7 +48,7 @@ public readonly record struct Vector2<T>(T X, T Y) where T : struct, IComparable
     public Vector2<T> Clamp(Vector2<T> minimum, Vector2<T> maximum)
     {
         if (minimum.X.IsGreaterThan(maximum.X) || minimum.Y.IsGreaterThan(maximum.Y))
-            throw new ArgumentException($"Can't clamp vector : {nameof(minimum)} must be smaller than {nameof(maximum)}.");
+            throw new ArgumentException(Exceptions.CannotClampVectorBecauseMinIsLargerThanMax);
 
         var x = X;
         if (X.IsLesserThan(minimum.X))
