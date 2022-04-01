@@ -7,10 +7,6 @@ public readonly record struct Vector2<T>(T X, T Y) where T : struct, IComparable
 {
     public static Vector2<T> Zero => default;
 
-    public bool Equals(Vector2<T> other) => X.Equals(other.X) && Y.Equals(other.Y);
-
-    public override int GetHashCode() => HashCode.Combine(X, Y);
-
     public static bool operator >(Vector2<T> a, Vector2<T> b) => a.X.IsGreaterThan(b.X) && a.Y.IsGreaterThan(b.Y);
 
     public static bool operator <(Vector2<T> a, Vector2<T> b) => a.X.IsLesserThan(b.X) && a.Y.IsLesserThan(b.Y);
@@ -45,10 +41,13 @@ public readonly record struct Vector2<T>(T X, T Y) where T : struct, IComparable
 
     public override string ToString() => $"({X}, {Y})";
 
+    /// <summary>
+    /// Clamps the vector's X and Y values between those of minimum and maximum.
+    /// </summary>
     public Vector2<T> Clamp(Vector2<T> minimum, Vector2<T> maximum)
     {
         if (minimum.X.IsGreaterThan(maximum.X) || minimum.Y.IsGreaterThan(maximum.Y))
-            throw new ArgumentException(Exceptions.CannotClampVectorBecauseMinIsLargerThanMax);
+            throw new ArgumentException(string.Format(Exceptions.CannotClampVectorBecauseMinIsLargerThanMax, minimum, maximum));
 
         var x = X;
         if (X.IsLesserThan(minimum.X))

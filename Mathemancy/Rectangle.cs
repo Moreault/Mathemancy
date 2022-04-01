@@ -53,10 +53,6 @@ public readonly record struct Rectangle<T>(Vector2<T> Position, Size<T> Size) : 
 
     public int CompareTo(object? obj) => obj is Rectangle<T> rectangle ? CompareTo(rectangle) : 0;
 
-    public override int GetHashCode() => HashCode.Combine(X, Y, Width, Height);
-
-    public bool Equals(Rectangle<T> other) => X.Equals(other.X) && Y.Equals(other.Y) && Width.Equals(other.Width) && Height.Equals(other.Height);
-
     public static bool operator >(Rectangle<T> a, Rectangle<T> b) => a.Size > b.Size;
     public static bool operator >=(Rectangle<T> a, Rectangle<T> b) => a.Size >= b.Size;
 

@@ -41,7 +41,6 @@ public static class Mathematics
         return new Vector2<decimal>(Interpolate(start.X, target.X, progress), Interpolate(start.Y, target.Y, progress));
     }
 
-    //TODO Investigate whether or not this is actually needed anywhere
     public static Vector2<float> GetDelta(Vector2<float> startPosition, Vector2<float> targetPosition, float elapsedTime, float targetTime)
     {
         if (elapsedTime >= targetTime)

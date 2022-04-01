@@ -99,6 +99,6 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="CannotClampVectorBecauseMinIsLargerThanMax" xml:space="preserve">
-		<value>Impossible d'utiliser la méthode 'Clamp' du vector : minimum doit être plus petit que maximum</value>
+		<value>Impossible d'utiliser la méthode 'Clamp' du vector : minimum doit être plus petit que maximum mais leurs valeurs étaient {0} et {1} respectivement</value>
 	</data>
 </root>

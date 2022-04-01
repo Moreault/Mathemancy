@@ -323,6 +323,24 @@ public class MathematicsTester
     }
 
     [TestClass]
+    public class Interpolate_Vector2_Float : Tester
+    {
+        //TODO Test
+    }
+
+    [TestClass]
+    public class Interpolate_Vector2_Double : Tester
+    {
+        //TODO Test
+    }
+
+    [TestClass]
+    public class Interpolate_Vector2_Decimal : Tester
+    {
+        //TODO Test
+    }
+
+    [TestClass]
     public class GetDelta : Tester
     {
         //TODO Test
