@@ -1,9 +1,4 @@
-﻿using AutoFixture;
-using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using ToolBX.Eloquentest;
-using ToolBX.Mathemancy;
+﻿using System;
 using ToolBX.Mathemancy.Resources;
 
 namespace Mathemancy.Tests;

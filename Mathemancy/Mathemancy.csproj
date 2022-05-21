@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 		<RootNamespace>ToolBX.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 		<Description>A bundle for generic geometry types such as Vector2&lt;T&gt;, Size&lt;T&gt; and Rectangle&lt;T&gt;</Description>
-		<Version>1.0.2</Version>
+		<Version>1.0.3-beta1</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>ToolBX.$(AssemblyName)</PackageId>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -48,6 +48,10 @@
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
 			<_Parameter1>Mathemancy.Tests</_Parameter1>
 		</AssemblyAttribute>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="ToolBX.AutoInject" Version="1.0.1.1-beta" />
 	</ItemGroup>
 
 </Project>

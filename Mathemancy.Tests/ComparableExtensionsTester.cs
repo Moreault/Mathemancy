@@ -1,9 +1,4 @@
-﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ToolBX.Eloquentest;
-using ToolBX.Mathemancy;
-
-namespace Mathemancy.Tests;
+﻿namespace Mathemancy.Tests;
 
 [TestClass]
 public class ComparableExtensionsTester

@@ -1,6 +1,4 @@
-﻿using ToolBX.Mathemancy.Expressions;
-
-namespace ToolBX.Mathemancy;
+﻿namespace ToolBX.Mathemancy;
 
 public readonly record struct Boundaries<T>(T Top, T Right, T Bottom, T Left) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
 {

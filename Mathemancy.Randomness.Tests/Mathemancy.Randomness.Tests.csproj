@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Mathemancy\Mathemancy.csproj" />
+    <ProjectReference Include="..\Mathemancy.Randomness\Mathemancy.Randomness.csproj" />
   </ItemGroup>
 
 </Project>

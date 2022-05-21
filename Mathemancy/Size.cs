@@ -1,6 +1,4 @@
-﻿using ToolBX.Mathemancy.Expressions;
-
-namespace ToolBX.Mathemancy;
+﻿namespace ToolBX.Mathemancy;
 
 public readonly record struct Size<T>(T Width, T Height) : IComparable<Size<T>>, IComparable where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
 {
@@ -36,4 +34,7 @@ public readonly record struct Size<T>(T Width, T Height) : IComparable<Size<T>>,
     public static bool operator <=(Size<T> a, Size<T> b) => a < b || a == b;
 
     public override string ToString() => $"{Width}x{Height}";
+
+    public static implicit operator Size3D<T>(Size<T> value) => new() { Length = value.Width, Width = value.Height };
+
 }

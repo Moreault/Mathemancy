@@ -1,5 +1,4 @@
-﻿using ToolBX.Mathemancy.Expressions;
-using ToolBX.Mathemancy.Resources;
+﻿using ToolBX.Mathemancy.Resources;
 
 namespace ToolBX.Mathemancy;
 

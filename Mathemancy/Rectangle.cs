@@ -1,7 +1,8 @@
-﻿using ToolBX.Mathemancy.Expressions;
+﻿namespace ToolBX.Mathemancy;
 
-namespace ToolBX.Mathemancy;
-
+/// <summary>
+/// Two-dimensional planar figure with four straight sides and four right angles.
+/// </summary>
 public readonly record struct Rectangle<T>(Vector2<T> Position, Size<T> Size) : IComparable<Rectangle<T>>, IComparable where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
 {
     public static readonly Rectangle<T> Empty = new();

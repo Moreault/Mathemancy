@@ -53,3 +53,45 @@ public void Update(float deltaTime)
 	}
 }
 ```
+
+## Conversion
+
+### Numbers
+
+Want to convert that Vector<float> into a Vector<int> but don't want to do this?
+
+```c#
+var newPosition = new Vector<int>((int)position.X, (int)position.Y);
+```
+
+You're in luck because you can just do this :
+
+```c#
+var newPosition = position.ToInt();
+var newSize = size.ToDouble();
+var newRectangle = rectangle.ToULong();
+```
+
+These extension methods are available for Vector2, Vector3, Rectangle and Size.
+
+# Mathemancy.Randomness
+
+We have two services to generate random numbers. One of them is a more predictable pseudo random number generator while the other is a more cryptographically-secure generator.
+
+While more predictable, the pseudo generator is a lot faster so I recommend using it if performance is an issue or if you need to generate a lot of random numbers often.
+
+Both services share the same base interface so they are used in the exact same way and offer the same capabilities.
+
+Disclaimer : These services provide common use cases for generating random numbers. If you need it to do some other weird things then it's probably not for you :(
+
+## Getting started
+
+If you already use [AutoInject] then you only need to inject IPseudoRandomNumberGenerator and/or ISecureRandomNumberGenerator to a class in order to use it.
+
+If not, you can use the following method when injecting services :
+
+```c#
+services.AddRandomness();
+```
+
+If you don't use dependency injection at all then you can just instantiate the classes directly and use them.
