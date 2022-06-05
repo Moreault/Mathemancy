@@ -1,4 +1,5 @@
 ﻿using System;
+using ToolBX.EasyTypeParsing;
 using ToolBX.Mathemancy.Resources;
 
 namespace Mathemancy.Tests;
@@ -818,6 +819,109 @@ public class Vector2Tester
 
             //Assert
             result.Should().Be(new Vector3<float>(instance.X, instance.Y, 0));
+        }
+    }
+
+    [TestClass]
+    public class FromString : Tester
+    {
+        [TestMethod]
+        [DataRow("")]
+        [DataRow(" ")]
+        [DataRow(null)]
+        public void WhenValueIsEmpty_Throw(string value)
+        {
+            //Arrange
+
+            //Act
+            var action = () => Vector2<float>.FromString(value);
+
+            //Assert
+            action.Should().Throw<ArgumentNullException>();
+        }
+
+        [TestMethod]
+        public void WhenThereIsOnlyOneValue_Throw()
+        {
+            //Arrange
+            var value = $"({Fixture.Create<float>()})";
+
+            //Act
+            var action = () => Vector2<float>.FromString(value);
+
+            //Assert
+            action.Should().Throw<Exception>().WithMessage("Can't create Vector2 : Expecting 2 values but received 1");
+        }
+
+        [TestMethod]
+        public void WhenThereAreThreeValues_Throw()
+        {
+            //Arrange
+            var value = $"({Fixture.Create<float>()}, {Fixture.Create<float>()}, {Fixture.Create<float>()})";
+
+            //Act
+            var action = () => Vector2<float>.FromString(value);
+
+            //Assert
+            action.Should().Throw<Exception>().WithMessage("Can't create Vector2 : Expecting 2 values but received 3");
+        }
+
+        [TestMethod]
+        public void WhenThereAreTwoValuesAndXIsNotNumeric_Throw()
+        {
+            //Arrange
+            var value = $"(three point five, {Fixture.Create<float>()})";
+
+            //Act
+            var action = () => Vector2<float>.FromString(value);
+
+            //Assert
+            action.Should().Throw<StringParsingException<float>>();
+        }
+
+        [TestMethod]
+        public void WhenThereAreTwoValuesAndYIsNotNumeric_Throw()
+        {
+            //Arrange
+            var value = $"({Fixture.Create<float>()}, forty-three point eighty-one)";
+
+            //Act
+            var action = () => Vector2<float>.FromString(value);
+
+            //Assert
+            action.Should().Throw<StringParsingException<float>>();
+        }
+
+        [TestMethod]
+        public void WhenThereAreTwoNumericValues_ReturnVectorWithXAndY()
+        {
+            //Arrange
+            var x = Fixture.Create<float>();
+            var y = Fixture.Create<float>();
+
+            var value = $"({x}, {y})";
+
+            //Act
+            var result = Vector2<float>.FromString(value);
+
+            //Assert
+            result.Should().Be(new Vector2<float>(x, y));
+        }
+
+        [TestMethod]
+        public void WhenThereAreTwoValuesWithoutParentheses_ReturnVectorWithXAndY()
+        {
+            //Arrange
+            var x = Fixture.Create<float>();
+            var y = Fixture.Create<float>();
+
+            var value = $"{x}, {y}";
+
+            //Act
+            var result = Vector2<float>.FromString(value);
+
+            //Assert
+            result.Should().Be(new Vector2<float>(x, y));
         }
     }
 }

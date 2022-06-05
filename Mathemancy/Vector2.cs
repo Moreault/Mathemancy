@@ -67,4 +67,11 @@ public readonly record struct Vector2<T>(T X, T Y) where T : struct, IComparable
 
     public Vector3<T> ToVector3() => new(X, Y, default);
 
+    public static Vector2<T> FromString(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
+        var xy = value.Trim('(', ')').Split(',');
+        if (xy.Length != 2) throw new Exception($"Can't create Vector2 : Expecting 2 values but received {xy.Length}");
+        return Vector3<T>.FromString(value);
+    }
 }

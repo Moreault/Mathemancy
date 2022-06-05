@@ -1,4 +1,5 @@
-﻿using ToolBX.Mathemancy.Resources;
+﻿using ToolBX.EasyTypeParsing;
+using ToolBX.Mathemancy.Resources;
 
 namespace ToolBX.Mathemancy;
 
@@ -108,4 +109,18 @@ public readonly record struct Vector3<T>(T X, T Y, T Z) where T : struct, ICompa
     }
 
     public static implicit operator Vector3<T>(Vector2<T> value) => new(value.X, value.Y, default);
+
+    public static Vector3<T> FromString(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
+
+        var xyz = value.Trim('(', ')').Split(',');
+        if (xyz.Length is < 2 or > 3) throw new Exception($"Can't create Vector3 : Expecting 2 or 3 values but received {xyz.Length}");
+
+        var x = xyz[0].ParseOrThrow<T>();
+        var y = xyz[1].ParseOrThrow<T>();
+        var z = xyz.Length == 3 ? xyz[2].ParseOrThrow<T>() : default;
+
+        return new Vector3<T>(x, y, z);
+    }
 }

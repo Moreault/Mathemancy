@@ -1,4 +1,6 @@
-﻿namespace Mathemancy.Tests;
+﻿using System.Runtime.InteropServices.ComTypes;
+
+namespace Mathemancy.Tests;
 
 [TestClass]
 public class SizeTester
@@ -725,6 +727,23 @@ public class SizeTester
 
             //Assert
             result.Should().Be($"{instance.Width}x{instance.Height}");
+        }
+    }
+
+    [TestClass]
+    public class Size3DOperator : Tester
+    {
+        [TestMethod]
+        public void Always_ConvertToSize3D()
+        {
+            //Arrange
+            var instance = Fixture.Create<Size<float>>();
+
+            //Act
+            Size3D<float> result = instance;
+
+            //Assert
+            result.Should().BeEquivalentTo(new Size3D<float> { Length = instance.Width, Width = instance.Height });
         }
     }
 }

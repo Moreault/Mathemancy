@@ -1,4 +1,6 @@
-﻿namespace ToolBX.Mathemancy;
+﻿using ToolBX.EasyTypeParsing;
+
+namespace ToolBX.Mathemancy;
 
 public readonly record struct Size<T>(T Width, T Height) : IComparable<Size<T>>, IComparable where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
 {
@@ -37,4 +39,16 @@ public readonly record struct Size<T>(T Width, T Height) : IComparable<Size<T>>,
 
     public static implicit operator Size3D<T>(Size<T> value) => new() { Length = value.Width, Width = value.Height };
 
+    public static Size<T> FromString(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
+
+        value = value.Trim('(', ')');
+        var wh = value.Split('x');
+
+        if (wh.Length != 2)
+            throw new Exception($"Can't create Size : Expecting 2 values but received {wh.Length}");
+
+        return new Size<T>(wh[0].ParseOrThrow<T>(), wh[1].ParseOrThrow<T>());
+    }
 }
