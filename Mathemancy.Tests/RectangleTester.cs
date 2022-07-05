@@ -1153,4 +1153,106 @@ public class RectangleTester
             result.Should().Be($"X: {rectangle.X}, Y: {rectangle.Y}, Width: {rectangle.Width}, Height: {rectangle.Height}");
         }
     }
+
+    [TestClass]
+    public class FromCoordinates : Tester
+    {
+        [TestMethod]
+        public void WhenPoint1And2AreEqual_ReturnRectangleWithSizeZero()
+        {
+            //Arrange
+            var point1 = Fixture.Create<Vector2<float>>();
+            var point2 = point1;
+
+            //Act
+            var result = Rectangle<float>.FromCoordinates(point1, point2);
+
+            //Assert
+            result.Should().BeEquivalentTo(new Rectangle<float>(point1, new Size<float>()));
+        }
+
+        [TestMethod]
+        public void WhenPoint1IsSmallerThanPoint2_Convert()
+        {
+            //Arrange
+            var point1 = new Vector2<float>(5, 8);
+            var point2 = new Vector2<float>(8, 12);
+
+            //Act
+            var result = Rectangle<float>.FromCoordinates(point1, point2);
+
+            //Assert
+            result.Should().BeEquivalentTo(new Rectangle<float>(5, 8, 3, 4));
+        }
+
+        [TestMethod]
+        public void WhenPoint2IsSmallerThanPoint1_Convert()
+        {
+            //Arrange
+            var point1 = new Vector2<float>(8, 12);
+            var point2 = new Vector2<float>(5, 8);
+
+            //Act
+            var result = Rectangle<float>.FromCoordinates(point1, point2);
+
+            //Assert
+            result.Should().BeEquivalentTo(new Rectangle<float>(5, 8, 3, 4));
+        }
+
+        [TestMethod]
+        public void WhenPoint1XIsSmallerThanPoint2XButPoint1YAndPoint2YEqual_Convert()
+        {
+            //Arrange
+            var point1 = new Vector2<float>(5, 8);
+            var point2 = new Vector2<float>(10, 8);
+
+            //Act
+            var result = Rectangle<float>.FromCoordinates(point1, point2);
+
+            //Assert
+            result.Should().BeEquivalentTo(new Rectangle<float>(5, 8, 5, 0));
+        }
+
+        [TestMethod]
+        public void WhenPoint1XIsSmallerThanPoint2XButPoint1YIsBiggerThanPoint2Y_Convert()
+        {
+            //Arrange
+            var point1 = new Vector2<float>(5, 12);
+            var point2 = new Vector2<float>(10, 8);
+
+            //Act
+            var result = Rectangle<float>.FromCoordinates(point1, point2);
+
+            //Assert
+            result.Should().BeEquivalentTo(new Rectangle<float>(5, 8, 5, 4));
+        }
+
+        [TestMethod]
+        public void WhenPoint1XIsGreaterThanPoint2XAndPoint1YIsSmallerThanPoint2Y_Convert()
+        {
+            //Arrange
+            var point1 = new Vector2<float>(10, 8);
+            var point2 = new Vector2<float>(5, 12);
+
+            //Act
+            var result = Rectangle<float>.FromCoordinates(point1, point2);
+
+            //Assert
+            result.Should().BeEquivalentTo(new Rectangle<float>(5, 8, 5, 4));
+        }
+
+        [TestMethod]
+        public void WhenPoint1XIsGreaterThanPoint2XAndPoint1YIsGreaterThanPoint2Y_Convert()
+        {
+            //Arrange
+            var point1 = new Vector2<float>(10, 12);
+            var point2 = new Vector2<float>(5, 8);
+
+            //Act
+            var result = Rectangle<float>.FromCoordinates(point1, point2);
+
+            //Assert
+            result.Should().BeEquivalentTo(new Rectangle<float>(5, 8, 5, 4));
+        }
+    }
 }

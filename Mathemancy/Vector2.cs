@@ -1,4 +1,5 @@
-﻿using ToolBX.Mathemancy.Resources;
+﻿using System.Numerics;
+using ToolBX.Mathemancy.Resources;
 
 namespace ToolBX.Mathemancy;
 

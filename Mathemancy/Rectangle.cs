@@ -67,4 +67,18 @@ public readonly record struct Rectangle<T>(Vector2<T> Position, Size<T> Size) : 
     public static bool operator <=(Rectangle<T> a, Size<T> b) => a.Size <= b;
 
     public override string ToString() => $"X: {X}, Y: {Y}, Width: {Width}, Height: {Height}";
+
+    public static Rectangle<T> FromCoordinates(Vector2<T> point1, Vector2<T> point2)
+    {
+        Vector2<T> topLeft;
+
+        if (point1 == point2)
+            topLeft = point1;
+        else if (Operator<T>.LessThanOrEqual(point1.X, point2.X))
+            topLeft = Operator<T>.LessThanOrEqual(point1.Y, point2.Y) ? point1 : new Vector2<T>(point1.X, point2.Y);
+        else
+            topLeft = Operator<T>.LessThanOrEqual(point1.Y, point2.Y) ? new Vector2<T>(point2.X, point1.Y) : point2;
+
+        return new Rectangle<T>(topLeft, new Size<T>(Operator<T>.Absolute(Operator<T>.Subtract(point1.X, point2.X)), Operator<T>.Absolute(Operator<T>.Subtract(point1.Y, point2.Y))));
+    }
 }
