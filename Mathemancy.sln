@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mathemancy", "Mathemancy\Ma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mathemancy.Tests", "Mathemancy.Tests\Mathemancy.Tests.csproj", "{CC0C448F-4496-4CD4-B226-7F86D10E157B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mathemancy.Randomness", "Mathemancy.Randomness\Mathemancy.Randomness.csproj", "{857CF2DF-EDD5-468B-8754-1C430C8F416A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mathemancy.Randomness", "Mathemancy.Randomness\Mathemancy.Randomness.csproj", "{857CF2DF-EDD5-468B-8754-1C430C8F416A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mathemancy.Randomness.Tests", "Mathemancy.Randomness.Tests\Mathemancy.Randomness.Tests.csproj", "{39A54F82-0299-42CC-94B5-93485DBADB64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mathemancy.Randomness.Tests", "Mathemancy.Randomness.Tests\Mathemancy.Randomness.Tests.csproj", "{39A54F82-0299-42CC-94B5-93485DBADB64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mathemancy.Collisions", "Mathemancy.Collisions\Mathemancy.Collisions.csproj", "{F4B39FB0-83CA-44A3-8DFA-0876EC9494C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{39A54F82-0299-42CC-94B5-93485DBADB64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39A54F82-0299-42CC-94B5-93485DBADB64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39A54F82-0299-42CC-94B5-93485DBADB64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4B39FB0-83CA-44A3-8DFA-0876EC9494C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4B39FB0-83CA-44A3-8DFA-0876EC9494C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4B39FB0-83CA-44A3-8DFA-0876EC9494C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4B39FB0-83CA-44A3-8DFA-0876EC9494C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

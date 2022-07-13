@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>ToolBX.$(AssemblyName)</RootNamespace>
+		<PackageId>ToolBX.$(AssemblyName)</PackageId>
+		<Authors>Mathieu Moreault</Authors>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<RepositoryUrl>https://github.com/Moreault/Mathemancy</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/Moreault/Mathemancy</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Description>Basic collision classes</Description>
+		<Version>1.0.0</Version>
+		<PackageIcon>collisions.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\collisions.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Mathemancy\Mathemancy.csproj" />
+	</ItemGroup>
+
+</Project>
