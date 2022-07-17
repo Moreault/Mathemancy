@@ -280,4 +280,34 @@ public static class Vector2Extensions
     public static Vector2<float> Ceiling(this Vector2<float> value) => new(MathF.Ceiling(value.X), MathF.Ceiling(value.Y));
     public static Vector2<double> Ceiling(this Vector2<double> value) => new(Math.Ceiling(value.X), Math.Floor(value.Y));
     public static Vector2<decimal> Ceiling(this Vector2<decimal> value) => new(Math.Ceiling(value.X), Math.Ceiling(value.Y));
+
+    public static Vector2<float> Interpolate(this Vector2<float> start, Vector2<float> target, float progress)
+    {
+        return new Vector2<float>(Interpolation.Calculate(start.X, target.X, progress), Interpolation.Calculate(start.Y, target.Y, progress));
+    }
+
+    public static Vector2<double> Interpolate(this Vector2<double> start, Vector2<double> target, double progress)
+    {
+        return new Vector2<double>(Interpolation.Calculate(start.X, target.X, progress), Interpolation.Calculate(start.Y, target.Y, progress));
+    }
+
+    public static Vector2<decimal> Interpolate(this Vector2<decimal> start, Vector2<decimal> target, decimal progress)
+    {
+        return new Vector2<decimal>(Interpolation.Calculate(start.X, target.X, progress), Interpolation.Calculate(start.Y, target.Y, progress));
+    }
+
+    public static Vector2<float> GetDelta(this Vector2<float> startPosition, Vector2<float> targetPosition, float elapsedTime, float targetTime)
+    {
+        return startPosition.ToVector3().GetDelta(targetPosition.ToVector3(), elapsedTime, targetTime);
+    }
+
+    public static Vector2<double> GetDelta(this Vector2<double> startPosition, Vector2<double> targetPosition, double elapsedTime, double targetTime)
+    {
+        return startPosition.ToVector3().GetDelta(targetPosition.ToVector3(), elapsedTime, targetTime);
+    }
+
+    public static Vector2<decimal> GetDelta(this Vector2<decimal> startPosition, Vector2<decimal> targetPosition, decimal elapsedTime, decimal targetTime)
+    {
+        return startPosition.ToVector3().GetDelta(targetPosition.ToVector3(), elapsedTime, targetTime);
+    }
 }

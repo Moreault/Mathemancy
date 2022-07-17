@@ -23,13 +23,15 @@ Mathemancy thus follows the ToolBX philosophy that programming should never be a
 
 ## Linear interpolation
 
+As of Mathemancy 1.1.0, linear interpolation is part of Mathemancy.Interpolation.
+
 You can also use the Mathematics class to interpolate between values. Most game engines already have these included (Lerp) but they are often misused by hobbyists because those engines seem to like to keep their code and documentation obfuscated for some reason.
 
 ```c#
 public void DoSomeStuff()
 {
 	//Returns a value between 50 and 125 when the current progress is 40% (80)
-	var currentValue = Mathematics.Interpolate(50, 125, 0.4f);
+	var currentValue = Interpolation.Calculate(50, 125, 0.4f);
 }
 ```
 
@@ -49,7 +51,7 @@ public void Update(float deltaTime)
 	{
 		_elapsedTime += deltaTime;
 		_progress = _elapsedTime * deltaTime * _speed;
-		_position = Mathematics.Interpolate(50, 125, _progress);
+		_position = Interpolation.Calculate(50, 125, _progress);
 	}
 }
 ```
@@ -95,3 +97,9 @@ services.AddRandomness();
 ```
 
 If you don't use dependency injection at all then you can just instantiate the classes directly and use them.
+
+# Breaking changes
+
+Mathemancy 1.0.7 -> 1.1.0
+* Linear interpolation has been moved to Mathemancy.Interpolation
+* Mathematics.Interpolate and GetDelta for Vector2 are now extension methods

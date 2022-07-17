@@ -1,4 +1,4 @@
-namespace Mathemancy.Tests;
+namespace Mathemancy.Interpolation.Tests;
 
 [TestClass]
 public class MathematicsTester
@@ -15,7 +15,7 @@ public class MathematicsTester
             float progress = 1;
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(target);
@@ -30,7 +30,7 @@ public class MathematicsTester
             var progress = 0.5f;
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(150);
@@ -45,7 +45,7 @@ public class MathematicsTester
             var progress = Fixture.CreateNormalizedFloat();
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(start + (target - start) * progress);
@@ -60,7 +60,7 @@ public class MathematicsTester
             var progress = 0;
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(start);
@@ -75,7 +75,7 @@ public class MathematicsTester
             var progress = -Fixture.Create<float>();
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(start);
@@ -90,7 +90,7 @@ public class MathematicsTester
             var progress = Fixture.Create<float>();
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(target);
@@ -109,7 +109,7 @@ public class MathematicsTester
             var progress = 1d;
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(target);
@@ -124,7 +124,7 @@ public class MathematicsTester
             var progress = 0.5d;
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(150);
@@ -139,7 +139,7 @@ public class MathematicsTester
             var progress = (double)Fixture.CreateNormalizedFloat();
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(start + (target - start) * progress);
@@ -154,7 +154,7 @@ public class MathematicsTester
             var progress = 0;
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(start);
@@ -169,7 +169,7 @@ public class MathematicsTester
             var progress = -Fixture.Create<double>();
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(start);
@@ -184,7 +184,7 @@ public class MathematicsTester
             var progress = 1d;
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(target);
@@ -199,7 +199,7 @@ public class MathematicsTester
             var progress = Fixture.Create<double>();
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(target);
@@ -218,7 +218,7 @@ public class MathematicsTester
             var progress = 1m;
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(target);
@@ -233,7 +233,7 @@ public class MathematicsTester
             var progress = 0.5m;
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(150);
@@ -248,7 +248,7 @@ public class MathematicsTester
             var progress = (decimal)Fixture.CreateNormalizedFloat();
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(start + (target - start) * progress);
@@ -263,7 +263,7 @@ public class MathematicsTester
             var progress = 0m;
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(start);
@@ -278,7 +278,7 @@ public class MathematicsTester
             var progress = -Fixture.Create<decimal>();
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(start);
@@ -293,7 +293,7 @@ public class MathematicsTester
             var progress = 1m;
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(target);
@@ -308,7 +308,7 @@ public class MathematicsTester
             var progress = Fixture.Create<decimal>();
 
             //Act
-            var result = Mathematics.Interpolate(start, target, progress);
+            var result = Interpolation.Calculate(start, target, progress);
 
             //Assert
             result.Should().Be(target);

@@ -280,4 +280,46 @@ public static class Vector3Extensions
     public static Vector3<float> Ceiling(this Vector3<float> value) => new(MathF.Ceiling(value.X), MathF.Ceiling(value.Y), MathF.Ceiling(value.Z));
     public static Vector3<double> Ceiling(this Vector3<double> value) => new(Math.Ceiling(value.X), Math.Floor(value.Y), Math.Ceiling(value.Z));
     public static Vector3<decimal> Ceiling(this Vector3<decimal> value) => new(Math.Ceiling(value.X), Math.Ceiling(value.Y), Math.Ceiling(value.Z));
+
+    public static Vector3<float> Interpolate(this Vector3<float> start, Vector3<float> target, float progress)
+    {
+        return new Vector3<float>(Interpolation.Calculate(start.X, target.X, progress), Interpolation.Calculate(start.Y, target.Y, progress), Interpolation.Calculate(start.Z, target.Z, progress));
+    }
+
+    public static Vector3<double> Interpolate(this Vector3<double> start, Vector3<double> target, double progress)
+    {
+        return new Vector3<double>(Interpolation.Calculate(start.X, target.X, progress), Interpolation.Calculate(start.Y, target.Y, progress), Interpolation.Calculate(start.Z, target.Z, progress));
+    }
+
+    public static Vector2<decimal> Interpolate(this Vector3<decimal> start, Vector3<decimal> target, decimal progress)
+    {
+        return new Vector3<decimal>(Interpolation.Calculate(start.X, target.X, progress), Interpolation.Calculate(start.Y, target.Y, progress), Interpolation.Calculate(start.Z, target.Z, progress));
+    }
+
+    public static Vector3<float> GetDelta(this Vector3<float> startPosition, Vector3<float> targetPosition, float elapsedTime, float targetTime)
+    {
+        if (elapsedTime >= targetTime)
+            return targetPosition;
+        var progress = elapsedTime / targetTime;
+
+        return startPosition.Interpolate(targetPosition, progress);
+    }
+
+    public static Vector3<double> GetDelta(this Vector3<double> startPosition, Vector3<double> targetPosition, double elapsedTime, double targetTime)
+    {
+        if (elapsedTime >= targetTime)
+            return targetPosition;
+        var progress = elapsedTime / targetTime;
+
+        return startPosition.Interpolate(targetPosition, progress);
+    }
+
+    public static Vector3<decimal> GetDelta(this Vector3<decimal> startPosition, Vector3<decimal> targetPosition, decimal elapsedTime, decimal targetTime)
+    {
+        if (elapsedTime >= targetTime)
+            return targetPosition;
+        var progress = elapsedTime / targetTime;
+
+        return startPosition.Interpolate(targetPosition, progress);
+    }
 }
