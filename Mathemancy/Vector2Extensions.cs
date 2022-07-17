@@ -272,4 +272,12 @@ public static class Vector2Extensions
     public static Vector2<decimal> ToDecimal(this Vector2<ulong> value) => new(value.X, value.Y);
     public static Vector2<decimal> ToDecimal(this Vector2<float> value) => new((decimal)value.X, (decimal)value.Y);
     public static Vector2<decimal> ToDecimal(this Vector2<double> value) => new((decimal)value.X, (decimal)value.Y);
+
+    public static Vector2<float> Floor(this Vector2<float> value) => new(MathF.Floor(value.X), MathF.Floor(value.Y));
+    public static Vector2<double> Floor(this Vector2<double> value) => new(Math.Floor(value.X), Math.Floor(value.Y));
+    public static Vector2<decimal> Floor(this Vector2<decimal> value) => new(Math.Floor(value.X), Math.Floor(value.Y));
+
+    public static Vector2<float> Ceiling(this Vector2<float> value) => new(MathF.Ceiling(value.X), MathF.Ceiling(value.Y));
+    public static Vector2<double> Ceiling(this Vector2<double> value) => new(Math.Ceiling(value.X), Math.Floor(value.Y));
+    public static Vector2<decimal> Ceiling(this Vector2<decimal> value) => new(Math.Ceiling(value.X), Math.Ceiling(value.Y));
 }

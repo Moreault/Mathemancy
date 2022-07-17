@@ -272,4 +272,12 @@ public static class Vector3Extensions
     public static Vector3<decimal> ToDecimal(this Vector3<ulong> value) => new(value.X, value.Y, value.Z);
     public static Vector3<decimal> ToDecimal(this Vector3<float> value) => new((decimal)value.X, (decimal)value.Y, (decimal)value.Z);
     public static Vector3<decimal> ToDecimal(this Vector3<double> value) => new((decimal)value.X, (decimal)value.Y, (decimal)value.Z);
+
+    public static Vector3<float> Floor(this Vector3<float> value) => new(MathF.Floor(value.X), MathF.Floor(value.Y), MathF.Floor(value.Z));
+    public static Vector3<double> Floor(this Vector3<double> value) => new(Math.Floor(value.X), Math.Floor(value.Y), Math.Floor(value.Z));
+    public static Vector3<decimal> Floor(this Vector3<decimal> value) => new(Math.Floor(value.X), Math.Floor(value.Y), Math.Floor(value.Z));
+
+    public static Vector3<float> Ceiling(this Vector3<float> value) => new(MathF.Ceiling(value.X), MathF.Ceiling(value.Y), MathF.Ceiling(value.Z));
+    public static Vector3<double> Ceiling(this Vector3<double> value) => new(Math.Ceiling(value.X), Math.Floor(value.Y), Math.Ceiling(value.Z));
+    public static Vector3<decimal> Ceiling(this Vector3<decimal> value) => new(Math.Ceiling(value.X), Math.Ceiling(value.Y), Math.Ceiling(value.Z));
 }

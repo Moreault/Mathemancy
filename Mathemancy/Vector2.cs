@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using ToolBX.Mathemancy.Resources;
+﻿using ToolBX.Mathemancy.Resources;
 
 namespace ToolBX.Mathemancy;
 
@@ -62,6 +61,30 @@ public readonly record struct Vector2<T>(T X, T Y) where T : struct, IComparable
             y = maximum.Y;
 
         return new Vector2<T>(x, y);
+    }
+
+    public Direction ToDirection()
+    {
+        if (Operator<T>.Equal(X, default) && Operator<T>.Equal(Y, default))
+            return Direction.None;
+        if (Operator<T>.Equal(X, default) && Operator<T>.LessThan(Y, default))
+            return Direction.Up;
+        if (Operator<T>.GreaterThan(X, default) && Operator<T>.Equal(Y, default))
+            return Direction.Right;
+        if (Operator<T>.Equal(X, default) && Operator<T>.GreaterThan(Y, default))
+            return Direction.Down;
+        if (Operator<T>.LessThan(X, default) && Operator<T>.Equal(Y, default))
+            return Direction.Left;
+        if (Operator<T>.LessThan(X, default) && Operator<T>.LessThan(Y, default))
+            return Direction.UpLeft;
+        if (Operator<T>.GreaterThan(X, default) && Operator<T>.LessThan(Y, default))
+            return Direction.UpRight;
+        if (Operator<T>.LessThan(X, default) && Operator<T>.GreaterThan(Y, default))
+            return Direction.DownLeft;
+        if (Operator<T>.GreaterThan(X, default) && Operator<T>.GreaterThan(Y, default))
+            return Direction.DownRight;
+
+        throw new NotSupportedException();
     }
 
     public static implicit operator Vector2<T>(Vector3<T> value) => new(value.X, value.Y);

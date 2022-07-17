@@ -272,4 +272,57 @@ public static class SizeExtensions
     public static Size<decimal> ToDecimal(this Size<ulong> value) => new(value.Width, value.Height);
     public static Size<decimal> ToDecimal(this Size<float> value) => new((decimal)value.Width, (decimal)value.Height);
     public static Size<decimal> ToDecimal(this Size<double> value) => new((decimal)value.Width, (decimal)value.Height);
+
+    public static Size<float> Floor(this Size<float> value) => new(MathF.Floor(value.Width), MathF.Floor(value.Height));
+    public static Size<double> Floor(this Size<double> value) => new(Math.Floor(value.Width), Math.Floor(value.Height));
+    public static Size<decimal> Floor(this Size<decimal> value) => new(Math.Floor(value.Width), Math.Floor(value.Height));
+
+    public static Size<float> Ceiling(this Size<float> value) => new(MathF.Ceiling(value.Width), MathF.Ceiling(value.Height));
+    public static Size<double> Ceiling(this Size<double> value) => new(Math.Ceiling(value.Width), Math.Floor(value.Height));
+    public static Size<decimal> Ceiling(this Size<decimal> value) => new(Math.Ceiling(value.Width), Math.Ceiling(value.Height));
+
+    public static Size<sbyte> Clamp(this Size<sbyte> value, Size<sbyte> maximum) => new(Math.Clamp(value.Width, sbyte.MinValue, maximum.Width), Math.Clamp(value.Height, sbyte.MinValue, maximum.Height));
+    public static Size<byte> Clamp(this Size<byte> value, Size<byte> maximum) => new(Math.Clamp(value.Width, byte.MinValue, maximum.Width), Math.Clamp(value.Height, byte.MinValue, maximum.Height));
+    public static Size<short> Clamp(this Size<short> value, Size<short> maximum) => new(Math.Clamp(value.Width, short.MinValue, maximum.Width), Math.Clamp(value.Height, short.MinValue, maximum.Height));
+    public static Size<ushort> Clamp(this Size<ushort> value, Size<ushort> maximum) => new(Math.Clamp(value.Width, ushort.MinValue, maximum.Width), Math.Clamp(value.Height, ushort.MinValue, maximum.Height));
+    public static Size<int> Clamp(this Size<int> value, Size<int> maximum) => new(Math.Clamp(value.Width, int.MinValue, maximum.Width), Math.Clamp(value.Height, int.MinValue, maximum.Height));
+    public static Size<uint> Clamp(this Size<uint> value, Size<uint> maximum) => new(Math.Clamp(value.Width, uint.MinValue, maximum.Width), Math.Clamp(value.Height, uint.MinValue, maximum.Height));
+    public static Size<long> Clamp(this Size<long> value, Size<long> maximum) => new(Math.Clamp(value.Width, long.MinValue, maximum.Width), Math.Clamp(value.Height, long.MinValue, maximum.Height));
+    public static Size<ulong> Clamp(this Size<ulong> value,  Size<ulong> maximum) => new(Math.Clamp(value.Width, ulong.MinValue, maximum.Width), Math.Clamp(value.Height, ulong.MinValue, maximum.Height));
+    public static Size<float> Clamp(this Size<float> value,  Size<float> maximum) => new(Math.Clamp(value.Width, float.MinValue, maximum.Width), Math.Clamp(value.Height, float.MinValue, maximum.Height));
+    public static Size<double> Clamp(this Size<double> value,  Size<double> maximum) => new(Math.Clamp(value.Width, double.MinValue, maximum.Width), Math.Clamp(value.Height, double.MinValue, maximum.Height));
+    public static Size<decimal> Clamp(this Size<decimal> value,  Size<decimal> maximum) => new(Math.Clamp(value.Width, decimal.MinValue, maximum.Width), Math.Clamp(value.Height, decimal.MinValue, maximum.Height));
+
+    public static Size<sbyte> Clamp(this Size<sbyte> value, Size<sbyte> minimum, Size<sbyte> maximum) => new(Math.Clamp(value.Width, minimum.Width, maximum.Width), Math.Clamp(value.Height, minimum.Height, maximum.Height));
+    public static Size<byte> Clamp(this Size<byte> value, Size<byte> minimum, Size<byte> maximum) => new(Math.Clamp(value.Width, minimum.Width, maximum.Width), Math.Clamp(value.Height, minimum.Height, maximum.Height));
+    public static Size<short> Clamp(this Size<short> value, Size<short> minimum, Size<short> maximum) => new(Math.Clamp(value.Width, minimum.Width, maximum.Width), Math.Clamp(value.Height, minimum.Height, maximum.Height));
+    public static Size<ushort> Clamp(this Size<ushort> value, Size<ushort> minimum, Size<ushort> maximum) => new(Math.Clamp(value.Width, minimum.Width, maximum.Width), Math.Clamp(value.Height, minimum.Height, maximum.Height));
+    public static Size<int> Clamp(this Size<int> value, Size<int> minimum, Size<int> maximum) => new(Math.Clamp(value.Width, minimum.Width, maximum.Width), Math.Clamp(value.Height, minimum.Height, maximum.Height));
+    public static Size<uint> Clamp(this Size<uint> value, Size<uint> minimum, Size<uint> maximum) => new(Math.Clamp(value.Width, minimum.Width, maximum.Width), Math.Clamp(value.Height, minimum.Height, maximum.Height));
+    public static Size<long> Clamp(this Size<long> value, Size<long> minimum, Size<long> maximum) => new(Math.Clamp(value.Width, minimum.Width, maximum.Width), Math.Clamp(value.Height, minimum.Height, maximum.Height));
+    public static Size<ulong> Clamp(this Size<ulong> value, Size<ulong> minimum, Size<ulong> maximum) => new(Math.Clamp(value.Width, minimum.Width, maximum.Width), Math.Clamp(value.Height, minimum.Height, maximum.Height));
+    public static Size<float> Clamp(this Size<float> value, Size<float> minimum, Size<float> maximum) => new(Math.Clamp(value.Width, minimum.Width, maximum.Width), Math.Clamp(value.Height, minimum.Height, maximum.Height));
+    public static Size<double> Clamp(this Size<double> value, Size<double> minimum, Size<double> maximum) => new(Math.Clamp(value.Width, minimum.Width, maximum.Width), Math.Clamp(value.Height, minimum.Height, maximum.Height));
+    public static Size<decimal> Clamp(this Size<decimal> value, Size<decimal> minimum, Size<decimal> maximum) => new(Math.Clamp(value.Width, minimum.Width, maximum.Width), Math.Clamp(value.Height, minimum.Height, maximum.Height));
+
+    public static Size<sbyte> Clamp(this Size<sbyte> value, SizeRange<sbyte> range) => new(Math.Clamp(value.Width, range.Minimum.Width, range.Maximum.Width), Math.Clamp(value.Height, range.Minimum.Height, range.Maximum.Height));
+    public static Size<byte> Clamp(this Size<byte> value, SizeRange<byte> range) => new(Math.Clamp(value.Width, range.Minimum.Width, range.Maximum.Width), Math.Clamp(value.Height, range.Minimum.Height, range.Maximum.Height));
+    public static Size<short> Clamp(this Size<short> value, SizeRange<short> range) => new(Math.Clamp(value.Width, range.Minimum.Width, range.Maximum.Width), Math.Clamp(value.Height, range.Minimum.Height, range.Maximum.Height));
+    public static Size<ushort> Clamp(this Size<ushort> value, SizeRange<ushort> range) => new(Math.Clamp(value.Width, range.Minimum.Width, range.Maximum.Width), Math.Clamp(value.Height, range.Minimum.Height, range.Maximum.Height));
+    public static Size<int> Clamp(this Size<int> value, SizeRange<int> range) => new(Math.Clamp(value.Width, range.Minimum.Width, range.Maximum.Width), Math.Clamp(value.Height, range.Minimum.Height, range.Maximum.Height));
+    public static Size<uint> Clamp(this Size<uint> value, SizeRange<uint> range) => new(Math.Clamp(value.Width, range.Minimum.Width, range.Maximum.Width), Math.Clamp(value.Height, range.Minimum.Height, range.Maximum.Height));
+    public static Size<long> Clamp(this Size<long> value, SizeRange<long> range) => new(Math.Clamp(value.Width, range.Minimum.Width, range.Maximum.Width), Math.Clamp(value.Height, range.Minimum.Height, range.Maximum.Height));
+    public static Size<ulong> Clamp(this Size<ulong> value, SizeRange<ulong> range) => new(Math.Clamp(value.Width, range.Minimum.Width, range.Maximum.Width), Math.Clamp(value.Height, range.Minimum.Height, range.Maximum.Height));
+    public static Size<float> Clamp(this Size<float> value, SizeRange<float> range) => new(Math.Clamp(value.Width, range.Minimum.Width, range.Maximum.Width), Math.Clamp(value.Height, range.Minimum.Height, range.Maximum.Height));
+    public static Size<double> Clamp(this Size<double> value, SizeRange<double> range) => new(Math.Clamp(value.Width, range.Minimum.Width, range.Maximum.Width), Math.Clamp(value.Height, range.Minimum.Height, range.Maximum.Height));
+    public static Size<decimal> Clamp(this Size<decimal> value, SizeRange<decimal> range) => new(Math.Clamp(value.Width, range.Minimum.Width, range.Maximum.Width), Math.Clamp(value.Height, range.Minimum.Height, range.Maximum.Height));
+
+    public static bool IsNegative(this Size<sbyte> size) => size.Width < 0 || size.Height < 0;
+    public static bool IsNegative(this Size<short> size) => size.Width < 0 || size.Height < 0;
+    public static bool IsNegative(this Size<int> size) => size.Width < 0 || size.Height < 0;
+    public static bool IsNegative(this Size<long> size) => size.Width < 0 || size.Height < 0;
+    public static bool IsNegative(this Size<float> size) => size.Width < 0 || size.Height < 0;
+    public static bool IsNegative(this Size<double> size) => size.Width < 0 || size.Height < 0;
+    public static bool IsNegative(this Size<decimal> size) => size.Width < 0 || size.Height < 0;
+
 }

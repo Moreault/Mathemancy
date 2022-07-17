@@ -101,4 +101,7 @@
 	<data name="CannotClampVectorBecauseMinIsLargerThanMax" xml:space="preserve">
 		<value>Impossible d'utiliser la méthode 'Clamp' du vector : minimum doit être plus petit que maximum mais leurs valeurs étaient {0} et {1} respectivement</value>
 	</data>
+	<data name="CannotClampToLargerRectangle" xml:space="preserve">
+		<value>Impossible d'utiliser la méthode 'Clamp' du rectangle : 'other' doit être plus petit ou égal à {0} mais sa valeur était {1}</value>
+	</data>
 </root>

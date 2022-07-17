@@ -61,6 +61,15 @@ namespace ToolBX.Mathemancy.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string CannotClampToLargerRectangle {
+            get {
+                return ResourceManager.GetString("CannotClampToLargerRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t clamp vector : minimum must be smaller than maximum but their values were {0} and {1} respectively.
         /// </summary>
         internal static string CannotClampVectorBecauseMinIsLargerThanMax {

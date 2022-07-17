@@ -108,6 +108,30 @@ public readonly record struct Vector3<T>(T X, T Y, T Z) where T : struct, ICompa
         return new Vector3<T>(x, y, z);
     }
 
+    public Direction ToDirection()
+    {
+        if (Operator<T>.Equal(X, default) && Operator<T>.Equal(Y, default))
+            return Direction.None;
+        if (Operator<T>.Equal(X, default) && Operator<T>.LessThan(Y, default))
+            return Direction.Up;
+        if (Operator<T>.GreaterThan(X, default) && Operator<T>.Equal(Y, default))
+            return Direction.Right;
+        if (Operator<T>.Equal(X, default) && Operator<T>.GreaterThan(Y, default))
+            return Direction.Down;
+        if (Operator<T>.LessThan(X, default) && Operator<T>.Equal(Y, default))
+            return Direction.Left;
+        if (Operator<T>.LessThan(X, default) && Operator<T>.LessThan(Y, default))
+            return Direction.UpLeft;
+        if (Operator<T>.GreaterThan(X, default) && Operator<T>.LessThan(Y, default))
+            return Direction.UpRight;
+        if (Operator<T>.LessThan(X, default) && Operator<T>.GreaterThan(Y, default))
+            return Direction.DownLeft;
+        if (Operator<T>.GreaterThan(X, default) && Operator<T>.GreaterThan(Y, default))
+            return Direction.DownRight;
+
+        throw new NotSupportedException();
+    }
+
     public static implicit operator Vector3<T>(Vector2<T> value) => new(value.X, value.Y, default);
 
     public static Vector3<T> FromString(string value)

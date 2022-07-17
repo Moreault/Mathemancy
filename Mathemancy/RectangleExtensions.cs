@@ -1,4 +1,6 @@
-﻿namespace ToolBX.Mathemancy;
+﻿using ToolBX.Mathemancy.Resources;
+
+namespace ToolBX.Mathemancy;
 
 public static class RectangleExtensions
 {
@@ -328,4 +330,39 @@ public static class RectangleExtensions
     public static Rectangle<decimal> ToDecimal(this Rectangle<float> value) => new(value.Position.ToDecimal(), value.Size.ToDecimal());
     public static Rectangle<decimal> ToDecimal(this Rectangle<double> value) => new(value.Position.ToDecimal(), value.Size.ToDecimal());
 
+    public static Rectangle<int> ClampInside(this Rectangle<int> rectangle, Rectangle<int> other)
+    {
+        rectangle.CheckClampInside(other);
+        return new Rectangle<int>(Math.Clamp(other.X, rectangle.Left, rectangle.Right - other.Width), Math.Clamp(other.Y, rectangle.Top, rectangle.Bottom - other.Height), other.Size);
+    }
+
+    public static Rectangle<long> ClampInside(this Rectangle<long> rectangle, Rectangle<long> other)
+    {
+        rectangle.CheckClampInside(other);
+        return new Rectangle<long>(Math.Clamp(other.X, rectangle.Left, rectangle.Right - other.Width), Math.Clamp(other.Y, rectangle.Top, rectangle.Bottom - other.Height), other.Size);
+    }
+
+    public static Rectangle<float> ClampInside(this Rectangle<float> rectangle, Rectangle<float> other)
+    {
+        rectangle.CheckClampInside(other);
+        return new Rectangle<float>(Math.Clamp(other.X, rectangle.Left, rectangle.Right - other.Width), Math.Clamp(other.Y, rectangle.Top, rectangle.Bottom - other.Height), other.Size);
+    }
+
+    public static Rectangle<double> ClampInside(this Rectangle<double> rectangle, Rectangle<double> other)
+    {
+        rectangle.CheckClampInside(other);
+        return new Rectangle<double>(Math.Clamp(other.X, rectangle.Left, rectangle.Right - other.Width), Math.Clamp(other.Y, rectangle.Top, rectangle.Bottom - other.Height), other.Size);
+    }
+
+    public static Rectangle<decimal> ClampInside(this Rectangle<decimal> rectangle, Rectangle<decimal> other)
+    {
+        rectangle.CheckClampInside(other);
+        return new Rectangle<decimal>(Math.Clamp(other.X, rectangle.Left, rectangle.Right - other.Width), Math.Clamp(other.Y, rectangle.Top, rectangle.Bottom - other.Height), other.Size);
+    }
+
+    private static void CheckClampInside<T>(this Rectangle<T> rectangle, Rectangle<T> other) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+    {
+        if (Operator<T>.GreaterThan(other.Width, rectangle.Width) || Operator<T>.GreaterThan(other.Height, rectangle.Height)) 
+            throw new ArgumentException(string.Format(Exceptions.CannotClampToLargerRectangle, rectangle.Size, other.Size));
+    }
 }
