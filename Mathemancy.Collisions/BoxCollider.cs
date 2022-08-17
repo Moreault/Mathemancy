@@ -6,6 +6,11 @@ public record BoxCollider : ICollider
 
     public Size<int> Size { get; init; }
 
+    public BoxCollider()
+    {
+
+    }
+
     public BoxCollider(Size<int> size, Vector3<int> offset)
     {
         Offset = offset; Size = size;
