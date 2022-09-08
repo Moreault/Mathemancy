@@ -43,6 +43,24 @@ public readonly record struct Vector3<T>(T X, T Y, T Z) where T : struct, ICompa
 
     public static Vector3<T> operator /(Vector3<T> a, T b) => new(Operator<T>.Divide(a.X, b), Operator<T>.Divide(a.Y, b), Operator<T>.Divide(a.Z, b));
 
+    public static bool operator >(Vector3<T> a, Vector2<T> b) => a.X.IsGreaterThan(b.X) && a.Y.IsGreaterThan(b.Y) && a.Z.IsGreaterThan(default);
+
+    public static bool operator <(Vector3<T> a, Vector2<T> b) => a.X.IsLesserThan(b.X) && a.Y.IsLesserThan(b.Y) && a.Z.IsLesserThan(default);
+
+    public static bool operator >=(Vector3<T> a, Vector2<T> b) => a.X.IsGreaterThanOrEqualTo(b.X) && a.Y.IsGreaterThanOrEqualTo(b.Y) && a.Z.IsGreaterThanOrEqualTo(default);
+
+    public static bool operator <=(Vector3<T> a, Vector2<T> b) => a.X.IsLesserThanOrEqualTo(b.X) && a.Y.IsLesserThanOrEqualTo(b.Y) && a.Z.IsLesserThanOrEqualTo(default);
+
+    public static Vector3<T> operator +(Vector3<T> a, Vector2<T> b) => new(Operator<T>.Add(a.X, b.X), Operator<T>.Add(a.Y, b.Y), a.Z);
+
+    public static Vector3<T> operator -(Vector3<T> a, Vector2<T> b) => new(Operator<T>.Subtract(a.X, b.X), Operator<T>.Subtract(a.Y, b.Y), a.Z);
+
+    public static Vector3<T> operator *(Vector3<T> a, Vector2<T> b) => new(Operator<T>.Multiply(a.X, b.X), Operator<T>.Multiply(a.Y, b.Y), a.Z);
+
+    public static Vector3<T> operator /(Vector3<T> a, Vector2<T> b) => new(Operator<T>.Divide(a.X, b.X), Operator<T>.Divide(a.Y, b.Y));
+
+    public static Vector3<T> operator /(Vector2<T> a, Vector3<T> b) => new(Operator<T>.Divide(a.X, b.X), Operator<T>.Divide(a.Y, b.Y));
+
     public void Deconstruct(out T x, out T y, out T z)
     {
         x = X;
