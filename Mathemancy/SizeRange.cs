@@ -1,6 +1,8 @@
-﻿namespace ToolBX.Mathemancy;
+﻿using System.Numerics;
 
-public readonly record struct SizeRange<T> : IComparable<SizeRange<T>>, IComparable, IEquatable<Size<T>> where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+namespace ToolBX.Mathemancy;
+
+public readonly record struct SizeRange<T> : IComparable<SizeRange<T>>, IComparable, IEquatable<Size<T>> where T : struct, INumber<T>, IConvertible
 {
     public Size<T> Minimum { get; init; }
     public Size<T> Maximum { get; init; }
@@ -22,7 +24,7 @@ public readonly record struct SizeRange<T> : IComparable<SizeRange<T>>, ICompara
 
     public SizeRange(Size<T> minimum, Size<T> maximum)
     {
-        if (Operator<T>.LessThan(maximum.Width, minimum.Width) || Operator<T>.LessThan(maximum.Height, minimum.Height)) throw new ArgumentException($"Can't create {nameof(SizeRange<T>)} : {nameof(maximum)} should be greater than or equal to {nameof(minimum)} but their values are {minimum} and {maximum} respectively.");
+        if (maximum.Width < minimum.Width || maximum.Height < minimum.Height) throw new ArgumentException($"Can't create {nameof(SizeRange<T>)} : {nameof(maximum)} should be greater than or equal to {nameof(minimum)} but their values are {minimum} and {maximum} respectively.");
         Minimum = minimum;
         Maximum = maximum;
     }

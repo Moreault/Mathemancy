@@ -1,4 +1,5 @@
-﻿using ToolBX.Mathemancy.Resources;
+﻿using System.Numerics;
+using ToolBX.Mathemancy.Resources;
 
 namespace ToolBX.Mathemancy;
 
@@ -360,9 +361,9 @@ public static class RectangleExtensions
         return new Rectangle<decimal>(Math.Clamp(other.X, rectangle.Left, rectangle.Right - other.Width), Math.Clamp(other.Y, rectangle.Top, rectangle.Bottom - other.Height), other.Size);
     }
 
-    private static void CheckClampInside<T>(this Rectangle<T> rectangle, Rectangle<T> other) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+    private static void CheckClampInside<T>(this Rectangle<T> rectangle, Rectangle<T> other) where T : struct, INumber<T>
     {
-        if (Operator<T>.GreaterThan(other.Width, rectangle.Width) || Operator<T>.GreaterThan(other.Height, rectangle.Height)) 
+        if (other.Width > rectangle.Width || other.Height > rectangle.Height) 
             throw new ArgumentException(string.Format(Exceptions.CannotClampToLargerRectangle, rectangle.Size, other.Size));
     }
 }

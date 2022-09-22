@@ -1,6 +1,8 @@
-﻿namespace ToolBX.Mathemancy;
+﻿using System.Numerics;
 
-public readonly record struct Matrix<T> where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+namespace ToolBX.Mathemancy;
+
+public readonly record struct Matrix<T> where T : struct, INumber<T>
 {
     public static Matrix<T> Identity = new()
     {
@@ -133,11 +135,11 @@ public readonly record struct Matrix<T> where T : struct, IComparable, IComparab
 
     public Vector3<T> Backward => new(M31, M32, M33);
 
-    public Vector3<T> Down => new(Operator<T>.Negate(M21), Operator<T>.Negate(M22), Operator<T>.Negate(M23));
+    public Vector3<T> Down => new(-M21, -M22, -M23);
 
-    public Vector3<T> Forward => new(Operator<T>.Negate(M31), Operator<T>.Negate(M32), Operator<T>.Negate(M33));
+    public Vector3<T> Forward => new(-M31, -M32, -M33);
 
-    public Vector3<T> Left => new(Operator<T>.Negate(M11), Operator<T>.Negate(M12), Operator<T>.Negate(M13));
+    public Vector3<T> Left => new(-M11, -M12, -M13);
 
     public Vector3<T> Right => new(M11, M12, M13);
 
@@ -147,21 +149,21 @@ public readonly record struct Matrix<T> where T : struct, IComparable, IComparab
 
     public static Matrix<T> operator +(Matrix<T> a, Matrix<T> b) => new()
     {
-        M11 = Operator<T>.Add(a.M11, b.M11),
-        M12 = Operator<T>.Add(a.M12, b.M12),
-        M13 = Operator<T>.Add(a.M13, b.M13),
-        M14 = Operator<T>.Add(a.M14, b.M14),
-        M21 = Operator<T>.Add(a.M21, b.M21),
-        M22 = Operator<T>.Add(a.M22, b.M22),
-        M23 = Operator<T>.Add(a.M23, b.M23),
-        M24 = Operator<T>.Add(a.M24, b.M24),
-        M31 = Operator<T>.Add(a.M31, b.M31),
-        M32 = Operator<T>.Add(a.M32, b.M32),
-        M33 = Operator<T>.Add(a.M33, b.M33),
-        M34 = Operator<T>.Add(a.M34, b.M34),
-        M41 = Operator<T>.Add(a.M41, b.M41),
-        M42 = Operator<T>.Add(a.M42, b.M42),
-        M43 = Operator<T>.Add(a.M43, b.M43),
-        M44 = Operator<T>.Add(a.M44, b.M44),
+        M11 = a.M11 + b.M11,
+        M12 = a.M12 + b.M12,
+        M13 = a.M13 + b.M13,
+        M14 = a.M14 + b.M14,
+        M21 = a.M21 + b.M21,
+        M22 = a.M22 + b.M22,
+        M23 = a.M23 + b.M23,
+        M24 = a.M24 + b.M24,
+        M31 = a.M31 + b.M31,
+        M32 = a.M32 + b.M32,
+        M33 = a.M33 + b.M33,
+        M34 = a.M34 + b.M34,
+        M41 = a.M41 + b.M41,
+        M42 = a.M42 + b.M42,
+        M43 = a.M43 + b.M43,
+        M44 = a.M44 + b.M44,
     };
 }

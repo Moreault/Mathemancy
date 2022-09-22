@@ -21,4 +21,24 @@ public static class ComparableExtensions
     {
         return actual.CompareTo(comp) <= 0;
     }
+
+    public static bool IsGreaterThan<T>(this T actual, object comp) where T : IComparable
+    {
+        return actual.CompareTo(comp) > 0;
+    }
+
+    public static bool IsGreaterThanOrEqualTo<T>(this T actual, object comp) where T : IComparable
+    {
+        return actual.CompareTo(comp) >= 0;
+    }
+
+    public static bool IsLesserThan<T>(this T actual, object comp) where T : IComparable
+    {
+        return actual.CompareTo(comp) < 0;
+    }
+
+    public static bool IsLesserThanOrEqualTo<T>(this T actual, object comp) where T : IComparable
+    {
+        return actual.CompareTo(comp) <= 0;
+    }
 }

@@ -1,9 +1,11 @@
-﻿namespace ToolBX.Mathemancy;
+﻿using System.Numerics;
+
+namespace ToolBX.Mathemancy;
 
 /// <summary>
 /// Two-dimensional planar figure with four straight sides and four right angles.
 /// </summary>
-public readonly record struct Rectangle<T>(Vector2<T> Position, Size<T> Size) : IComparable<Rectangle<T>>, IComparable where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+public readonly record struct Rectangle<T>(Vector2<T> Position, Size<T> Size) : IComparable<Rectangle<T>>, IComparable where T : struct, INumber<T>
 {
     public static readonly Rectangle<T> Empty = new();
 
@@ -17,11 +19,11 @@ public readonly record struct Rectangle<T>(Vector2<T> Position, Size<T> Size) : 
 
     public T Left => X;
 
-    public T Right => Operator<T>.Add(X, Width);
+    public T Right => X + Width;
 
     public T Top => Y;
 
-    public T Bottom => Operator<T>.Add(Y, Height);
+    public T Bottom => Y + Height;
 
     public Vector2<T> TopLeft => Position;
 
@@ -74,11 +76,11 @@ public readonly record struct Rectangle<T>(Vector2<T> Position, Size<T> Size) : 
 
         if (point1 == point2)
             topLeft = point1;
-        else if (Operator<T>.LessThanOrEqual(point1.X, point2.X))
-            topLeft = Operator<T>.LessThanOrEqual(point1.Y, point2.Y) ? point1 : new Vector2<T>(point1.X, point2.Y);
+        else if (point1.X <= point2.X)
+            topLeft = point1.Y <= point2.Y ? point1 : new Vector2<T>(point1.X, point2.Y);
         else
-            topLeft = Operator<T>.LessThanOrEqual(point1.Y, point2.Y) ? new Vector2<T>(point2.X, point1.Y) : point2;
-
-        return new Rectangle<T>(topLeft, new Size<T>(Operator<T>.Absolute(Operator<T>.Subtract(point1.X, point2.X)), Operator<T>.Absolute(Operator<T>.Subtract(point1.Y, point2.Y))));
+            topLeft = point1.Y <= point2.Y ? new Vector2<T>(point2.X, point1.Y) : point2;
+        
+        return new Rectangle<T>(topLeft, T.Abs(point1.X - point2.X), T.Abs(point1.Y - point2.Y));
     }
 }

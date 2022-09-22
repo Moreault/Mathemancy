@@ -1,9 +1,9 @@
-﻿using ToolBX.EasyTypeParsing;
+﻿using System.Numerics;
 using ToolBX.Mathemancy.Resources;
 
 namespace ToolBX.Mathemancy;
 
-public readonly record struct Vector3<T>(T X, T Y, T Z) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+public readonly record struct Vector3<T>(T X, T Y, T Z) where T : struct, INumber<T>
 {
     public static Vector3<T> Zero => default;
 
@@ -25,23 +25,23 @@ public readonly record struct Vector3<T>(T X, T Y, T Z) where T : struct, ICompa
 
     public static bool operator <=(Vector3<T> a, Vector3<T> b) => a.X.IsLesserThanOrEqualTo(b.X) && a.Y.IsLesserThanOrEqualTo(b.Y) && a.Z.IsLesserThanOrEqualTo(b.Z);
 
-    public static Vector3<T> operator +(Vector3<T> a, Vector3<T> b) => new(Operator<T>.Add(a.X, b.X), Operator<T>.Add(a.Y, b.Y), Operator<T>.Add(a.Z, b.Z));
+    public static Vector3<T> operator +(Vector3<T> a, Vector3<T> b) => new(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
 
-    public static Vector3<T> operator -(Vector3<T> a, Vector3<T> b) => new(Operator<T>.Subtract(a.X, b.X), Operator<T>.Subtract(a.Y, b.Y), Operator<T>.Subtract(a.Z, b.Z));
+    public static Vector3<T> operator -(Vector3<T> a, Vector3<T> b) => new(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
 
-    public static Vector3<T> operator -(Vector3<T> value) => new(Operator<T>.Negate(value.X), Operator<T>.Negate(value.Y), Operator<T>.Negate(value.Z));
+    public static Vector3<T> operator -(Vector3<T> value) => new(-value.X, -value.Y, -value.Z);
 
-    public static Vector3<T> operator +(Vector3<T> a, T b) => new(Operator<T>.Add(a.X, b), Operator<T>.Add(a.Y, b), Operator<T>.Add(a.Z, b));
+    public static Vector3<T> operator +(Vector3<T> a, T b) => new(a.X+ b, a.Y+ b, a.Z+ b);
 
-    public static Vector3<T> operator -(Vector3<T> a, T b) => new(Operator<T>.Subtract(a.X, b), Operator<T>.Subtract(a.Y, b), Operator<T>.Subtract(a.Z, b));
+    public static Vector3<T> operator -(Vector3<T> a, T b) => new(a.X - b, a.Y -  b, a.Z - b);
 
-    public static Vector3<T> operator *(Vector3<T> a, Vector3<T> b) => new(Operator<T>.Multiply(a.X, b.X), Operator<T>.Multiply(a.Y, b.Y), Operator<T>.Multiply(a.Z, b.Z));
+    public static Vector3<T> operator *(Vector3<T> a, Vector3<T> b) => new(a.X * b.X, a.Y * b.Y, a.Z * b.Z);
 
-    public static Vector3<T> operator /(Vector3<T> a, Vector3<T> b) => new(Operator<T>.Divide(a.X, b.X), Operator<T>.Divide(a.Y, b.Y), Operator<T>.Divide(a.Z, b.Z));
+    public static Vector3<T> operator /(Vector3<T> a, Vector3<T> b) => new(a.X / b.X, a.Y / b.Y, a.Z / b.Z);
 
-    public static Vector3<T> operator *(Vector3<T> a, T b) => new(Operator<T>.Multiply(a.X, b), Operator<T>.Multiply(a.Y, b), Operator<T>.Multiply(a.Z, b));
+    public static Vector3<T> operator *(Vector3<T> a, T b) => new(a.X * b, a.Y * b, a.Z * b);
 
-    public static Vector3<T> operator /(Vector3<T> a, T b) => new(Operator<T>.Divide(a.X, b), Operator<T>.Divide(a.Y, b), Operator<T>.Divide(a.Z, b));
+    public static Vector3<T> operator /(Vector3<T> a, T b) => new(a.X / b, a.Y / b, a.Z / b);
 
     public static bool operator >(Vector3<T> a, Vector2<T> b) => a.X.IsGreaterThan(b.X) && a.Y.IsGreaterThan(b.Y) && a.Z.IsGreaterThan(default);
 
@@ -51,15 +51,15 @@ public readonly record struct Vector3<T>(T X, T Y, T Z) where T : struct, ICompa
 
     public static bool operator <=(Vector3<T> a, Vector2<T> b) => a.X.IsLesserThanOrEqualTo(b.X) && a.Y.IsLesserThanOrEqualTo(b.Y) && a.Z.IsLesserThanOrEqualTo(default);
 
-    public static Vector3<T> operator +(Vector3<T> a, Vector2<T> b) => new(Operator<T>.Add(a.X, b.X), Operator<T>.Add(a.Y, b.Y), a.Z);
+    public static Vector3<T> operator +(Vector3<T> a, Vector2<T> b) => new(a.X + b.X, a.Y + b.Y, a.Z);
 
-    public static Vector3<T> operator -(Vector3<T> a, Vector2<T> b) => new(Operator<T>.Subtract(a.X, b.X), Operator<T>.Subtract(a.Y, b.Y), a.Z);
+    public static Vector3<T> operator -(Vector3<T> a, Vector2<T> b) => new(a.X - b.X, a.Y - b.Y, a.Z);
 
-    public static Vector3<T> operator *(Vector3<T> a, Vector2<T> b) => new(Operator<T>.Multiply(a.X, b.X), Operator<T>.Multiply(a.Y, b.Y), a.Z);
+    public static Vector3<T> operator *(Vector3<T> a, Vector2<T> b) => new(a.X * b.X, a.Y * b.Y, a.Z);
 
-    public static Vector3<T> operator /(Vector3<T> a, Vector2<T> b) => new(Operator<T>.Divide(a.X, b.X), Operator<T>.Divide(a.Y, b.Y));
+    public static Vector3<T> operator /(Vector3<T> a, Vector2<T> b) => new(a.X / b.X, a.Y / b.Y);
 
-    public static Vector3<T> operator /(Vector2<T> a, Vector3<T> b) => new(Operator<T>.Divide(a.X, b.X), Operator<T>.Divide(a.Y, b.Y));
+    public static Vector3<T> operator /(Vector2<T> a, Vector3<T> b) => new(a.X / b.X, a.Y / b.Y);
 
     public void Deconstruct(out T x, out T y, out T z)
     {
@@ -100,18 +100,18 @@ public readonly record struct Vector3<T>(T X, T Y, T Z) where T : struct, ICompa
 
     public T LengthSquared()
     {
-        var x = Operator<T>.Multiply(X, X);
-        var y = Operator<T>.Multiply(Y, Y);
-        var z = Operator<T>.Multiply(Z, Z);
-        var xy = Operator<T>.Add(x, y);
-        return Operator<T>.Add(xy, z);
+        var x = X * X;
+        var y = Y * Y;
+        var z = Z * Z;
+        var xy = x + y;
+        return xy + z;
     }
 
     public Vector3<T> Cross(Vector3<T> other)
     {
-        var x = Operator<T>.Subtract(Operator<T>.Multiply(Y, other.Z), Operator<T>.Multiply(other.Y, Z));
-        var y = Operator<T>.Negate(Operator<T>.Subtract(Operator<T>.Multiply(X, other.Z), Operator<T>.Multiply(other.X, Z)));
-        var z = Operator<T>.Subtract(Operator<T>.Multiply(X, other.Y), Operator<T>.Multiply(other.X, Y));
+        var x = Y * other.Z - other.Y * Z;
+        var y = -(X * other.Z - other.X * Z);
+        var z = X * other.Y - other.X * Y;
 
         return new Vector3<T>(x, y, z);
     }
@@ -119,32 +119,32 @@ public readonly record struct Vector3<T>(T X, T Y, T Z) where T : struct, ICompa
     public Vector3<T> Normalize()
     {
         var factor = LengthSquared();
-        factor = Operator<T>.Divide((T)(object)1f, factor);
-        var x = Operator<T>.Multiply(X, factor);
-        var y = Operator<T>.Multiply(Y, factor);
-        var z = Operator<T>.Multiply(Z, factor);
+        factor = (T)(object)1f / factor;
+        var x = X * factor;
+        var y = Y * factor;
+        var z = Z * factor;
         return new Vector3<T>(x, y, z);
     }
 
     public Direction ToDirection()
     {
-        if (Operator<T>.Equal(X, default) && Operator<T>.Equal(Y, default))
+        if (X == default && Y == default)
             return Direction.None;
-        if (Operator<T>.Equal(X, default) && Operator<T>.LessThan(Y, default))
+        if (X == default && Y < default(T))
             return Direction.Up;
-        if (Operator<T>.GreaterThan(X, default) && Operator<T>.Equal(Y, default))
+        if (X > default(T) && Y == default)
             return Direction.Right;
-        if (Operator<T>.Equal(X, default) && Operator<T>.GreaterThan(Y, default))
+        if (X == default && Y > default(T))
             return Direction.Down;
-        if (Operator<T>.LessThan(X, default) && Operator<T>.Equal(Y, default))
+        if (X < default(T) && Y == default)
             return Direction.Left;
-        if (Operator<T>.LessThan(X, default) && Operator<T>.LessThan(Y, default))
+        if (X < default(T) && Y < default(T))
             return Direction.UpLeft;
-        if (Operator<T>.GreaterThan(X, default) && Operator<T>.LessThan(Y, default))
+        if (X > default(T) && Y < default(T))
             return Direction.UpRight;
-        if (Operator<T>.LessThan(X, default) && Operator<T>.GreaterThan(Y, default))
+        if (X < default(T) && Y > default(T))
             return Direction.DownLeft;
-        if (Operator<T>.GreaterThan(X, default) && Operator<T>.GreaterThan(Y, default))
+        if (X > default(T) && Y > default(T))
             return Direction.DownRight;
 
         throw new NotSupportedException();

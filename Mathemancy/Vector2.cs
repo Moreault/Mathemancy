@@ -1,8 +1,9 @@
-﻿using ToolBX.Mathemancy.Resources;
+﻿using System.Numerics;
+using ToolBX.Mathemancy.Resources;
 
 namespace ToolBX.Mathemancy;
 
-public readonly record struct Vector2<T>(T X, T Y) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+public readonly record struct Vector2<T>(T X, T Y) where T : struct, INumber<T>
 {
     public static Vector2<T> Zero => default;
 
@@ -14,23 +15,23 @@ public readonly record struct Vector2<T>(T X, T Y) where T : struct, IComparable
 
     public static bool operator <=(Vector2<T> a, Vector2<T> b) => a.X.IsLesserThanOrEqualTo(b.X) && a.Y.IsLesserThanOrEqualTo(b.Y);
 
-    public static Vector2<T> operator +(Vector2<T> a, Vector2<T> b) => new(Operator<T>.Add(a.X, b.X), Operator<T>.Add(a.Y, b.Y));
+    public static Vector2<T> operator +(Vector2<T> a, Vector2<T> b) => new(a.X + b.X, a.Y + b.Y);
 
-    public static Vector2<T> operator -(Vector2<T> a, Vector2<T> b) => new(Operator<T>.Subtract(a.X, b.X), Operator<T>.Subtract(a.Y, b.Y));
+    public static Vector2<T> operator -(Vector2<T> a, Vector2<T> b) => new(a.X - b.X, a.Y - b.Y);
 
-    public static Vector2<T> operator -(Vector2<T> value) => new(Operator<T>.Negate(value.X), Operator<T>.Negate(value.Y));
+    public static Vector2<T> operator -(Vector2<T> value) => new(-value.X, -value.Y);
 
-    public static Vector2<T> operator +(Vector2<T> a, T b) => new(Operator<T>.Add(a.X, b), Operator<T>.Add(a.Y, b));
+    public static Vector2<T> operator +(Vector2<T> a, T b) => new(a.X + b, a.Y + b);
 
-    public static Vector2<T> operator -(Vector2<T> a, T b) => new(Operator<T>.Subtract(a.X, b), Operator<T>.Subtract(a.Y, b));
+    public static Vector2<T> operator -(Vector2<T> a, T b) => new(a.X - b, a.Y - b);
 
-    public static Vector2<T> operator *(Vector2<T> a, Vector2<T> b) => new(Operator<T>.Multiply(a.X, b.X), Operator<T>.Multiply(a.Y, b.Y));
+    public static Vector2<T> operator *(Vector2<T> a, Vector2<T> b) => new(a.X * b.X, a.Y * b.Y);
 
-    public static Vector2<T> operator /(Vector2<T> a, Vector2<T> b) => new(Operator<T>.Divide(a.X, b.X), Operator<T>.Divide(a.Y, b.Y));
+    public static Vector2<T> operator /(Vector2<T> a, Vector2<T> b) => new(a.X / b.X, a.Y / b.Y);
 
-    public static Vector2<T> operator *(Vector2<T> a, T b) => new(Operator<T>.Multiply(a.X, b), Operator<T>.Multiply(a.Y, b));
+    public static Vector2<T> operator *(Vector2<T> a, T b) => new(a.X * b, a.Y * b);
 
-    public static Vector2<T> operator /(Vector2<T> a, T b) => new(Operator<T>.Divide(a.X, b), Operator<T>.Divide(a.Y, b));
+    public static Vector2<T> operator /(Vector2<T> a, T b) => new(a.X / b, a.Y / b);
 
     public void Deconstruct(out T x, out T y)
     {
@@ -65,23 +66,23 @@ public readonly record struct Vector2<T>(T X, T Y) where T : struct, IComparable
 
     public Direction ToDirection()
     {
-        if (Operator<T>.Equal(X, default) && Operator<T>.Equal(Y, default))
+        if (X == default && Y == default)
             return Direction.None;
-        if (Operator<T>.Equal(X, default) && Operator<T>.LessThan(Y, default))
+        if (X == default && Y < default(T))
             return Direction.Up;
-        if (Operator<T>.GreaterThan(X, default) && Operator<T>.Equal(Y, default))
+        if (X > default(T) && Y == default)
             return Direction.Right;
-        if (Operator<T>.Equal(X, default) && Operator<T>.GreaterThan(Y, default))
+        if (X == default && Y > default(T))
             return Direction.Down;
-        if (Operator<T>.LessThan(X, default) && Operator<T>.Equal(Y, default))
+        if (X < default(T) && Y == default)
             return Direction.Left;
-        if (Operator<T>.LessThan(X, default) && Operator<T>.LessThan(Y, default))
+        if (X < default(T) && Y < default(T))
             return Direction.UpLeft;
-        if (Operator<T>.GreaterThan(X, default) && Operator<T>.LessThan(Y, default))
+        if (X > default(T) && Y < default(T))
             return Direction.UpRight;
-        if (Operator<T>.LessThan(X, default) && Operator<T>.GreaterThan(Y, default))
+        if (X < default(T) && Y > default(T))
             return Direction.DownLeft;
-        if (Operator<T>.GreaterThan(X, default) && Operator<T>.GreaterThan(Y, default))
+        if (X > default(T) && Y > default(T))
             return Direction.DownRight;
 
         throw new NotSupportedException();

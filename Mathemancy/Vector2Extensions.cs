@@ -1,4 +1,6 @@
-﻿namespace ToolBX.Mathemancy;
+﻿using System.Numerics;
+
+namespace ToolBX.Mathemancy;
 
 public static class Vector2Extensions
 {
