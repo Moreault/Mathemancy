@@ -11,8 +11,6 @@ Have you ever wanted Size and/or Vector types? We have that too!
 
 This library is still small but will (probably) get bigger with time.
 
-Most (all of it, really) of the logic for generic numeric operators was adapted to .NET 6 from Marc Gravell and Jon Skeet's https://jonskeet.uk/csharp/miscutil/
-
 ## Variable names
 
 a, b, c, m, x and y may be perfectly acceptable as variable names in mathematical theories and pieces of paper but it has no place in programming as it only serves to make code less readable. 
