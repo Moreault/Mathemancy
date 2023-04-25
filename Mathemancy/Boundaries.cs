@@ -67,4 +67,4 @@ public readonly record struct Boundaries<T>(T Top, T Right, T Bottom, T Left) wh
     }
 
     public static bool operator <=(Boundaries<T> a, Boundaries<T> b) => !(a > b);
-};
+}

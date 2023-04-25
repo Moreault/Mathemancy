@@ -1,4 +1,6 @@
-﻿namespace ToolBX.Mathemancy;
+﻿using ToolBX.Mathemancy.Interpolation;
+
+namespace ToolBX.Mathemancy;
 
 public static class Vector3Extensions
 {
@@ -283,17 +285,17 @@ public static class Vector3Extensions
 
     public static Vector3<float> Interpolate(this Vector3<float> start, Vector3<float> target, float progress)
     {
-        return new Vector3<float>(Interpolation.Calculate(start.X, target.X, progress), Interpolation.Calculate(start.Y, target.Y, progress), Interpolation.Calculate(start.Z, target.Z, progress));
+        return new Vector3<float>(Interpolator.Calculate(start.X, target.X, progress), Interpolator.Calculate(start.Y, target.Y, progress), Interpolator.Calculate(start.Z, target.Z, progress));
     }
 
     public static Vector3<double> Interpolate(this Vector3<double> start, Vector3<double> target, double progress)
     {
-        return new Vector3<double>(Interpolation.Calculate(start.X, target.X, progress), Interpolation.Calculate(start.Y, target.Y, progress), Interpolation.Calculate(start.Z, target.Z, progress));
+        return new Vector3<double>(Interpolator.Calculate(start.X, target.X, progress), Interpolator.Calculate(start.Y, target.Y, progress), Interpolator.Calculate(start.Z, target.Z, progress));
     }
 
     public static Vector2<decimal> Interpolate(this Vector3<decimal> start, Vector3<decimal> target, decimal progress)
     {
-        return new Vector3<decimal>(Interpolation.Calculate(start.X, target.X, progress), Interpolation.Calculate(start.Y, target.Y, progress), Interpolation.Calculate(start.Z, target.Z, progress));
+        return new Vector3<decimal>(Interpolator.Calculate(start.X, target.X, progress), Interpolator.Calculate(start.Y, target.Y, progress), Interpolator.Calculate(start.Z, target.Z, progress));
     }
 
     public static Vector3<float> GetDelta(this Vector3<float> startPosition, Vector3<float> targetPosition, float elapsedTime, float targetTime)

@@ -1,9 +1,6 @@
-﻿using ToolBX.Mathemancy.Interpolation;
+﻿namespace ToolBX.Mathemancy.Interpolation;
 
-namespace Mathemancy.Interpolation;
-
-[Obsolete("Use ToolBX.Mathemancy.Interpolation.Interpolator instead. Will be removed in version 2.1.0.")]
-public static class Interpolation
+public static class Interpolator
 {
     /// <summary>
     /// Returns a value between <see cref="start"/> and <see cref="target"/> based on current <see cref="progress"/>.
@@ -11,7 +8,7 @@ public static class Interpolation
     /// <param name="start"></param>
     /// <param name="target"></param>
     /// <param name="progress">Value between 0.0 and 1.0</param>
-    public static float Calculate(float start, float target, float progress) => Interpolator.Calculate(start, target, progress);
+    public static float Calculate(float start, float target, float progress) => start + (target - start) * Math.Clamp(progress, 0, 1);
 
     /// <summary>
     /// Returns a value between <see cref="start"/> and <see cref="target"/> based on current <see cref="progress"/>.
@@ -19,7 +16,7 @@ public static class Interpolation
     /// <param name="start"></param>
     /// <param name="target"></param>
     /// <param name="progress">Value between 0.0 and 1.0</param>
-    public static double Calculate(double start, double target, double progress) => Interpolator.Calculate(start, target, progress);
+    public static double Calculate(double start, double target, double progress) => start + (target - start) * Math.Clamp(progress, 0, 1);
 
     /// <summary>
     /// Returns a value between <see cref="start"/> and <see cref="target"/> based on current <see cref="progress"/>.
@@ -27,5 +24,5 @@ public static class Interpolation
     /// <param name="start"></param>
     /// <param name="target"></param>
     /// <param name="progress">Value between 0.0 and 1.0</param>
-    public static decimal Calculate(decimal start, decimal target, decimal progress) => Interpolator.Calculate(start, target, progress);
+    public static decimal Calculate(decimal start, decimal target, decimal progress) => start + (target - start) * Math.Clamp(progress, 0, 1);
 }
