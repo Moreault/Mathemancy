@@ -101,6 +101,7 @@ If you don't use dependency injection at all then you can just instantiate the c
 Mathemancy 1.0.7 -> 1.1.0
 * Linear interpolation has been moved to Mathemancy.Interpolation
 * Mathematics.Interpolate and GetDelta for Vector2 are now extension methods
+
 Mathemancy.Interpolation 2.0.0 -> 2.1.0
 * The interpolation class was erroneously under the Mathemancy.Interpolation namespace and was moved to the ToolBX.Mathemancy.Interpolation namespace instead
 * The class also had to be renamed Interpolator in order to avoid namespace clashes (for some reason this was okay without the 'ToolBX' prefix but no longer!)
