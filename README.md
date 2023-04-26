@@ -76,13 +76,13 @@ These extension methods are available for Vector2, Vector3, Rectangle and Size.
 
 # Mathemancy.Randomness
 
-We have two services to generate random numbers. One of them is a more predictable pseudo random number generator while the other is a more cryptographically-secure generator.
+Provides two random number generation (RNG) services : `PseudoRandomNumberGenerator` and `SecureRandomNumberGenerator`. Both of these services implement `IRandomNumberGenerator` and therefore have the exact same capabilities and are used in the same way.
 
-While more predictable, the pseudo generator is a lot faster so I recommend using it if performance is an issue or if you need to generate a lot of random numbers often.
+## PseudoRandomGenerator
+While more "predictable," this generator is also more performant than its "secure" cousin. It probably fits most needs for number generation but don't hesitate to try both and evaluate for yourself whether or not the pros outweigh the cons.
 
-Both services share the same base interface so they are used in the exact same way and offer the same capabilities.
-
-Disclaimer : These services provide common use cases for generating random numbers. If you need it to do some other weird things then it's probably not for you :(
+## SecureRandomNumberGenerator
+Leverages .NET's cryptography libraries to give you a more "secure," less "predictable" generator. While less performant than the `PseudoRandomNumberGenerator`, both still generate random numbers in milliseconds with modern hardware. I would probably avoid using it in an update loop but it should be safe otherwise. 
 
 ## Getting started
 
