@@ -1,12 +1,9 @@
-name: Publish to NuGet
+name: Build
 
 on:
   push:
     branches:
       - master
-      
-env:
-  NuGetDirectory: ${{ github.workspace}}/abc
 
 jobs:
   build-and-publish:
@@ -28,10 +25,3 @@ jobs:
       
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-      
-    - name: Pack projects
-      run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
-      
-    - name: Publish to NuGet.org
-      run: | 
-        nuget push ${{ env.NuGetDirectory }}/ToolBX.Mathemancy.*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}} -SkipDuplicate
