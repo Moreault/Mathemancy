@@ -6,7 +6,7 @@ on:
       - master
       
 env:
-  NuGetDirectory: ${{ github.workspace}}/nuget
+  NuGetDirectory: ${{ github.workspace}}/abc
 
 jobs:
   build-and-publish:
