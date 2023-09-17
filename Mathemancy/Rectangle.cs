@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace ToolBX.Mathemancy;
+﻿namespace ToolBX.Mathemancy;
 
 /// <summary>
 /// Two-dimensional planar figure with four straight sides and four right angles.

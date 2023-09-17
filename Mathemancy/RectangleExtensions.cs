@@ -1,7 +1,4 @@
-﻿using System.Numerics;
-using ToolBX.Mathemancy.Resources;
-
-namespace ToolBX.Mathemancy;
+﻿namespace ToolBX.Mathemancy;
 
 public static class RectangleExtensions
 {

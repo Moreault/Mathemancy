@@ -1,7 +1,4 @@
-﻿using System.Numerics;
-using ToolBX.Mathemancy.Resources;
-
-namespace ToolBX.Mathemancy;
+﻿namespace ToolBX.Mathemancy;
 
 public readonly record struct Vector3<T>(T X, T Y, T Z) where T : struct, INumber<T>
 {

@@ -104,4 +104,7 @@
 	<data name="CannotClampToLargerRectangle" xml:space="preserve">
 		<value>Impossible d'utiliser la méthode 'Clamp' du rectangle : 'other' doit être plus petit ou égal à {0} mais sa valeur était {1}</value>
 	</data>
+	<data name="MaximumValueMustBeGreaterThanMinimum" xml:space="preserve">
+		<value>La valeur maximale doit être plus grande que la valeur minimale mais elles étaient {0} et {1} respectivement</value>
+	</data>
 </root>

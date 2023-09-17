@@ -1194,4 +1194,10 @@ public class ComparableExtensionsTester
             result.Should().BeTrue();
         }
     }
+
+    [TestClass]
+    public class Clamp : Tester
+    {
+        //TODO Test
+    }
 }

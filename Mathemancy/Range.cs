@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace ToolBX.Mathemancy;
+﻿namespace ToolBX.Mathemancy;
 
 /// <summary>
 /// A range between two numeric values.

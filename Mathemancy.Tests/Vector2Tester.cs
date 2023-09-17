@@ -1,6 +1,4 @@
-﻿using System;
-using ToolBX.EasyTypeParsing;
-using ToolBX.Mathemancy.Resources;
+﻿using ToolBX.EasyTypeParsing;
 
 namespace Mathemancy.Tests;
 

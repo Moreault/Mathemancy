@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace ToolBX.Mathemancy;
+﻿namespace ToolBX.Mathemancy;
 
 public readonly record struct Boundaries<T>(T Top, T Right, T Bottom, T Left) where T : struct, INumber<T>
 {

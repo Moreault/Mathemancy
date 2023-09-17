@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace ToolBX.Mathemancy;
+﻿namespace ToolBX.Mathemancy;
 
 public readonly record struct Size<T>(T Width, T Height) : IComparable<Size<T>>, IComparable where T : struct, INumber<T>
 {

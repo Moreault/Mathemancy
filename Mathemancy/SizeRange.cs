@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace ToolBX.Mathemancy;
+﻿namespace ToolBX.Mathemancy;
 
 public readonly record struct SizeRange<T> : IComparable<SizeRange<T>>, IComparable, IEquatable<Size<T>> where T : struct, INumber<T>, IConvertible
 {

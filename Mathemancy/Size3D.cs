@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace ToolBX.Mathemancy;
+﻿namespace ToolBX.Mathemancy;
 
 public readonly record struct Size3D<T>(T Length, T Width, T Height) : IComparable<Size3D<T>>, IComparable where T : struct, INumber<T>
 {
