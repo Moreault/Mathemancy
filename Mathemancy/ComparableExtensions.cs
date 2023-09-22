@@ -41,14 +41,4 @@ public static class ComparableExtensions
     {
         return actual.CompareTo(comp) <= 0;
     }
-
-    public static T Clamp<T>(this T value, T min, T max, Comparer<T>? comparer = null) where T : IComparable<T>
-    {
-        comparer ??= Comparer<T>.Default;
-        if (min.IsGreaterThan(max)) throw new ArgumentException(string.Format(Exceptions.MaximumValueMustBeGreaterThanMinimum, max, min));
-
-        if (value.IsLesserThan(min)) return min;
-        if (value.IsGreaterThan(max)) return max;
-        return value;
-    }
 }

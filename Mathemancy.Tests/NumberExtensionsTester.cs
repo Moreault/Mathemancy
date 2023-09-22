@@ -808,4 +808,207 @@ public class NumberExtensionsTester
     {
         //TODO Test
     }
+
+    [TestClass]
+    public class Clamp : Tester
+    {
+        [TestMethod]
+        public void WhenMinIsGreaterThanMax_Throw()
+        {
+            //Arrange
+            var value = Fixture.Create<float>();
+            var min = Fixture.Create<float>();
+            var max = min - 1;
+
+            //Act
+            var action = () => value.Clamp(min, max);
+
+            //Assert
+            action.Should().Throw<ArgumentException>().WithMessage(string.Format(Exceptions.MaximumValueMustBeGreaterThanMinimum, max, min));
+        }
+
+        [TestMethod]
+        public void WhenValueIsLessThanMin_ReturnMin()
+        {
+            //Arrange
+            var min = Fixture.Create<float>();
+            var value = min - 1;
+            var max = min + 2;
+
+            //Act
+            var result = value.Clamp(min, max);
+
+            //Assert
+            result.Should().Be(min);
+        }
+
+        [TestMethod]
+        public void WhenValueIsEqualToMin_ReturnMin()
+        {
+            //Arrange
+            var min = Fixture.Create<float>();
+            var value = min;
+            var max = min + 2;
+
+            //Act
+            var result = value.Clamp(min, max);
+
+            //Assert
+            result.Should().Be(min);
+        }
+
+        [TestMethod]
+        public void WhenValueIsGreaterThanMax_ReturnMax()
+        {
+            //Arrange
+            var min = Fixture.Create<float>();
+            var max = min + 2;
+            var value = max + 1;
+
+            //Act
+            var result = value.Clamp(min, max);
+
+            //Assert
+            result.Should().Be(max);
+        }
+
+        [TestMethod]
+        public void WhenValueIsEqualToMax_ReturnMax()
+        {
+            //Arrange
+            var min = Fixture.Create<float>();
+            var max = min + 2;
+            var value = max;
+
+            //Act
+            var result = value.Clamp(min, max);
+
+            //Assert
+            result.Should().Be(max);
+        }
+
+        [TestMethod]
+        public void WhenValueIsBetweenMinAndMax_ReturnValue()
+        {
+            //Arrange
+            var min = Fixture.Create<float>();
+            var value = min + 1;
+            var max = min + 2;
+
+            //Act
+            var result = value.Clamp(min, max);
+
+            //Assert
+            result.Should().Be(value);
+        }
+    }
+
+    [TestClass]
+    public class ClampNullable : Tester
+    {
+        [TestMethod]
+        public void WhenValueIsNull_ReturnNull()
+        {
+            //Arrange
+            float? value = null!;
+            var min = Fixture.Create<float>();
+            var max = min - 1;
+
+            //Act
+            var result = value.Clamp(min, max);
+
+            //Assert
+            result.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void WhenMinIsGreaterThanMax_Throw()
+        {
+            //Arrange
+            var value = Fixture.Create<float?>();
+            var min = Fixture.Create<float>();
+            var max = min - 1;
+
+            //Act
+            var action = () => value.Clamp(min, max);
+
+            //Assert
+            action.Should().Throw<ArgumentException>().WithMessage(string.Format(Exceptions.MaximumValueMustBeGreaterThanMinimum, max, min));
+        }
+
+        [TestMethod]
+        public void WhenValueIsLessThanMin_ReturnMin()
+        {
+            //Arrange
+            var min = Fixture.Create<float>();
+            float? value = min - 1;
+            var max = min + 2;
+
+            //Act
+            var result = value.Clamp(min, max);
+
+            //Assert
+            result.Should().Be(min);
+        }
+
+        [TestMethod]
+        public void WhenValueIsEqualToMin_ReturnMin()
+        {
+            //Arrange
+            var min = Fixture.Create<float>();
+            float? value = min;
+            var max = min + 2;
+
+            //Act
+            var result = value.Clamp(min, max);
+
+            //Assert
+            result.Should().Be(min);
+        }
+
+        [TestMethod]
+        public void WhenValueIsGreaterThanMax_ReturnMax()
+        {
+            //Arrange
+            var min = Fixture.Create<float>();
+            var max = min + 2;
+            float? value = max + 1;
+
+            //Act
+            var result = value.Clamp(min, max);
+
+            //Assert
+            result.Should().Be(max);
+        }
+
+        [TestMethod]
+        public void WhenValueIsEqualToMax_ReturnMax()
+        {
+            //Arrange
+            var min = Fixture.Create<float>();
+            var max = min + 2;
+            float? value = max;
+
+            //Act
+            var result = value.Clamp(min, max);
+
+            //Assert
+            result.Should().Be(max);
+        }
+
+        [TestMethod]
+        public void WhenValueIsBetweenMinAndMax_ReturnValue()
+        {
+            //Arrange
+            var min = Fixture.Create<float>();
+            float? value = min + 1;
+            var max = min + 2;
+
+            //Act
+            var result = value.Clamp(min, max);
+
+            //Assert
+            result.Should().Be(value);
+        }
+    }
 }

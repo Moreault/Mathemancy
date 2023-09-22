@@ -774,4 +774,22 @@ public static class NumberExtensions
 
     public static decimal ToDecimal(this float value, decimal defaultValue = default) => Convert.ToDecimal(value);
     public static decimal ToDecimal(this double value, decimal defaultValue = default) => Convert.ToDecimal(value);
+
+    public static T Clamp<T>(this T value, T min, T max) where T : INumber<T>
+    {
+        if (min > max) throw new ArgumentException(string.Format(Exceptions.MaximumValueMustBeGreaterThanMinimum, max, min));
+
+        if (value < min)
+            return min;
+
+        if (value > max)
+            return max;
+
+        return value;
+    }
+
+    public static T? Clamp<T>(this T? value, T min, T max) where T : struct, INumber<T>
+    {
+        return value?.Clamp(min, max) ?? null;
+    }
 }

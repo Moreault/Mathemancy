@@ -12,7 +12,7 @@
 		<PackageProjectUrl>https://github.com/Moreault/Mathemancy</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Description>Services that generate random numbers and such.</Description>
-		<Version>2.0.3-beta2</Version>
+		<Version>2.0.3-beta3</Version>
 		<PackageIcon>mathemancy.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
