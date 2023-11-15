@@ -51,7 +51,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="ToolBX.AutoInject" Version="2.1.0" />
+	  <PackageReference Include="ToolBX.AutoInject" Version="2.1.1" />
 	  <PackageReference Include="ToolBX.EasyTypeParsing" Version="2.0.1" />
 	</ItemGroup>
 
