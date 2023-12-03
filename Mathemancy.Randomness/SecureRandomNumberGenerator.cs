@@ -11,38 +11,30 @@ public interface ISecureRandomNumberGenerator : IRandomNumberGenerator, IDisposa
 [AutoInject]
 public class SecureRandomNumberGenerator : ISecureRandomNumberGenerator
 {
-    private readonly RandomNumberGenerator _randomNumberGenerator;
+    private readonly RandomNumberGenerator _randomNumberGenerator = RandomNumberGenerator.Create();
 
-    public SecureRandomNumberGenerator()
+    public T Generate<T>() where T : INumber<T>, IMinMaxValue<T> => Generate(T.MinValue, T.MaxValue);
+
+    public T Generate<T>(T max) where T : INumber<T> => Generate(T.Zero, max);
+
+    public T Generate<T>(T min, T max) where T : INumber<T>
     {
-        _randomNumberGenerator = RandomNumberGenerator.Create();
-    }
+        if (min is int or short)
+            return T.CreateChecked(RandomNumberGenerator.GetInt32(Convert.ToInt32(min), Convert.ToInt32(max)));
 
-    public int Generate(int max) => Generate(0, max);
-
-    public int Generate(int min, int max) => RandomNumberGenerator.GetInt32(min, max == int.MaxValue ? int.MaxValue : max + 1);
-
-    public long Generate(long max) => Generate(0, max);
-
-    public long Generate(long min, long max)
-    {
         var bytes = RandomNumberGenerator.GetBytes(sizeof(long));
         _randomNumberGenerator.GetNonZeroBytes(bytes);
         var random = BitConverter.ToInt64(bytes);
-        return ((random - min) % (max - min + 1) + (max - min) + 1) % (max - min + 1) + min;
+
+        var min64 = Convert.ToInt64(min);
+        var max64 = Convert.ToInt64(max);
+
+        return T.CreateChecked(((random - min64) % (max64 - min64 + 1) + (max64 - min64) + 1) % (max64 - min64 + 1) + min64);
     }
 
-    public double Generate(double max) => Generate(0, max);
+    public double GenerateFractions() => GenerateFractions<double>();
 
-    public double Generate(double min, double max)
-    {
-        var bytes = RandomNumberGenerator.GetBytes(sizeof(double));
-        _randomNumberGenerator.GetNonZeroBytes(bytes);
-        var random = BitConverter.ToDouble(bytes);
-        return ((random - min) % (max - min + 1) + (max - min) + 1) % (max - min + 1) + min;
-    }
-
-    public double GenerateFractions()
+    public T GenerateFractions<T>() where T : IFloatingPoint<T>
     {
         var digits = Generate(int.MaxValue);
         var number = digits.ToString().Length;
@@ -51,7 +43,7 @@ public class SecureRandomNumberGenerator : ISecureRandomNumberGenerator
         for (var i = 0; i < number; i++)
             zeroes *= 10;
 
-        return digits / zeroes;
+        return T.CreateChecked(digits / zeroes);
     }
 
     public void Dispose() => _randomNumberGenerator.Dispose();

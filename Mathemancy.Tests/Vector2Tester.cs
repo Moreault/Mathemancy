@@ -1,4 +1,5 @@
-﻿using ToolBX.EasyTypeParsing;
+﻿using System.Numerics;
+using ToolBX.EasyTypeParsing;
 
 namespace Mathemancy.Tests;
 
@@ -350,7 +351,7 @@ public class Vector2Tester
             var result = a + b;
 
             //Assert
-            result.Should().BeEquivalentTo(new Vector2<float>(a.X + b.X, a.Y + b.Y));
+            result.Should().Be(new Vector2<float>(a.X + b.X, a.Y + b.Y));
         }
     }
 
@@ -368,7 +369,7 @@ public class Vector2Tester
             var result = a - b;
 
             //Assert
-            result.Should().BeEquivalentTo(new Vector2<float>(a.X - b.X, a.Y - b.Y));
+            result.Should().Be(new Vector2<float>(a.X - b.X, a.Y - b.Y));
         }
     }
 
@@ -386,7 +387,7 @@ public class Vector2Tester
             var result = a + b;
 
             //Assert
-            result.Should().BeEquivalentTo(new Vector2<float>(a.X + b, a.Y + b));
+            result.Should().Be(new Vector2<float>(a.X + b, a.Y + b));
         }
     }
 
@@ -404,7 +405,7 @@ public class Vector2Tester
             var result = a - b;
 
             //Assert
-            result.Should().BeEquivalentTo(new Vector2<float>(a.X - b, a.Y - b));
+            result.Should().Be(new Vector2<float>(a.X - b, a.Y - b));
         }
     }
 
@@ -478,7 +479,7 @@ public class Vector2Tester
             var result = a * b;
 
             //Assert
-            result.Should().BeEquivalentTo(new Vector2<float>(a.X * b.X, a.Y * b.Y));
+            result.Should().Be(new Vector2<float>(a.X * b.X, a.Y * b.Y));
         }
     }
 
@@ -496,7 +497,7 @@ public class Vector2Tester
             var result = a / b;
 
             //Assert
-            result.Should().BeEquivalentTo(new Vector2<float>(a.X / b.X, a.Y / b.Y));
+            result.Should().Be(new Vector2<float>(a.X / b.X, a.Y / b.Y));
         }
     }
 
@@ -514,7 +515,7 @@ public class Vector2Tester
             var result = a * b;
 
             //Assert
-            result.Should().BeEquivalentTo(new Vector2<float>(a.X * b, a.Y * b));
+            result.Should().Be(new Vector2<float>(a.X * b, a.Y * b));
         }
     }
 
@@ -532,7 +533,7 @@ public class Vector2Tester
             var result = a / b;
 
             //Assert
-            result.Should().BeEquivalentTo(new Vector2<float>(a.X / b, a.Y / b));
+            result.Should().Be(new Vector2<float>(a.X / b, a.Y / b));
         }
     }
 

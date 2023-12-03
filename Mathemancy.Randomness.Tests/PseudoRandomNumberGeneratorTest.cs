@@ -1,7 +1,7 @@
 namespace Mathemancy.Randomness.Tests;
 
 [TestClass]
-public class PseudoRandomNumberGeneratorTester
+public class PseudoRandomNumberGeneratorTest
 {
     [TestClass]
     public class Generate_Int32_NoMin : Tester<PseudoRandomNumberGenerator>
@@ -117,7 +117,7 @@ public class PseudoRandomNumberGeneratorTester
             //Arrange
 
             //Act
-            var result = Instance.GenerateFractions();
+            var result = Instance.GenerateFractions<double>();
 
             //Assert
             result.Should().BeGreaterOrEqualTo(0.0d);

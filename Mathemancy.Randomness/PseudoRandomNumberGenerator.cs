@@ -5,25 +5,45 @@
 /// </summary>
 public interface IPseudoRandomNumberGenerator : IRandomNumberGenerator
 {
- 
+
 }
 
 [AutoInject]
 public class PseudoRandomNumberGenerator : IPseudoRandomNumberGenerator
 {
-    private readonly Random _random = new();
+    /// <summary>
+    /// Provides a thread-safe <see cref="PseudoRandomNumberGenerator"/> instance that may be used concurrently from any thread.
+    /// </summary>
+    public static PseudoRandomNumberGenerator Shared { get; } = new()
+    {
+        Random = Random.Shared
+    };
 
-    public int Generate(int max) => Generate(0, max);
+    private Random Random { get; set; } = new();
 
-    public int Generate(int min, int max) => _random.Next(min, max == int.MaxValue ? int.MaxValue : max + 1);
+    public int Seed
+    {
+        set => Random = new Random(value);
+    }
 
-    public long Generate(long max) => Generate(0, max);
+    public T Generate<T>() where T : INumber<T>, IMinMaxValue<T> => Generate(T.MinValue, T.MaxValue);
 
-    public long Generate(long min, long max) => _random.NextInt64(min, max == long.MaxValue ? long.MaxValue : max + 1);
+    public T Generate<T>(T max) where T : INumber<T> => Generate(T.Zero, max);
 
-    public double Generate(double max) => Generate(0, max);
+    public T Generate<T>(T min, T max) where T : INumber<T>
+    {
+        if (min is int or short or byte or sbyte or ushort)
+            return T.CreateChecked(Random.Next(Convert.ToInt32(min), Convert.ToInt32(max)));
 
-    public double Generate(double min, double max) => _random.NextInt64((long)min, (long)max) + GenerateFractions();
+        var main = T.CreateChecked(Random.NextInt64(Convert.ToInt64(min), Convert.ToInt64(max)));
 
-    public double GenerateFractions() => _random.NextDouble();
+        if (min is float or double or decimal)
+            return T.Clamp(T.CreateTruncating(Random.NextDouble()) + main, min, max);
+
+        return main;
+    }
+
+    public double GenerateFractions() => GenerateFractions<double>();
+
+    public T GenerateFractions<T>() where T : IFloatingPoint<T> => T.CreateTruncating(Random.NextDouble());
 }
