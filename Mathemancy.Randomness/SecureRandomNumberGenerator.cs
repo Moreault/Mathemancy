@@ -20,16 +20,16 @@ public class SecureRandomNumberGenerator : ISecureRandomNumberGenerator
     public T Generate<T>(T min, T max) where T : INumber<T>
     {
         if (min is int or short)
-            return T.CreateChecked(RandomNumberGenerator.GetInt32(Convert.ToInt32(min), Convert.ToInt32(max)));
+            return T.CreateChecked(RandomNumberGenerator.GetInt32(int.CreateChecked(min), int.CreateChecked(max)));
 
         var bytes = RandomNumberGenerator.GetBytes(sizeof(long));
         _randomNumberGenerator.GetNonZeroBytes(bytes);
         var random = BitConverter.ToInt64(bytes);
 
-        var min64 = Convert.ToInt64(min);
-        var max64 = Convert.ToInt64(max);
+        var min64 = long.CreateSaturating(min);
+        var max64 = long.CreateSaturating(max);
 
-        return T.CreateChecked(((random - min64) % (max64 - min64 + 1) + (max64 - min64) + 1) % (max64 - min64 + 1) + min64);
+        return T.CreateChecked(((random - min64) % long.Clamp(max64 - min64 + 1, 1, long.MaxValue) + (max64 - min64) + 1) % long.Clamp(max64 - min64 + 1, 1, long.MaxValue) + min64);
     }
 
     public double GenerateFractions() => GenerateFractions<double>();

@@ -13,8 +13,8 @@ public record BoxCollider : ICollider
 
     public BoxCollider(Size<int> size, Vector3<int> offset)
     {
-        Offset = offset; Size = size;
-        Offset = offset;
+        Offset = offset; 
+        Size = size;
     }
 
     public BoxCollider(Size<int> size) : this(size, new Vector3<int>())

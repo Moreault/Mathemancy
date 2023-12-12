@@ -33,9 +33,9 @@ public class PseudoRandomNumberGenerator : IPseudoRandomNumberGenerator
     public T Generate<T>(T min, T max) where T : INumber<T>
     {
         if (min is int or short or byte or sbyte or ushort)
-            return T.CreateChecked(Random.Next(Convert.ToInt32(min), Convert.ToInt32(max)));
+            return T.CreateChecked(Random.Next(int.CreateChecked(min), int.CreateChecked(max)));
 
-        var main = T.CreateChecked(Random.NextInt64(Convert.ToInt64(min), Convert.ToInt64(max)));
+        var main = T.CreateChecked(Random.NextInt64(long.CreateSaturating(min), long.CreateSaturating(max)));
 
         if (min is float or double or decimal)
             return T.Clamp(T.CreateTruncating(Random.NextDouble()) + main, min, max);

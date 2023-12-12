@@ -1,6 +1,7 @@
-﻿using System.Numerics;
+﻿using System.Linq;
+using System.Numerics;
 using System.Text.Json;
-using ToolBX.EasyTypeParsing;
+using ToolBX.Mathemancy.Json;
 
 namespace Mathemancy.Tests;
 
@@ -372,6 +373,10 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
     [TestMethod]
     public void Negation_WhenBothValuesArePositive_ReturnNegatives()
     {
+        //Negation cannot be applied for unsigned numbers
+        if (Numbers.IsUnsigned<T>())
+            return;
+
         //Arrange
         var instance = Fixture.Create<Vector2<T>>();
 
@@ -385,6 +390,10 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
     [TestMethod]
     public void Negation_WhenBothValuesAreNegative_ReturnPositive()
     {
+        //Negation cannot be applied for unsigned numbers
+        if (Numbers.IsUnsigned<T>())
+            return;
+
         //Arrange
         var instance = new Vector2<T>(-Fixture.Create<T>(), -Fixture.Create<T>());
 
@@ -398,6 +407,10 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
     [TestMethod]
     public void Negation_WhenXIsNegativeAndYIsPositive_ReturnPositiveXAndNegativeY()
     {
+        //Negation cannot be applied for unsigned numbers
+        if (Numbers.IsUnsigned<T>())
+            return;
+
         //Arrange
         var instance = new Vector2<T>(-Fixture.Create<T>(), Fixture.Create<T>());
 
@@ -411,6 +424,10 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
     [TestMethod]
     public void Negation_WhenXIsPositiveAndYIsNegative_ReturnNegativeXAndPositiveY()
     {
+        //Negation cannot be applied for unsigned numbers
+        if (Numbers.IsUnsigned<T>())
+            return;
+
         //Arrange
         var instance = new Vector2<T>(Fixture.Create<T>(), -Fixture.Create<T>());
 
@@ -508,9 +525,9 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
     public void Clamp_WhenTryingToClampTwoVectorsButMinimumHasGreaterXAndYValues_Throw()
     {
         //Arrange
-        var instance = new Vector2<T>(T.CreateChecked(15.5f), T.CreateChecked(14.25f));
-        var minimum = new Vector2<T>(T.CreateChecked(20), T.CreateChecked(20));
-        var maximum = new Vector2<T>(T.CreateChecked(12), T.CreateChecked(14));
+        var instance = new Vector2<T>(T.CreateSaturating(15.5f), T.CreateSaturating(14.25f));
+        var minimum = new Vector2<T>(T.CreateSaturating(20), T.CreateSaturating(20));
+        var maximum = new Vector2<T>(T.CreateSaturating(12), T.CreateSaturating(14));
 
         //Act
         var action = () => instance.Clamp(minimum, maximum);
@@ -523,9 +540,9 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
     public void Clamp_WhenTryingToClampTwoVectorsButMinimumHasGreaterX_Throw()
     {
         //Arrange
-        var instance = new Vector2<T>(T.CreateChecked(15.5f), T.CreateChecked(14.25f));
-        var minimum = new Vector2<T>(T.CreateChecked(20), T.CreateChecked(12));
-        var maximum = new Vector2<T>(T.CreateChecked(12), T.CreateChecked(14));
+        var instance = new Vector2<T>(T.CreateSaturating(15.5f), T.CreateSaturating(14.25f));
+        var minimum = new Vector2<T>(T.CreateSaturating(20), T.CreateSaturating(12));
+        var maximum = new Vector2<T>(T.CreateSaturating(12), T.CreateSaturating(14));
 
         //Act
         var action = () => instance.Clamp(minimum, maximum);
@@ -553,24 +570,24 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
     public void Clamp_WhenClampingTwoExactValuesTogether_ReturnThatSameValue()
     {
         //Arrange
-        var instance = new Vector2<T>(T.CreateChecked(15.5f), T.CreateChecked(14.25f));
-        var minimum = new Vector2<T>(T.CreateChecked(151.1f), T.CreateChecked(125.8f));
-        var maximum = new Vector2<T>(T.CreateChecked(151.1f), T.CreateChecked(125.8f));
+        var instance = new Vector2<T>(T.CreateSaturating(15.5f), T.CreateSaturating(14.25f));
+        var minimum = new Vector2<T>(T.CreateSaturating(151.1f), T.CreateSaturating(125.8f));
+        var maximum = new Vector2<T>(T.CreateSaturating(151.1f), T.CreateSaturating(125.8f));
 
         //Act
         var result = instance.Clamp(minimum, maximum);
 
         //Assert
-        result.Should().Be(new Vector2<T>(T.CreateChecked(151.1f), T.CreateChecked(125.8f)));
+        result.Should().Be(new Vector2<T>(T.CreateSaturating(151.1f), T.CreateSaturating(125.8f)));
     }
 
     [TestMethod]
     public void Clamp_WhenBothXAndYAreLesserThanMinimum_ReturnMinimum()
     {
         //Arrange
-        var instance = new Vector2<T>(T.CreateChecked(2), T.CreateChecked(4));
-        var minimum = new Vector2<T>(T.CreateChecked(10.15f), T.CreateChecked(8.5f));
-        var maximum = new Vector2<T>(T.CreateChecked(20), T.CreateChecked(18));
+        var instance = new Vector2<T>(T.CreateSaturating(2), T.CreateSaturating(4));
+        var minimum = new Vector2<T>(T.CreateSaturating(10.15f), T.CreateSaturating(8.5f));
+        var maximum = new Vector2<T>(T.CreateSaturating(20), T.CreateSaturating(18));
 
         //Act
         var result = instance.Clamp(minimum, maximum);
@@ -583,9 +600,9 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
     public void Clamp_WhenOnlyXIsLesserThanMinimum_OnlyClampX()
     {
         //Arrange
-        var instance = new Vector2<T>(T.CreateChecked(2), T.CreateChecked(14));
-        var minimum = new Vector2<T>(T.CreateChecked(10.15f), T.CreateChecked(8.5f));
-        var maximum = new Vector2<T>(T.CreateChecked(20), T.CreateChecked(18));
+        var instance = new Vector2<T>(T.CreateSaturating(2), T.CreateSaturating(14));
+        var minimum = new Vector2<T>(T.CreateSaturating(10.15f), T.CreateSaturating(8.5f));
+        var maximum = new Vector2<T>(T.CreateSaturating(20), T.CreateSaturating(18));
 
         //Act
         var result = instance.Clamp(minimum, maximum);
@@ -840,7 +857,7 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
     }
 
     [TestMethod]
-    public void JsonSerialization_Always_DeserializeBack()
+    public void JsonSerialization_WhenAutoConverted_DeserializeBack()
     {
         //Arrange
         var instance = Fixture.Create<Vector2<T>>();
@@ -852,6 +869,75 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
         //Assert
         result.Should().Be(instance);
     }
+
+    [TestMethod]
+    public void JsonSerialization_WhenAutoConvertedArray_DeserializeBack()
+    {
+        //Arrange
+        var instance = Fixture.CreateMany<Vector2<T>>().ToArray();
+        var json = JsonSerializer.Serialize(instance);
+
+        //Act
+        var result = JsonSerializer.Deserialize<Vector2<T>[]>(json);
+
+        //Assert
+        result.Should().BeEquivalentTo(instance);
+    }
+
+    [TestMethod]
+    public void JsonSerialization_WhenFormatedWithParenthesisUsingJsonConverter_DeserializeBack()
+    {
+        //Arrange
+        var instance = Fixture.Create<Vector2<T>>();
+        var json = JsonSerializer.Serialize(instance, new JsonSerializerOptions().WithMathemancyConverters());
+
+        //Act
+        var result = JsonSerializer.Deserialize<Vector2<T>>(json, new JsonSerializerOptions().WithMathemancyConverters());
+
+        //Assert
+        result.Should().BeEquivalentTo(instance);
+    }
+
+    [TestMethod]
+    public void JsonSerialization_WhenAutoFormatedButDeserializedWithCustomConverter_DeserializeBack()
+    {
+        //Arrange
+        var instance = Fixture.Create<Vector2<T>>();
+        var json = JsonSerializer.Serialize(instance);
+
+        //Act
+        var result = JsonSerializer.Deserialize<Vector2<T>>(json, new JsonSerializerOptions().WithMathemancyConverters());
+
+        //Assert
+        result.Should().BeEquivalentTo(instance);
+    }
+
+    [TestMethod]
+    public void JsonSerialization_WhenFormatedWithParenthesisUsingJsonConverterInsideArray_DeserializeBack()
+    {
+        //Arrange
+        var instance = Fixture.CreateMany<Vector2<T>>().ToArray();
+        var json = JsonSerializer.Serialize(instance, new JsonSerializerOptions().WithMathemancyConverters());
+
+        //Act
+        var result = JsonSerializer.Deserialize<Vector2<T>[]>(json, new JsonSerializerOptions().WithMathemancyConverters());
+
+        //Assert
+        result.Should().BeEquivalentTo(instance);
+    }
+}
+
+[TestClass]
+public class Vector2OfByteTest : Vector2Tester<byte>
+{
+
+}
+
+[TestClass]
+[Ignore("Sbyte appears to be working unexpectedly")]
+public class Vector2OfSByteTest : Vector2Tester<sbyte>
+{
+
 }
 
 [TestClass]
@@ -861,7 +947,31 @@ public class Vector2OfShortTest : Vector2Tester<short>
 }
 
 [TestClass]
+public class Vector2OfUShortTest : Vector2Tester<ushort>
+{
+
+}
+
+[TestClass]
 public class Vector2OfIntTest : Vector2Tester<int>
+{
+
+}
+
+[TestClass]
+public class Vector2OfUIntTest : Vector2Tester<uint>
+{
+
+}
+
+[TestClass]
+public class Vector2OfLongTest : Vector2Tester<long>
+{
+
+}
+
+[TestClass]
+public class Vector2OfULongTest : Vector2Tester<ulong>
 {
 
 }

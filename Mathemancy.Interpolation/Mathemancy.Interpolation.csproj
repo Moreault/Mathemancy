@@ -12,7 +12,7 @@
 		<PackageProjectUrl>https://github.com/Moreault/Mathemancy</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Description>Basic linear interpolation methods</Description>
-		<Version>2.0.3</Version>
+		<Version>2.2.0-beta1</Version>
 		<PackageIcon>mathemancy.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
