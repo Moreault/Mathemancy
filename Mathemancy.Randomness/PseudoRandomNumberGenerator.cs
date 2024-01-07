@@ -8,7 +8,7 @@ public interface IPseudoRandomNumberGenerator : IRandomNumberGenerator
 
 }
 
-[AutoInject]
+[AutoInject(ServiceLifetime.Singleton)]
 public class PseudoRandomNumberGenerator : IPseudoRandomNumberGenerator
 {
     /// <summary>

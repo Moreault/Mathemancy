@@ -8,7 +8,7 @@ public interface ISecureRandomNumberGenerator : IRandomNumberGenerator, IDisposa
 
 }
 
-[AutoInject]
+[AutoInject(ServiceLifetime.Singleton)]
 public class SecureRandomNumberGenerator : ISecureRandomNumberGenerator
 {
     private readonly RandomNumberGenerator _randomNumberGenerator = RandomNumberGenerator.Create();

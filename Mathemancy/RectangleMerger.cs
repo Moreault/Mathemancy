@@ -8,7 +8,7 @@ public interface IRectangleMerger
     IReadOnlyList<Rectangle<float>> Merge(IReadOnlyList<Rectangle<float>> rectangles);
 }
 
-[AutoInject]
+[AutoInject(ServiceLifetime.Singleton)]
 public class RectangleMerger : IRectangleMerger
 {
     public IReadOnlyList<Rectangle<float>> Merge(IReadOnlyList<Rectangle<float>> rectangles)
