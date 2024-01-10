@@ -13,19 +13,4 @@ public static class JsonConverterExtensions
             options.Converters.Add(converter);
         return options;
     }
-
-    //TODO Move to anoahter libary
-    public static JsonSerializerOptions Without(this JsonSerializerOptions options, JsonConverter converter)
-    {
-        var copy = JsonSerializer.Deserialize<JsonSerializerOptions>(JsonSerializer.Serialize(options))!;
-        var index = -1;
-        for (var i = 0; i < copy.Converters.Count; i++)
-        {
-            if (copy.Converters[i].GetType() != converter.GetType()) continue;
-            index = i;
-            break;
-        }
-        copy.Converters.RemoveAt(index);
-        return copy;
-    }
 }

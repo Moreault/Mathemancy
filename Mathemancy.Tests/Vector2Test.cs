@@ -925,6 +925,56 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
         //Assert
         result.Should().BeEquivalentTo(instance);
     }
+
+    public class Dummy
+    { 
+        public Rectangle<int> Coordinates { get; set; }
+    }
+
+    [TestMethod]
+    public void JsonSerialization_FromJson_Deserialize()
+    {
+        //Arrange
+        var json = """
+                   {
+                     "Coordinates": {
+                       "Position": "(0, 0)",
+                       "Size": {
+                         "Width": 11,
+                         "Height": 11
+                       },
+                       "X": 0,
+                       "Y": 0,
+                       "Width": 11,
+                       "Height": 11,
+                       "Left": 0,
+                       "Right": 11,
+                       "Top": 0,
+                       "Bottom": 11,
+                       "TopLeft": "(0, 0)",
+                       "TopRight": "(11, 0)",
+                       "BottomLeft": "(0, 11)",
+                       "BottomRight": "(11, 11)"
+                     }
+                   }
+
+                   """;
+
+        //Act
+        var result = JsonSerializer.Deserialize<Dummy>(json, new JsonSerializerOptions().WithMathemancyConverters());
+
+        //Assert
+        result.Coordinates.Should().BeEquivalentTo(new Rectangle<T>(new Vector2<T>(T.Zero, T.Zero), new Size<T>(T.CreateChecked(11), T.CreateChecked(11))));
+    }
+
+    [TestMethod]
+    public void Ensure_ValueEquality() => Ensure.ValueEquality<Vector2<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
+
+    [TestMethod]
+    public void Ensure_ConsistentHashCode() => Ensure.ConsistentHashCode<Vector2<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
+
+    [TestMethod]
+    public void Ensure_IsJsonSerializable() => Ensure.IsJsonSerializable<Vector2<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
 }
 
 [TestClass]

@@ -402,7 +402,14 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
         result.Should().BeEquivalentTo(instance);
     }
 
-    //TODO Test serialization same as with Vector2
+    [TestMethod]
+    public void Ensure_ValueEquality() => Ensure.ValueEquality<Vector3<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
+
+    [TestMethod]
+    public void Ensure_ConsistentHashCode() => Ensure.ConsistentHashCode<Vector3<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
+
+    [TestMethod]
+    public void Ensure_IsJsonSerializable() => Ensure.IsJsonSerializable<Vector3<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
 }
 
 [TestClass]
