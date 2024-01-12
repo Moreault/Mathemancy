@@ -5,7 +5,7 @@ public interface IMatrixConverter
     Matrix<float> ToBillboard(Vector3<float> objectPosition, Vector3<float> cameraPosition, Vector3<float> cameraUpVector, Vector3<float>? cameraForwardVector);
 }
 
-[AutoInject]
+[AutoInject(ServiceLifetime.Singleton)]
 public class MatrixConverter : IMatrixConverter
 {
     public Matrix<float> ToBillboard(Vector3<float> objectPosition, Vector3<float> cameraPosition, Vector3<float> cameraUpVector, Vector3<float>? cameraForwardVector)

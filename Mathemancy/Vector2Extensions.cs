@@ -312,4 +312,18 @@ public static class Vector2Extensions
     {
         return startPosition.ToVector3().GetDelta(targetPosition.ToVector3(), elapsedTime, targetTime);
     }
+
+    /// <summary>
+    /// Returns a directional vector with values between -1.0 and 1.0.
+    /// </summary>
+    public static Vector2<T> Normalize<T>(this Vector2<T> value) where T : struct, IFloatingPoint<T>, IRootFunctions<T>
+    {
+        if (value == Vector2<T>.Zero) return Vector2<T>.Zero;
+        var length = T.One / T.Sqrt(value.X * value.X + value.Y * value.Y);
+
+        var x = value.X * length;
+        var y = value.Y * length;
+
+        return new Vector2<T>(x, y);
+    }
 }

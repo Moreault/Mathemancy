@@ -3,37 +3,24 @@
 public interface IRandomNumberGenerator
 {
     /// <summary>
-    /// Generates a random integer between zero and max inclusively.
+    /// Generates a random number between <see cref="IMinMaxValue{TSelf}.MinValue"/> and <see cref="IMinMaxValue{TSelf}.MaxValue"/>.
     /// </summary>
-    int Generate(int max);
+    T Generate<T>() where T : INumber<T>, IMinMaxValue<T>;
 
     /// <summary>
-    /// Generates a random integer between min and max inclusively.
+    /// Generates a random number between zero and max inclusively.
     /// </summary>
-    int Generate(int min, int max);
+    T Generate<T>(T max) where T : INumber<T>;
 
     /// <summary>
-    /// Generates a random long between zero and max inclusively.
+    /// Generates a random number between min and max inclusively.
     /// </summary>
-    long Generate(long max);
+    T Generate<T>(T min, T max) where T : INumber<T>;
 
-    /// <summary>
-    /// Generates a random long between min and max inclusively.
-    /// </summary>
-    long Generate(long min, long max);
-
-    /// <summary>
-    /// Generates a random double between zero and max inclusively.
-    /// </summary>
-    double Generate(double max);
-
-    /// <summary>
-    /// Generates a random double between min and max inclusively.
-    /// </summary>
-    double Generate(double min, double max);
+    double GenerateFractions();
 
     /// <summary>
     /// Generates a random double greater than 0.0 and lower than 1.0.
     /// </summary>
-    double GenerateFractions();
+    T GenerateFractions<T>() where T : IFloatingPoint<T>;
 }

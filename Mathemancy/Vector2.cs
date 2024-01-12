@@ -1,16 +1,16 @@
 ﻿namespace ToolBX.Mathemancy;
 
-public readonly record struct Vector2<T>(T X, T Y) where T : struct, INumber<T>
+public readonly record struct Vector2<T>(T X, T Y) : IComparable<Vector2<T>> where T : struct, INumber<T>
 {
     public static Vector2<T> Zero => default;
 
-    public static bool operator >(Vector2<T> a, Vector2<T> b) => a.X.IsGreaterThan(b.X) && a.Y.IsGreaterThan(b.Y);
+    public static bool operator >(Vector2<T> a, Vector2<T> b) => a.X > b.X && a.Y > b.Y;
 
-    public static bool operator <(Vector2<T> a, Vector2<T> b) => a.X.IsLesserThan(b.X) && a.Y.IsLesserThan(b.Y);
+    public static bool operator <(Vector2<T> a, Vector2<T> b) => a.X < b.X && a.Y < b.Y;
 
-    public static bool operator >=(Vector2<T> a, Vector2<T> b) => a.X.IsGreaterThanOrEqualTo(b.X) && a.Y.IsGreaterThanOrEqualTo(b.Y);
+    public static bool operator >=(Vector2<T> a, Vector2<T> b) => a.X >= b.X && a.Y >= b.Y;
 
-    public static bool operator <=(Vector2<T> a, Vector2<T> b) => a.X.IsLesserThanOrEqualTo(b.X) && a.Y.IsLesserThanOrEqualTo(b.Y);
+    public static bool operator <=(Vector2<T> a, Vector2<T> b) => a.X <= b.X && a.Y <= b.Y;
 
     public static Vector2<T> operator +(Vector2<T> a, Vector2<T> b) => new(a.X + b.X, a.Y + b.Y);
 
@@ -95,5 +95,12 @@ public readonly record struct Vector2<T>(T X, T Y) where T : struct, INumber<T>
         var xy = value.Trim('(', ')').Split(',');
         if (xy.Length != 2) throw new Exception($"Can't create Vector2 : Expecting 2 values but received {xy.Length}");
         return Vector3<T>.FromString(value);
+    }
+
+    public int CompareTo(Vector2<T> other)
+    {
+        if (this > other) return 1;
+        if (this < other) return -1;
+        return 0;
     }
 }

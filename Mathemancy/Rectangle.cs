@@ -7,28 +7,40 @@ public readonly record struct Rectangle<T>(Vector2<T> Position, Size<T> Size) : 
 {
     public static readonly Rectangle<T> Empty = new();
 
+    [JsonIgnore]
     public T X => Position.X;
 
+    [JsonIgnore]
     public T Y => Position.Y;
 
+    [JsonIgnore]
     public T Width => Size.Width;
 
+    [JsonIgnore]
     public T Height => Size.Height;
 
+    [JsonIgnore]
     public T Left => X;
 
+    [JsonIgnore]
     public T Right => X + Width;
 
+    [JsonIgnore]
     public T Top => Y;
 
+    [JsonIgnore]
     public T Bottom => Y + Height;
 
+    [JsonIgnore]
     public Vector2<T> TopLeft => Position;
 
+    [JsonIgnore]
     public Vector2<T> TopRight => new(Right, Y);
 
+    [JsonIgnore]
     public Vector2<T> BottomLeft => new(Left, Bottom);
 
+    [JsonIgnore]
     public Vector2<T> BottomRight => new(Right, Bottom);
 
     public Rectangle(T x, T y, T width, T height) : this(new Vector2<T>(x, y), new Size<T>(width, height))

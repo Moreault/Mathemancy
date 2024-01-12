@@ -116,7 +116,7 @@ public readonly record struct Vector3<T>(T X, T Y, T Z) where T : struct, INumbe
     public Vector3<T> Normalize()
     {
         var factor = LengthSquared();
-        factor = (T)(object)1f / factor;
+        factor = T.One / factor;
         var x = X * factor;
         var y = Y * factor;
         var z = Z * factor;

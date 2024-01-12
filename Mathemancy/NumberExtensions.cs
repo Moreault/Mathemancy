@@ -792,4 +792,6 @@ public static class NumberExtensions
     {
         return value?.Clamp(min, max) ?? null;
     }
+
+    public static bool IsUnsigned<T>(this T value) where T : INumber<T> => value is ushort || value is uint || value is ulong || value is byte;
 }

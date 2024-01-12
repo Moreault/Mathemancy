@@ -1,10 +1,76 @@
 namespace Mathemancy.Randomness.Tests;
 
 [TestClass]
-public class PseudoRandomNumberGeneratorTester
+public class SByteSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, sbyte>
+{
+
+}
+
+[TestClass]
+public class ByteSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, byte>
+{
+
+}
+
+[TestClass]
+public class ShortSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, short>
+{
+
+}
+
+[TestClass]
+public class UShortSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, ushort>
+{
+
+}
+
+[TestClass]
+public class IntSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, int>
+{
+
+}
+
+[TestClass]
+public class UIntSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, uint>
+{
+
+}
+
+[TestClass]
+public class LongSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, long>
+{
+
+}
+
+[TestClass]
+public class ULongSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, ulong>
+{
+
+}
+
+[TestClass]
+public class FloatSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, float>
+{
+
+}
+
+[TestClass]
+public class DoubleSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, double>
+{
+
+}
+
+[TestClass]
+public class DecimalSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, decimal>
+{
+
+}
+
+[TestClass]
+public class SecureRandomNumberGeneratorTest
 {
     [TestClass]
-    public class Generate_Int32_NoMin : Tester<PseudoRandomNumberGenerator>
+    public class Generate_Int32_NoMin : Tester<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -21,13 +87,13 @@ public class PseudoRandomNumberGeneratorTester
     }
 
     [TestClass]
-    public class Generate_Int32 : Tester<PseudoRandomNumberGenerator>
+    public class Generate_Int32 : Tester<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
         {
             //Arrange
-
+            
             //Act
             var result = Instance.Generate(10, 25);
 
@@ -38,7 +104,7 @@ public class PseudoRandomNumberGeneratorTester
     }
 
     [TestClass]
-    public class Generate_Int64_NoMin : Tester<PseudoRandomNumberGenerator>
+    public class Generate_Int64_NoMin : Tester<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -55,7 +121,7 @@ public class PseudoRandomNumberGeneratorTester
     }
 
     [TestClass]
-    public class Generate_Int64 : Tester<PseudoRandomNumberGenerator>
+    public class Generate_Int64 : Tester<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -72,7 +138,7 @@ public class PseudoRandomNumberGeneratorTester
     }
 
     [TestClass]
-    public class Generate_Double_NoMin : Tester<PseudoRandomNumberGenerator>
+    public class Generate_Double_NoMin : Tester<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -90,7 +156,7 @@ public class PseudoRandomNumberGeneratorTester
     }
 
     [TestClass]
-    public class Generate_Double : Tester<PseudoRandomNumberGenerator>
+    public class Generate_Double : Tester<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -100,16 +166,17 @@ public class PseudoRandomNumberGeneratorTester
             var max = 25000.788d;
 
             //Act
-            var result = Instance.Generate(min, max);
+            var result = Instance.Generate(min,max );
 
             //Assert
             result.Should().BeGreaterOrEqualTo(min);
             result.Should().BeLessOrEqualTo(max);
         }
+
     }
 
     [TestClass]
-    public class GenerateFractions : Tester<PseudoRandomNumberGenerator>
+    public class GenerateFractions : Tester<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_OnlyReturnFractionalNumberBetweenZeroAndOneExclusively()
