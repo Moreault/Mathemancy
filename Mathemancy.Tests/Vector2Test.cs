@@ -971,7 +971,7 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
     public void Ensure_ValueEquality() => Ensure.ValueEquality<Vector2<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
 
     [TestMethod]
-    public void Ensure_ConsistentHashCode() => Ensure.ConsistentHashCode<Vector2<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
+    public void Ensure_ValueHashCode() => Ensure.ValueHashCode<Vector2<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
 
     [TestMethod]
     public void Ensure_IsJsonSerializable() => Ensure.IsJsonSerializable<Vector2<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());

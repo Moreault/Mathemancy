@@ -406,7 +406,7 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Ensure_ValueEquality() => Ensure.ValueEquality<Vector3<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
 
     [TestMethod]
-    public void Ensure_ConsistentHashCode() => Ensure.ConsistentHashCode<Vector3<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
+    public void Ensure_ValueHashCode() => Ensure.ValueHashCode<Vector3<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
 
     [TestMethod]
     public void Ensure_IsJsonSerializable() => Ensure.IsJsonSerializable<Vector3<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
