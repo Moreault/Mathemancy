@@ -11,139 +11,139 @@ namespace Mathemancy.Tests;
 public class Vector2ExtensionsTest
 {
     [TestClass]
-    public class ToSByteOrClamp : Tester
+    public class ToSByteOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToSByteOrDefault : Tester
+    public class ToSByteOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToByteOrClamp : Tester
+    public class ToByteOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToByteOrDefault : Tester
+    public class ToByteOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToShortOrClamp : Tester
+    public class ToShortOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToShortOrDefault : Tester
+    public class ToShortOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToUShortOrClamp : Tester
+    public class ToUShortOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToUShortOrDefault : Tester
+    public class ToUShortOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToIntOrClamp : Tester
+    public class ToIntOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToIntOrDefault : Tester
+    public class ToIntOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToUIntOrClamp : Tester
+    public class ToUIntOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToUIntOrDefault : Tester
+    public class ToUIntOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToLongOrClamp : Tester
+    public class ToLongOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToLongOrDefault : Tester
+    public class ToLongOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToULongOrClamp : Tester
+    public class ToULongOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToULongOrDefault : Tester
+    public class ToULongOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToFloatOrClamp : Tester
+    public class ToFloatOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToFloatOrDefault : Tester
+    public class ToFloatOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToDoubleOrClamp : Tester
+    public class ToDoubleOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToDoubleOrDefault : Tester
+    public class ToDoubleOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToDecimalOrClamp : Tester
+    public class ToDecimalOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToDecimalOrDefault : Tester
+    public class ToDecimalOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class Normalize : Tester
+    public class Normalize : TestBase
     {
         private const float Epsilon = 5.96046448E-08f;
 
@@ -163,7 +163,7 @@ public class Vector2ExtensionsTest
         public void WhenIsUp_ReturnsZeroMinusOne()
         {
             //Arrange
-            var value = new Vector2<float>(0, -Fixture.Create<float>());
+            var value = new Vector2<float>(0, -Dummy.Create<float>());
 
             //Act
             var result = value.Normalize();
@@ -178,7 +178,7 @@ public class Vector2ExtensionsTest
         public void WhenIsRight_ReturnsOneZero()
         {
             //Arrange
-            var value = new Vector2<float>(Fixture.Create<float>(), 0);
+            var value = new Vector2<float>(Dummy.Create<float>(), 0);
 
             //Act
             var result = value.Normalize();
@@ -193,7 +193,7 @@ public class Vector2ExtensionsTest
         public void WhenIsDown_ReturnsZeroOne()
         {
             //Arrange
-            var value = new Vector2<float>(0, Fixture.Create<float>());
+            var value = new Vector2<float>(0, Dummy.Create<float>());
 
             //Act
             var result = value.Normalize();
@@ -208,7 +208,7 @@ public class Vector2ExtensionsTest
         public void WhenIsLeft_ReturnsMinusOneZero()
         {
             //Arrange
-            var value = new Vector2<float>(-Fixture.Create<float>(), 0);
+            var value = new Vector2<float>(-Dummy.Create<float>(), 0);
 
             //Act
             var result = value.Normalize();

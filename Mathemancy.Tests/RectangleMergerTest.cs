@@ -2,7 +2,7 @@
 
 namespace Mathemancy.Tests;
 
-public class RectangleMergerTestBase : Tester<RectangleMerger>
+public class RectangleMergerTestBase : TestBase<RectangleMerger>
 {
 
 }
@@ -30,7 +30,7 @@ public class RectangleMergerTest
         public void WhenContainsABunchOfDuplicatesOnTopOfEachOther_ReturnOneOfThem()
         {
             //Arrange
-            var rectangle = Fixture.Create<Rectangle<float>>();
+            var rectangle = Dummy.Create<Rectangle<float>>();
             var rectangles = new List<Rectangle<float>>
             {
                 rectangle,

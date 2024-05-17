@@ -45,7 +45,7 @@ public readonly record struct Size<T>(T Width, T Height) : IComparable<Size<T>>,
         var wh = value.Split('x');
 
         if (wh.Length != 2)
-            throw new Exception($"Can't create Size : Expecting 2 values but received {wh.Length}");
+            throw new InvalidOperationException($"Can't create Size : Expecting 2 values but received {wh.Length}");
 
         return new Size<T>(wh[0].ParseOrThrow<T>(), wh[1].ParseOrThrow<T>());
     }

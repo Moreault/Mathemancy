@@ -4,7 +4,7 @@
 public class ComparableExtensionsTester
 {
     [TestClass]
-    public class IsGreaterThan : Tester
+    public class IsGreaterThan : TestBase
     {
         [TestMethod]
         public void WhenIntIsGreaterThan_ReturnTrue()
@@ -302,7 +302,7 @@ public class ComparableExtensionsTester
     }
 
     [TestClass]
-    public class IsGreaterThanOrEqualTo : Tester
+    public class IsGreaterThanOrEqualTo : TestBase
     {
         [TestMethod]
         public void WhenIntIsGreaterThan_ReturnTrue()
@@ -600,7 +600,7 @@ public class ComparableExtensionsTester
     }
 
     [TestClass]
-    public class IsLesserThan : Tester
+    public class IsLesserThan : TestBase
     {
         [TestMethod]
         public void WhenIntIsGreaterThan_ReturnFalse()
@@ -898,7 +898,7 @@ public class ComparableExtensionsTester
     }
 
     [TestClass]
-    public class IsLesserThanOrEqualTo : Tester
+    public class IsLesserThanOrEqualTo : TestBase
     {
         [TestMethod]
         public void WhenIntIsGreaterThan_ReturnFalse()
@@ -1196,7 +1196,7 @@ public class ComparableExtensionsTester
     }
 
     [TestClass]
-    public class Clamp : Tester
+    public class Clamp : TestBase
     {
         //TODO Test
     }

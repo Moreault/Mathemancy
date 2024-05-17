@@ -4,133 +4,133 @@
 public class SizeExtensionsTester
 {
     [TestClass]
-    public class ToSByteOrClamp : Tester
+    public class ToSByteOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToSByteOrDefault : Tester
+    public class ToSByteOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToByteOrClamp : Tester
+    public class ToByteOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToByteOrDefault : Tester
+    public class ToByteOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToShortOrClamp : Tester
+    public class ToShortOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToShortOrDefault : Tester
+    public class ToShortOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToUShortOrClamp : Tester
+    public class ToUShortOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToUShortOrDefault : Tester
+    public class ToUShortOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToIntOrClamp : Tester
+    public class ToIntOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToIntOrDefault : Tester
+    public class ToIntOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToUIntOrClamp : Tester
+    public class ToUIntOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToUIntOrDefault : Tester
+    public class ToUIntOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToLongOrClamp : Tester
+    public class ToLongOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToLongOrDefault : Tester
+    public class ToLongOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToULongOrClamp : Tester
+    public class ToULongOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToULongOrDefault : Tester
+    public class ToULongOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToFloatOrClamp : Tester
+    public class ToFloatOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToFloatOrDefault : Tester
+    public class ToFloatOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToDoubleOrClamp : Tester
+    public class ToDoubleOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToDoubleOrDefault : Tester
+    public class ToDoubleOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToDecimalOrClamp : Tester
+    public class ToDecimalOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToDecimalOrDefault : Tester
+    public class ToDecimalOrDefault : TestBase
     {
         //TODO Test
     }

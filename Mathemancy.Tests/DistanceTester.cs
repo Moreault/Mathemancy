@@ -4,7 +4,7 @@
 public class DistanceTester
 {
     [TestClass]
-    public class Calculate : Tester
+    public class Calculate : TestBase
     {
         [TestMethod]
         public void WhenStraightHorizontalLine_ReturnDistanceBetweenTwoVectors()

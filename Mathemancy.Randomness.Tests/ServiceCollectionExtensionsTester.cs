@@ -1,10 +1,12 @@
-﻿namespace Mathemancy.Randomness.Tests;
+﻿using Mathemancy.UnitTesting;
+
+namespace Mathemancy.Randomness.Tests;
 
 [TestClass]
 public class ServiceCollectionExtensionsTester
 {
     [TestClass]
-    public class AddRandomness : Tester
+    public class AddRandomness : TestBase
     {
         [TestMethod, Ignore("Throws because of keyed services")]
         public void Always_AddServices()

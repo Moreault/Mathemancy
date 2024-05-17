@@ -1,3 +1,5 @@
+using Mathemancy.UnitTesting;
+
 namespace Mathemancy.Randomness.Tests;
 
 [TestClass]
@@ -70,7 +72,7 @@ public class DecimalSecureRandomNumberGeneratorTest : RandomNumberGeneratorTeste
 public class SecureRandomNumberGeneratorTest
 {
     [TestClass]
-    public class Generate_Int32_NoMin : Tester<SecureRandomNumberGenerator>
+    public class Generate_Int32_NoMin : TestBase<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -87,7 +89,7 @@ public class SecureRandomNumberGeneratorTest
     }
 
     [TestClass]
-    public class Generate_Int32 : Tester<SecureRandomNumberGenerator>
+    public class Generate_Int32 : TestBase<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -104,7 +106,7 @@ public class SecureRandomNumberGeneratorTest
     }
 
     [TestClass]
-    public class Generate_Int64_NoMin : Tester<SecureRandomNumberGenerator>
+    public class Generate_Int64_NoMin : TestBase<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -121,7 +123,7 @@ public class SecureRandomNumberGeneratorTest
     }
 
     [TestClass]
-    public class Generate_Int64 : Tester<SecureRandomNumberGenerator>
+    public class Generate_Int64 : TestBase<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -138,7 +140,7 @@ public class SecureRandomNumberGeneratorTest
     }
 
     [TestClass]
-    public class Generate_Double_NoMin : Tester<SecureRandomNumberGenerator>
+    public class Generate_Double_NoMin : TestBase<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -156,7 +158,7 @@ public class SecureRandomNumberGeneratorTest
     }
 
     [TestClass]
-    public class Generate_Double : Tester<SecureRandomNumberGenerator>
+    public class Generate_Double : TestBase<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -176,7 +178,7 @@ public class SecureRandomNumberGeneratorTest
     }
 
     [TestClass]
-    public class GenerateFractions : Tester<SecureRandomNumberGenerator>
+    public class GenerateFractions : TestBase<SecureRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_OnlyReturnFractionalNumberBetweenZeroAndOneExclusively()

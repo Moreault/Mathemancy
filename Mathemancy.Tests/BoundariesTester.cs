@@ -4,14 +4,14 @@
 public class BoundariesTester
 {
     [TestClass]
-    public class SubtractionOperator : Tester
+    public class SubtractionOperator : TestBase
     {
         [TestMethod]
         public void Always_Subtract()
         {
             //Arrange
-            var a = Fixture.Create<Boundaries<int>>();
-            var b = Fixture.Create<Boundaries<int>>();
+            var a = Dummy.Create<Boundaries<int>>();
+            var b = Dummy.Create<Boundaries<int>>();
 
             //Act
             var result = a - b;
@@ -28,14 +28,14 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class AddOperator : Tester
+    public class AddOperator : TestBase
     {
         [TestMethod]
         public void Always_Add()
         {
             //Arrange
-            var a = Fixture.Create<Boundaries<int>>();
-            var b = Fixture.Create<Boundaries<int>>();
+            var a = Dummy.Create<Boundaries<int>>();
+            var b = Dummy.Create<Boundaries<int>>();
 
             //Act
             var result = a + b;
@@ -52,14 +52,14 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class MultiplicationOperator : Tester
+    public class MultiplicationOperator : TestBase
     {
         [TestMethod]
         public void Always_Multiply()
         {
             //Arrange
-            var a = Fixture.Create<Boundaries<int>>();
-            var b = Fixture.Create<Boundaries<int>>();
+            var a = Dummy.Create<Boundaries<int>>();
+            var b = Dummy.Create<Boundaries<int>>();
 
             //Act
             var result = a * b;
@@ -76,14 +76,14 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class DivisionOperator : Tester
+    public class DivisionOperator : TestBase
     {
         [TestMethod]
         public void Always_Divide()
         {
             //Arrange
-            var a = Fixture.Create<Boundaries<int>>();
-            var b = Fixture.Create<Boundaries<int>>();
+            var a = Dummy.Create<Boundaries<int>>();
+            var b = Dummy.Create<Boundaries<int>>();
 
             //Act
             var result = a / b;
@@ -100,7 +100,7 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class GreaterThanOperator : Tester
+    public class GreaterThanOperator : TestBase
     {
         [TestMethod]
         public void WhenBIsCompletelyContainedInsideA_ReturnTrue()
@@ -286,7 +286,7 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class LesserThanOperator : Tester
+    public class LesserThanOperator : TestBase
     {
         [TestMethod]
         public void WhenBIsCompletelyContainedInsideA_ReturnFalse()
@@ -472,7 +472,7 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class GreaterThanOrEqualOperator : Tester
+    public class GreaterThanOrEqualOperator : TestBase
     {
         [TestMethod]
         public void WhenBIsCompletelyContainedInsideA_ReturnTrue()
@@ -658,7 +658,7 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class LesserThanOrEqualOperator : Tester
+    public class LesserThanOrEqualOperator : TestBase
     {
         [TestMethod]
         public void WhenBIsCompletelyContainedInsideA_ReturnFalse()

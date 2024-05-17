@@ -18,11 +18,11 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="ToolBX.Eloquentest" Version="2.2.1" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Mathemancy.Collisions\Mathemancy.Collisions.csproj" />
+	  <ProjectReference Include="..\Mathemancy.UnitTesting\Mathemancy.UnitTesting.csproj" />
 	</ItemGroup>
 
 </Project>

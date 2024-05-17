@@ -2,7 +2,13 @@
 
 public static class JsonConverterExtensions
 {
-    private static readonly Lazy<IReadOnlyList<JsonConverter>> All = new(() => ImmutableList.Create<JsonConverter>(new Vector2JsonConverterFactory(), new Vector3JsonConverterFactory()));
+    private static readonly Lazy<IReadOnlyList<JsonConverter>> All = new(() => 
+    [
+        new Vector2JsonConverterFactory(), 
+        new Vector3JsonConverterFactory(), 
+        new SizeJsonConverterFactory(), 
+        new RectangleJsonConverterFactory()
+    ]);
 
     /// <summary>
     /// Returns a <see cref="JsonSerializerOptions"/> loaded with all <see cref="JsonConverter"/>s from Mathemancy.

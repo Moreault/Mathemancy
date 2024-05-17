@@ -1,8 +1,11 @@
-﻿namespace Mathemancy.Collisions.Tests;
+﻿using Mathemancy.UnitTesting;
+using ToolBX.Eloquentest.Dummies;
+
+namespace Mathemancy.Collisions.Tests;
 
 [TestClass]
-public sealed class BoxColliderTests : RecordTester<BoxCollider>
+public sealed class BoxColliderTests : RecordTestBase<BoxCollider>
 {
     [TestMethod]
-    public void Ensure_IsJsonSerializable() => Ensure.IsJsonSerializable<BoxCollider>(Fixture, JsonSerializerOptions);
+    public void Ensure_IsJsonSerializable() => Ensure.IsJsonSerializable<BoxCollider>(Dummy, JsonSerializerOptions);
 }

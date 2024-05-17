@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
@@ -16,10 +16,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="ToolBX.Eloquentest" Version="2.2.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Mathemancy.UnitTesting\Mathemancy.UnitTesting.csproj" />
     <ProjectReference Include="..\Mathemancy\Mathemancy.csproj" />
   </ItemGroup>
 

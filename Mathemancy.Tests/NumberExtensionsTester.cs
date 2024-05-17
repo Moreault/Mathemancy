@@ -4,7 +4,7 @@
 public class NumberExtensionsTester
 {
     [TestClass]
-    public class ToSByteOrClamp : Tester
+    public class ToSByteOrClamp : TestBase
     {
         //TODO Test
         [TestMethod]
@@ -24,7 +24,7 @@ public class NumberExtensionsTester
         public void WhenIsByteAndBetweenBoundaries_ReturnAsSByte()
         {
             //Arrange
-            var value = (byte)Fixture.CreateBetween(0, sbyte.MaxValue);
+            var value = Dummy.Number.Between<byte>(0, (byte)sbyte.MaxValue).Create();
 
             //Act
             var result = value.ToSByteOrClamp();
@@ -63,7 +63,7 @@ public class NumberExtensionsTester
         public void WhenIsShortAndBetweenBoundaries_ReturnAsSByte()
         {
             //Arrange
-            var value = (short)Fixture.CreateBetween(sbyte.MinValue, sbyte.MaxValue);
+            var value = Dummy.Number.Between<short>(sbyte.MinValue, (short)sbyte.MaxValue).Create();
 
             //Act
             var result = value.ToSByteOrClamp();
@@ -89,7 +89,7 @@ public class NumberExtensionsTester
         public void WhenIsUShortAndBetweenBoundaries_ReturnAsSByte()
         {
             //Arrange
-            var value = (ushort)Fixture.CreateBetween(0, sbyte.MaxValue);
+            var value = Dummy.Number.Between<ushort>(0, (ushort)sbyte.MaxValue).Create();
 
             //Act
             var result = value.ToSByteOrClamp();
@@ -128,7 +128,7 @@ public class NumberExtensionsTester
         public void WhenIsIntAndBetweenBoundaries_ReturnAsSByte()
         {
             //Arrange
-            var value = (int)Fixture.CreateBetween(sbyte.MinValue, sbyte.MaxValue);
+            var value = Dummy.Number.Between<int>(sbyte.MinValue, (int)sbyte.MaxValue).Create();
 
             //Act
             var result = value.ToSByteOrClamp();
@@ -154,7 +154,7 @@ public class NumberExtensionsTester
         public void WhenIsUIntAndBetweenBoundaries_ReturnAsSByte()
         {
             //Arrange
-            var value = (uint)Fixture.CreateBetween(0, sbyte.MaxValue);
+            var value = Dummy.Number.Between<uint>(0, (uint)sbyte.MaxValue).Create();
 
             //Act
             var result = value.ToSByteOrClamp();
@@ -193,7 +193,7 @@ public class NumberExtensionsTester
         public void WhenIsLongAndBetweenBoundaries_ReturnAsSByte()
         {
             //Arrange
-            var value = (long)Fixture.CreateBetween(sbyte.MinValue, sbyte.MaxValue);
+            var value = Dummy.Number.Between<long>(sbyte.MinValue, (long)sbyte.MaxValue).Create();
 
             //Act
             var result = value.ToSByteOrClamp();
@@ -219,7 +219,7 @@ public class NumberExtensionsTester
         public void WhenIsULongAndBetweenBoundaries_ReturnAsSByte()
         {
             //Arrange
-            var value = (ulong)Fixture.CreateBetween(0, sbyte.MaxValue);
+            var value = Dummy.Number.Between<ulong>(0, (ulong)sbyte.MaxValue).Create();
 
             //Act
             var result = value.ToSByteOrClamp();
@@ -258,7 +258,7 @@ public class NumberExtensionsTester
         public void WhenIsFloatAndBetweenBoundaries_ReturnAsSByte()
         {
             //Arrange
-            var value = (float)Fixture.CreateBetween(sbyte.MinValue, sbyte.MaxValue);
+            var value = Dummy.Number.Between<float>(sbyte.MinValue, (float)sbyte.MaxValue).Create();
 
             //Act
             var result = value.ToSByteOrClamp();
@@ -297,7 +297,7 @@ public class NumberExtensionsTester
         public void WhenIsDoubleAndBetweenBoundaries_ReturnAsSByte()
         {
             //Arrange
-            var value = (double)Fixture.CreateBetween(sbyte.MinValue, sbyte.MaxValue);
+            var value = Dummy.Number.Between<double>(sbyte.MinValue, (double)sbyte.MaxValue).Create();
 
             //Act
             var result = value.ToSByteOrClamp();
@@ -336,7 +336,7 @@ public class NumberExtensionsTester
         public void WhenIsDecimalAndBetweenBoundaries_ReturnAsSByte()
         {
             //Arrange
-            var value = (decimal)Fixture.CreateBetween(sbyte.MinValue, sbyte.MaxValue);
+            var value = Dummy.Number.Between<decimal>(sbyte.MinValue, (decimal)sbyte.MaxValue).Create();
 
             //Act
             var result = value.ToSByteOrClamp();
@@ -347,14 +347,14 @@ public class NumberExtensionsTester
     }
 
     [TestClass]
-    public class ToSByteOrDefault : Tester
+    public class ToSByteOrDefault : TestBase
     {
         //TODO Test
 
     }
 
     [TestClass]
-    public class ToByteOrClamp : Tester
+    public class ToByteOrClamp : TestBase
     {
         [TestMethod]
         public void WhenIsByteAndLesserThanMinValue_ReturnMaxValue()
@@ -373,7 +373,7 @@ public class NumberExtensionsTester
         public void WhenIsSByteAndBetweenBoundaries_ReturnAsByte()
         {
             //Arrange
-            var value = (sbyte)Fixture.CreateBetween(0, sbyte.MaxValue);
+            var value = Dummy.Number.Between<sbyte>(0, (sbyte)sbyte.MaxValue).Create();
 
             //Act
             var result = value.ToByteOrClamp();
@@ -412,7 +412,7 @@ public class NumberExtensionsTester
         public void WhenIsShortAndBetweenBoundaries_ReturnAsByte()
         {
             //Arrange
-            var value = (short)Fixture.CreateBetween(byte.MinValue, byte.MaxValue);
+            var value = Dummy.Number.Between<short>(byte.MinValue, byte.MaxValue).Create();
 
             //Act
             var result = value.ToByteOrClamp();
@@ -438,13 +438,13 @@ public class NumberExtensionsTester
         public void WhenIsUShortAndBetweenBoundaries_ReturnAsByte()
         {
             //Arrange
-            var value = (ushort)Fixture.CreateBetween(0, ushort.MaxValue);
+            var value = Dummy.Number.Between<ushort>(0, ushort.MaxValue).Create();
 
             //Act
             var result = value.ToByteOrClamp();
 
             //Assert
-            result.Should().Be((byte)value);
+            result.Should().Be(byte.CreateSaturating(value));
         }
 
         [TestMethod]
@@ -477,7 +477,7 @@ public class NumberExtensionsTester
         public void WhenIsIntAndBetweenBoundaries_ReturnAsByte()
         {
             //Arrange
-            var value = (int)Fixture.CreateBetween(byte.MinValue, byte.MaxValue);
+            var value = Dummy.Number.Between<int>(byte.MinValue, byte.MaxValue).Create();
 
             //Act
             var result = value.ToByteOrClamp();
@@ -503,7 +503,7 @@ public class NumberExtensionsTester
         public void WhenIsUIntAndBetweenBoundaries_ReturnAsByte()
         {
             //Arrange
-            var value = (uint)Fixture.CreateBetween(0, byte.MaxValue);
+            var value = Dummy.Number.Between<uint>(0, byte.MaxValue).Create();
 
             //Act
             var result = value.ToByteOrClamp();
@@ -542,7 +542,7 @@ public class NumberExtensionsTester
         public void WhenIsLongAndBetweenBoundaries_ReturnAsByte()
         {
             //Arrange
-            var value = (long)Fixture.CreateBetween(byte.MinValue, byte.MaxValue);
+            var value = Dummy.Number.Between<long>(byte.MinValue, byte.MaxValue).Create();
 
             //Act
             var result = value.ToByteOrClamp();
@@ -568,7 +568,7 @@ public class NumberExtensionsTester
         public void WhenIsULongAndBetweenBoundaries_ReturnAsByte()
         {
             //Arrange
-            var value = (ulong)Fixture.CreateBetween(0, byte.MaxValue);
+            var value = Dummy.Number.Between<ulong>(0, byte.MaxValue).Create();
 
             //Act
             var result = value.ToByteOrClamp();
@@ -607,7 +607,7 @@ public class NumberExtensionsTester
         public void WhenIsFloatAndBetweenBoundaries_ReturnAsByte()
         {
             //Arrange
-            var value = (float)Fixture.CreateBetween(byte.MinValue, byte.MaxValue);
+            var value = Dummy.Number.Between<float>(byte.MinValue, byte.MaxValue).Create();
 
             //Act
             var result = value.ToByteOrClamp();
@@ -646,7 +646,7 @@ public class NumberExtensionsTester
         public void WhenIsDoubleAndBetweenBoundaries_ReturnAsByte()
         {
             //Arrange
-            var value = (double)Fixture.CreateBetween(byte.MinValue, byte.MaxValue);
+            var value = Dummy.Number.Between<double>(byte.MinValue, byte.MaxValue).Create();
 
             //Act
             var result = value.ToByteOrClamp();
@@ -685,7 +685,7 @@ public class NumberExtensionsTester
         public void WhenIsDecimalAndBetweenBoundaries_ReturnAsByte()
         {
             //Arrange
-            var value = (decimal)Fixture.CreateBetween(byte.MinValue, byte.MaxValue);
+            var value = Dummy.Number.Between<decimal>(byte.MinValue, byte.MaxValue).Create();
 
             //Act
             var result = value.ToByteOrClamp();
@@ -696,128 +696,128 @@ public class NumberExtensionsTester
     }
 
     [TestClass]
-    public class ToByteOrDefault : Tester
+    public class ToByteOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToShortOrClamp : Tester
+    public class ToShortOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToShortOrDefault : Tester
+    public class ToShortOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToUShortOrClamp : Tester
+    public class ToUShortOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToUShortOrDefault : Tester
+    public class ToUShortOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToIntOrClamp : Tester
+    public class ToIntOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToIntOrDefault : Tester
+    public class ToIntOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToUIntOrClamp : Tester
+    public class ToUIntOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToUIntOrDefault : Tester
+    public class ToUIntOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToLongOrClamp : Tester
+    public class ToLongOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToLongOrDefault : Tester
+    public class ToLongOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToULongOrClamp : Tester
+    public class ToULongOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToULongOrDefault : Tester
+    public class ToULongOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToFloatOrClamp : Tester
+    public class ToFloatOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToFloatOrDefault : Tester
+    public class ToFloatOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToDoubleOrClamp : Tester
+    public class ToDoubleOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToDoubleOrDefault : Tester
+    public class ToDoubleOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToDecimalOrClamp : Tester
+    public class ToDecimalOrClamp : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class ToDecimalOrDefault : Tester
+    public class ToDecimalOrDefault : TestBase
     {
         //TODO Test
     }
 
     [TestClass]
-    public class Clamp : Tester
+    public class Clamp : TestBase
     {
         [TestMethod]
         public void WhenMinIsGreaterThanMax_Throw()
         {
             //Arrange
-            var value = Fixture.Create<float>();
-            var min = Fixture.Create<float>();
+            var value = Dummy.Create<float>();
+            var min = Dummy.Create<float>();
             var max = min - 1;
 
             //Act
@@ -831,7 +831,7 @@ public class NumberExtensionsTester
         public void WhenValueIsLessThanMin_ReturnMin()
         {
             //Arrange
-            var min = Fixture.Create<float>();
+            var min = Dummy.Create<float>();
             var value = min - 1;
             var max = min + 2;
 
@@ -846,7 +846,7 @@ public class NumberExtensionsTester
         public void WhenValueIsEqualToMin_ReturnMin()
         {
             //Arrange
-            var min = Fixture.Create<float>();
+            var min = Dummy.Create<float>();
             var value = min;
             var max = min + 2;
 
@@ -861,7 +861,7 @@ public class NumberExtensionsTester
         public void WhenValueIsGreaterThanMax_ReturnMax()
         {
             //Arrange
-            var min = Fixture.Create<float>();
+            var min = Dummy.Create<float>();
             var max = min + 2;
             var value = max + 1;
 
@@ -876,7 +876,7 @@ public class NumberExtensionsTester
         public void WhenValueIsEqualToMax_ReturnMax()
         {
             //Arrange
-            var min = Fixture.Create<float>();
+            var min = Dummy.Create<float>();
             var max = min + 2;
             var value = max;
 
@@ -891,7 +891,7 @@ public class NumberExtensionsTester
         public void WhenValueIsBetweenMinAndMax_ReturnValue()
         {
             //Arrange
-            var min = Fixture.Create<float>();
+            var min = Dummy.Create<float>();
             var value = min + 1;
             var max = min + 2;
 
@@ -904,14 +904,14 @@ public class NumberExtensionsTester
     }
 
     [TestClass]
-    public class ClampNullable : Tester
+    public class ClampNullable : TestBase
     {
         [TestMethod]
         public void WhenValueIsNull_ReturnNull()
         {
             //Arrange
             float? value = null!;
-            var min = Fixture.Create<float>();
+            var min = Dummy.Create<float>();
             var max = min - 1;
 
             //Act
@@ -925,8 +925,8 @@ public class NumberExtensionsTester
         public void WhenMinIsGreaterThanMax_Throw()
         {
             //Arrange
-            var value = Fixture.Create<float?>();
-            var min = Fixture.Create<float>();
+            var value = Dummy.Create<float?>();
+            var min = Dummy.Create<float>();
             var max = min - 1;
 
             //Act
@@ -940,7 +940,7 @@ public class NumberExtensionsTester
         public void WhenValueIsLessThanMin_ReturnMin()
         {
             //Arrange
-            var min = Fixture.Create<float>();
+            var min = Dummy.Create<float>();
             float? value = min - 1;
             var max = min + 2;
 
@@ -955,7 +955,7 @@ public class NumberExtensionsTester
         public void WhenValueIsEqualToMin_ReturnMin()
         {
             //Arrange
-            var min = Fixture.Create<float>();
+            var min = Dummy.Create<float>();
             float? value = min;
             var max = min + 2;
 
@@ -970,7 +970,7 @@ public class NumberExtensionsTester
         public void WhenValueIsGreaterThanMax_ReturnMax()
         {
             //Arrange
-            var min = Fixture.Create<float>();
+            var min = Dummy.Create<float>();
             var max = min + 2;
             float? value = max + 1;
 
@@ -985,7 +985,7 @@ public class NumberExtensionsTester
         public void WhenValueIsEqualToMax_ReturnMax()
         {
             //Arrange
-            var min = Fixture.Create<float>();
+            var min = Dummy.Create<float>();
             var max = min + 2;
             float? value = max;
 
@@ -1000,7 +1000,7 @@ public class NumberExtensionsTester
         public void WhenValueIsBetweenMinAndMax_ReturnValue()
         {
             //Arrange
-            var min = Fixture.Create<float>();
+            var min = Dummy.Create<float>();
             float? value = min + 1;
             var max = min + 2;
 
