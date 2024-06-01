@@ -4,7 +4,7 @@
 public class MatrixConverterTester
 {
     [TestClass]
-    public class ToBillboard : TestBase<MatrixConverter>
+    public class ToBillboard : Tester<MatrixConverter>
     {
         //TODO Test
     }

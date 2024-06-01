@@ -4,7 +4,7 @@
 public class BoundariesTester
 {
     [TestClass]
-    public class SubtractionOperator : TestBase
+    public class SubtractionOperator : Tester
     {
         [TestMethod]
         public void Always_Subtract()
@@ -28,7 +28,7 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class AddOperator : TestBase
+    public class AddOperator : Tester
     {
         [TestMethod]
         public void Always_Add()
@@ -52,7 +52,7 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class MultiplicationOperator : TestBase
+    public class MultiplicationOperator : Tester
     {
         [TestMethod]
         public void Always_Multiply()
@@ -76,7 +76,7 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class DivisionOperator : TestBase
+    public class DivisionOperator : Tester
     {
         [TestMethod]
         public void Always_Divide()
@@ -100,7 +100,7 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class GreaterThanOperator : TestBase
+    public class GreaterThanOperator : Tester
     {
         [TestMethod]
         public void WhenBIsCompletelyContainedInsideA_ReturnTrue()
@@ -286,7 +286,7 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class LesserThanOperator : TestBase
+    public class LesserThanOperator : Tester
     {
         [TestMethod]
         public void WhenBIsCompletelyContainedInsideA_ReturnFalse()
@@ -472,7 +472,7 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class GreaterThanOrEqualOperator : TestBase
+    public class GreaterThanOrEqualOperator : Tester
     {
         [TestMethod]
         public void WhenBIsCompletelyContainedInsideA_ReturnTrue()
@@ -658,7 +658,7 @@ public class BoundariesTester
     }
 
     [TestClass]
-    public class LesserThanOrEqualOperator : TestBase
+    public class LesserThanOrEqualOperator : Tester
     {
         [TestMethod]
         public void WhenBIsCompletelyContainedInsideA_ReturnFalse()

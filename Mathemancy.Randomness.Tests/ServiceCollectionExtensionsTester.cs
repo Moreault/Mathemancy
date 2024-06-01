@@ -6,7 +6,7 @@ namespace Mathemancy.Randomness.Tests;
 public class ServiceCollectionExtensionsTester
 {
     [TestClass]
-    public class AddRandomness : TestBase
+    public class AddRandomness : Tester
     {
         [TestMethod, Ignore("Throws because of keyed services")]
         public void Always_AddServices()

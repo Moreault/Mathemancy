@@ -1,11 +1,6 @@
-﻿using System.Linq;
-using System.Numerics;
-using System.Text.Json;
-using ToolBX.Mathemancy.Json;
+﻿namespace Mathemancy.Tests;
 
-namespace Mathemancy.Tests;
-
-public abstract class Vector2Tester<T> : TestBase where T : struct, INumber<T>
+public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
 {
     [TestMethod]
     public void Constructor_Always_SetValues()
@@ -927,7 +922,7 @@ public abstract class Vector2Tester<T> : TestBase where T : struct, INumber<T>
     }
 
     public class Garbage
-    { 
+    {
         public Rectangle<int> Coordinates { get; set; }
     }
 

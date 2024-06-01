@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace Mathemancy.Randomness.Tests;
 
-public abstract class RandomNumberGeneratorTester<TInstance, TNumber> : TestBase<TInstance> where TInstance : class, IRandomNumberGenerator where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
+public abstract class RandomNumberGeneratorTester<TInstance, TNumber> : Tester<TInstance> where TInstance : class, IRandomNumberGenerator where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
 {
     [TestMethod]
     public void Generate_Parameterless_ReturnBetweenTypeBoundaries()

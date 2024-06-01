@@ -72,7 +72,7 @@ public class DecimalPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTeste
 public class PseudoRandomNumberGeneratorTest
 {
     [TestClass]
-    public class Generate_Int32_NoMin : TestBase<PseudoRandomNumberGenerator>
+    public class Generate_Int32_NoMin : Tester<PseudoRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -89,7 +89,7 @@ public class PseudoRandomNumberGeneratorTest
     }
 
     [TestClass]
-    public class Generate_Int32 : TestBase<PseudoRandomNumberGenerator>
+    public class Generate_Int32 : Tester<PseudoRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -106,7 +106,7 @@ public class PseudoRandomNumberGeneratorTest
     }
 
     [TestClass]
-    public class Generate_Int64_NoMin : TestBase<PseudoRandomNumberGenerator>
+    public class Generate_Int64_NoMin : Tester<PseudoRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -123,7 +123,7 @@ public class PseudoRandomNumberGeneratorTest
     }
 
     [TestClass]
-    public class Generate_Int64 : TestBase<PseudoRandomNumberGenerator>
+    public class Generate_Int64 : Tester<PseudoRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -140,7 +140,7 @@ public class PseudoRandomNumberGeneratorTest
     }
 
     [TestClass]
-    public class Generate_Double_NoMin : TestBase<PseudoRandomNumberGenerator>
+    public class Generate_Double_NoMin : Tester<PseudoRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -158,7 +158,7 @@ public class PseudoRandomNumberGeneratorTest
     }
 
     [TestClass]
-    public class Generate_Double : TestBase<PseudoRandomNumberGenerator>
+    public class Generate_Double : Tester<PseudoRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_GenerateNumbersBetweenBoundaries()
@@ -177,7 +177,7 @@ public class PseudoRandomNumberGeneratorTest
     }
 
     [TestClass]
-    public class GenerateFractions : TestBase<PseudoRandomNumberGenerator>
+    public class GenerateFractions : Tester<PseudoRandomNumberGenerator>
     {
         [TestMethod]
         public void Always_OnlyReturnFractionalNumberBetweenZeroAndOneExclusively()

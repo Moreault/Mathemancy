@@ -1,9 +1,4 @@
-﻿using System.Numerics;
-using System.Text.Json;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using ToolBX.Mathemancy.Json;
-
-namespace Mathemancy.Tests;
+﻿namespace Mathemancy.Tests;
 
 [TestClass]
 public class RectangleOfIntTests : RectangleTester<int>;
@@ -17,7 +12,7 @@ public class RectangleOfDoubleTests : RectangleTester<double>;
 [TestClass]
 public class RectangleOfDecimalTests : RectangleTester<decimal>;
 
-public abstract class RectangleTester<T> : TestBase where T : struct, INumber<T>
+public abstract class RectangleTester<T> : Tester where T : struct, INumber<T>
 {
     [TestMethod]
     public void Empty_Always_ReturnDefault()

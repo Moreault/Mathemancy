@@ -1,8 +1,4 @@
-﻿using System.Numerics;
-using System.Text.Json;
-using ToolBX.Mathemancy.Json;
-
-namespace Mathemancy.Tests;
+﻿namespace Mathemancy.Tests;
 
 [TestClass]
 public class SizeOfIntTests : SizeTester<int>;
@@ -10,7 +6,7 @@ public class SizeOfIntTests : SizeTester<int>;
 [TestClass]
 public class SizeOfFloatTests : SizeTester<float>;
 
-public abstract class SizeTester<TNumber> : TestBase where TNumber : struct, INumber<TNumber>
+public abstract class SizeTester<TNumber> : Tester where TNumber : struct, INumber<TNumber>
 {
     [TestMethod]
     public void Constructor_Always_SetValues()
@@ -661,7 +657,7 @@ public abstract class SizeTester<TNumber> : TestBase where TNumber : struct, INu
     }
 
     [TestClass]
-    public class ToStringMethod : TestBase
+    public class ToStringMethod : Tester
     {
         [TestMethod]
         public void Always_ReturnValues()

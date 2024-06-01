@@ -1,7 +1,7 @@
 ﻿namespace Mathemancy.Tests;
 
 [TestClass]
-public class LoopClampTest : TestBase
+public class LoopClampTest : Tester
 {
     [TestMethod]
     public void WhenValueIsIntWithinRange_ReturnUnmodified()

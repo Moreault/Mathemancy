@@ -1,5 +1,6 @@
 using System.Numerics;
 using Mathemancy.UnitTesting;
+using WhiteJackalStudio.TestTools;
 
 namespace Mathemancy.Interpolation.Tests;
 
@@ -13,7 +14,7 @@ public class InterpolatorOfDoubleTests : InterpolatorTester<double>;
 public class InterpolatorOfDecimalTests : InterpolatorTester<decimal>;
 
 [TestClass]
-public abstract class InterpolatorTester<T> : TestBase where T : IFloatingPoint<T>, IMinMaxValue<T>
+public abstract class InterpolatorTester<T> : Tester where T : IFloatingPoint<T>, IMinMaxValue<T>
 {
     [TestMethod]
     public void Interpolate_WhenProgress100_ReturnTargetValue()

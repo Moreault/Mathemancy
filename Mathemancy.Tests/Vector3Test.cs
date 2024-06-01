@@ -1,11 +1,6 @@
-﻿using System.Linq;
-using System.Numerics;
-using System.Text.Json;
-using ToolBX.Mathemancy.Json;
+﻿namespace Mathemancy.Tests;
 
-namespace Mathemancy.Tests;
-
-public abstract class Vector3Tester<T> : TestBase where T : struct, INumber<T>
+public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
 {
     [TestMethod]
     public void Addition_WhenBothVector3_AddBothXYZ()

@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Numerics;
-
-namespace Mathemancy.Tests;
+﻿namespace Mathemancy.Tests;
 
 public static class Numbers
 {
