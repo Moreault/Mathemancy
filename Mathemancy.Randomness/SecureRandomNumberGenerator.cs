@@ -3,10 +3,7 @@
 /// <summary>
 /// Generates cryptographically-secure random numbers. It is less predictable than <see cref="IPseudoRandomNumberGenerator"/> but also much slower.
 /// </summary>
-public interface ISecureRandomNumberGenerator : IRandomNumberGenerator, IDisposable
-{
-
-}
+public interface ISecureRandomNumberGenerator : IRandomNumberGenerator, IDisposable;
 
 [AutoInject(ServiceLifetime.Singleton)]
 public class SecureRandomNumberGenerator : ISecureRandomNumberGenerator

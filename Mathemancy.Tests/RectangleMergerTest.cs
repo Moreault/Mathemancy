@@ -2,10 +2,7 @@
 
 namespace Mathemancy.Tests;
 
-public class RectangleMergerTestBase : Tester<RectangleMerger>
-{
-
-}
+public class RectangleMergerTestBase : Tester<RectangleMerger>;
 
 [TestClass]
 public class RectangleMergerTest

@@ -28,8 +28,4 @@
 	  </None>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\Mathemancy.UnitTesting\Mathemancy.UnitTesting.csproj" />
-	</ItemGroup>
-
 </Project>

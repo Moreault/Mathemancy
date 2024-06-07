@@ -3,10 +3,7 @@
 /// <summary>
 /// Generates pseudo random numbers. It is more performant than <see cref="ISecureRandomNumberGenerator"/> but is also much more predictable.
 /// </summary>
-public interface IPseudoRandomNumberGenerator : IRandomNumberGenerator
-{
-
-}
+public interface IPseudoRandomNumberGenerator : IRandomNumberGenerator;
 
 [AutoInject(ServiceLifetime.Singleton)]
 public class PseudoRandomNumberGenerator : IPseudoRandomNumberGenerator

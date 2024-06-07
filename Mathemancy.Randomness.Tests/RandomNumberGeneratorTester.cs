@@ -1,6 +1,4 @@
-﻿using Mathemancy.UnitTesting;
-using System.Data;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace Mathemancy.Randomness.Tests;
 

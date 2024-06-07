@@ -973,68 +973,35 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
 }
 
 [TestClass]
-public class Vector2OfByteTest : Vector2Tester<byte>
-{
-
-}
+public class Vector2OfByteTest : Vector2Tester<byte>;
 
 [TestClass]
 [Ignore("Sbyte appears to be working unexpectedly")]
-public class Vector2OfSByteTest : Vector2Tester<sbyte>
-{
-
-}
+public class Vector2OfSByteTest : Vector2Tester<sbyte>;
 
 [TestClass]
-public class Vector2OfShortTest : Vector2Tester<short>
-{
-
-}
+public class Vector2OfShortTest : Vector2Tester<short>;
 
 [TestClass]
-public class Vector2OfUShortTest : Vector2Tester<ushort>
-{
-
-}
+public class Vector2OfUShortTest : Vector2Tester<ushort>;
 
 [TestClass]
-public class Vector2OfIntTest : Vector2Tester<int>
-{
-
-}
+public class Vector2OfIntTest : Vector2Tester<int>;
 
 [TestClass]
-public class Vector2OfUIntTest : Vector2Tester<uint>
-{
-
-}
+public class Vector2OfUIntTest : Vector2Tester<uint>;
 
 [TestClass]
-public class Vector2OfLongTest : Vector2Tester<long>
-{
-
-}
+public class Vector2OfLongTest : Vector2Tester<long>;
 
 [TestClass]
-public class Vector2OfULongTest : Vector2Tester<ulong>
-{
-
-}
+public class Vector2OfULongTest : Vector2Tester<ulong>;
 
 [TestClass]
-public class Vector2OfFloatTest : Vector2Tester<float>
-{
-
-}
+public class Vector2OfFloatTest : Vector2Tester<float>;
 
 [TestClass]
-public class Vector2OfDoubleTest : Vector2Tester<double>
-{
-
-}
+public class Vector2OfDoubleTest : Vector2Tester<double>;
 
 [TestClass]
-public class Vector2OfDecimalTest : Vector2Tester<decimal>
-{
-
-}
+public class Vector2OfDecimalTest : Vector2Tester<decimal>;

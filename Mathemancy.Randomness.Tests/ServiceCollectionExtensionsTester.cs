@@ -1,6 +1,4 @@
-﻿using Mathemancy.UnitTesting;
-
-namespace Mathemancy.Randomness.Tests;
+﻿namespace Mathemancy.Randomness.Tests;
 
 [TestClass]
 public class ServiceCollectionExtensionsTester

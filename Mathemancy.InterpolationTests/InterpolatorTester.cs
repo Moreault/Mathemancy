@@ -1,5 +1,4 @@
 using System.Numerics;
-using Mathemancy.UnitTesting;
 using WhiteJackalStudio.TestTools;
 
 namespace Mathemancy.Interpolation.Tests;

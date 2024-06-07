@@ -408,67 +408,34 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
 }
 
 [TestClass]
-public class Vector3OfByteTest : Vector3Tester<byte>
-{
-
-}
+public class Vector3OfByteTest : Vector3Tester<byte>;
 
 [TestClass]
-public class Vector3OfSByteTest : Vector3Tester<sbyte>
-{
-
-}
+public class Vector3OfSByteTest : Vector3Tester<sbyte>;
 
 [TestClass]
-public class Vector3OfShortTest : Vector3Tester<short>
-{
-
-}
+public class Vector3OfShortTest : Vector3Tester<short>;
 
 [TestClass]
-public class Vector3OfUShortTest : Vector3Tester<ushort>
-{
-
-}
+public class Vector3OfUShortTest : Vector3Tester<ushort>;
 
 [TestClass]
-public class Vector3OfIntTest : Vector3Tester<int>
-{
-
-}
+public class Vector3OfIntTest : Vector3Tester<int>;
 
 [TestClass]
-public class Vector3OfUIntTest : Vector3Tester<uint>
-{
-
-}
+public class Vector3OfUIntTest : Vector3Tester<uint>;
 
 [TestClass]
-public class Vector3OfLongTest : Vector3Tester<long>
-{
-
-}
+public class Vector3OfLongTest : Vector3Tester<long>;
 
 [TestClass]
-public class Vector3OfULongTest : Vector3Tester<ulong>
-{
-
-}
+public class Vector3OfULongTest : Vector3Tester<ulong>;
 
 [TestClass]
-public class Vector3OfFloatTest : Vector3Tester<float>
-{
-
-}
+public class Vector3OfFloatTest : Vector3Tester<float>;
 
 [TestClass]
-public class Vector3OfDoubleTest : Vector3Tester<double>
-{
-
-}
+public class Vector3OfDoubleTest : Vector3Tester<double>;
 
 [TestClass]
-public class Vector3OfDecimalTest : Vector3Tester<decimal>
-{
-
-}
+public class Vector3OfDecimalTest : Vector3Tester<decimal>;

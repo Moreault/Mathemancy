@@ -1,72 +1,37 @@
-using Mathemancy.UnitTesting;
-
 namespace Mathemancy.Randomness.Tests;
 
 [TestClass]
-public class SByteSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, sbyte>
-{
-
-}
+public class SByteSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, sbyte>;
 
 [TestClass]
-public class ByteSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, byte>
-{
-
-}
+public class ByteSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, byte>;
 
 [TestClass]
-public class ShortSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, short>
-{
-
-}
+public class ShortSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, short>;
 
 [TestClass]
-public class UShortSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, ushort>
-{
-
-}
+public class UShortSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, ushort>;
 
 [TestClass]
-public class IntSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, int>
-{
-
-}
+public class IntSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, int>;
 
 [TestClass]
-public class UIntSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, uint>
-{
-
-}
+public class UIntSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, uint>;
 
 [TestClass]
-public class LongSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, long>
-{
-
-}
+public class LongSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, long>;
 
 [TestClass]
-public class ULongSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, ulong>
-{
-
-}
+public class ULongSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, ulong>;
 
 [TestClass]
-public class FloatSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, float>
-{
-
-}
+public class FloatSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, float>;
 
 [TestClass]
-public class DoubleSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, double>
-{
-
-}
+public class DoubleSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, double>;
 
 [TestClass]
-public class DecimalSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, decimal>
-{
-
-}
+public class DecimalSecureRandomNumberGeneratorTest : RandomNumberGeneratorTester<SecureRandomNumberGenerator, decimal>;
 
 [TestClass]
 public class SecureRandomNumberGeneratorTest

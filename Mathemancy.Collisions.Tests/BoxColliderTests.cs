@@ -1,6 +1,4 @@
-﻿using ToolBX.Eloquentest.Dummies;
-
-namespace Mathemancy.Collisions.Tests;
+﻿namespace Mathemancy.Collisions.Tests;
 
 [TestClass]
 public sealed class BoxColliderTests : RecordTester<BoxCollider>
