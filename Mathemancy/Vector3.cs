@@ -153,7 +153,7 @@ public readonly record struct Vector3<T>(T X, T Y, T Z) where T : struct, INumbe
     {
         if (string.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
 
-        var xyz = value.Trim('(', ')').Split(',');
+        var xyz = value.Trim('(', ')').Split(',').Select(x => x.Trim()).ToArray();
         if (xyz.Length is < 2 or > 3) throw new Exception($"Can't create Vector3 : Expecting 2 or 3 values but received {xyz.Length}");
 
         var x = xyz[0].ParseOrThrow<T>();
