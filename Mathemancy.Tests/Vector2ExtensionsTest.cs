@@ -1,11 +1,4 @@
-﻿using System.Numerics;
-using FluentAssertions.Execution;
-using FluentAssertions.Numeric;
-using FluentAssertions.Primitives;
-using System.Runtime.InteropServices.JavaScript;
-using System.Diagnostics.Contracts;
-
-namespace Mathemancy.Tests;
+﻿namespace Mathemancy.Tests;
 
 [TestClass]
 public class Vector2ExtensionsTest
@@ -163,7 +156,7 @@ public class Vector2ExtensionsTest
         public void WhenIsUp_ReturnsZeroMinusOne()
         {
             //Arrange
-            var value = new Vector2<float>(0, -Fixture.Create<float>());
+            var value = new Vector2<float>(0, -Dummy.Create<float>());
 
             //Act
             var result = value.Normalize();
@@ -178,7 +171,7 @@ public class Vector2ExtensionsTest
         public void WhenIsRight_ReturnsOneZero()
         {
             //Arrange
-            var value = new Vector2<float>(Fixture.Create<float>(), 0);
+            var value = new Vector2<float>(Dummy.Create<float>(), 0);
 
             //Act
             var result = value.Normalize();
@@ -193,7 +186,7 @@ public class Vector2ExtensionsTest
         public void WhenIsDown_ReturnsZeroOne()
         {
             //Arrange
-            var value = new Vector2<float>(0, Fixture.Create<float>());
+            var value = new Vector2<float>(0, Dummy.Create<float>());
 
             //Act
             var result = value.Normalize();
@@ -208,7 +201,7 @@ public class Vector2ExtensionsTest
         public void WhenIsLeft_ReturnsMinusOneZero()
         {
             //Arrange
-            var value = new Vector2<float>(-Fixture.Create<float>(), 0);
+            var value = new Vector2<float>(-Dummy.Create<float>(), 0);
 
             //Act
             var result = value.Normalize();

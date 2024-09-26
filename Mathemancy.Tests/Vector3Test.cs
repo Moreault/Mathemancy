@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using System.Numerics;
-using System.Text.Json;
-using ToolBX.Mathemancy.Json;
-
-namespace Mathemancy.Tests;
+﻿namespace Mathemancy.Tests;
 
 public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
 {
@@ -11,8 +6,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Addition_WhenBothVector3_AddBothXYZ()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
-        var other = Fixture.Create<Vector3<T>>();
+        var instance = Dummy.Create<Vector3<T>>();
+        var other = Dummy.Create<Vector3<T>>();
 
         //Act
         var result = instance + other;
@@ -25,8 +20,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Addition_WhenOtherIsVector2_AddBothXYWithZeroForZ()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
-        var other = Fixture.Create<Vector2<T>>();
+        var instance = Dummy.Create<Vector3<T>>();
+        var other = Dummy.Create<Vector2<T>>();
 
         //Act
         var result = instance + other;
@@ -39,8 +34,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Addition_WhenOtherIsNumber_AddNumberToXYZ()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
-        var other = Fixture.Create<T>();
+        var instance = Dummy.Create<Vector3<T>>();
+        var other = Dummy.Create<T>();
 
         //Act
         var result = instance + other;
@@ -53,8 +48,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Subtraction_WhenBothVector3_SubtractBothXYZ()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
-        var other = Fixture.Create<Vector3<T>>();
+        var instance = Dummy.Create<Vector3<T>>();
+        var other = Dummy.Create<Vector3<T>>();
 
         //Act
         var result = instance - other;
@@ -67,8 +62,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Subtraction_WhenOtherIsVector2_SubtractBothXYWithZeroForZ()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
-        var other = Fixture.Create<Vector2<T>>();
+        var instance = Dummy.Create<Vector3<T>>();
+        var other = Dummy.Create<Vector2<T>>();
 
         //Act
         var result = instance - other;
@@ -81,8 +76,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Subtraction_WhenOtherIsNumber_SubtractNumberToXYZ()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
-        var other = Fixture.Create<T>();
+        var instance = Dummy.Create<Vector3<T>>();
+        var other = Dummy.Create<T>();
 
         //Act
         var result = instance - other;
@@ -95,8 +90,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Multiplication_WhenBothVector3_MultiplyBothXYZ()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
-        var other = Fixture.Create<Vector3<T>>();
+        var instance = Dummy.Create<Vector3<T>>();
+        var other = Dummy.Create<Vector3<T>>();
 
         //Act
         var result = instance * other;
@@ -109,8 +104,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Multiplication_WhenOtherIsVector2_MultiplyBothXYWithZeroForZ()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
-        var other = Fixture.Create<Vector2<T>>();
+        var instance = Dummy.Create<Vector3<T>>();
+        var other = Dummy.Create<Vector2<T>>();
 
         //Act
         var result = instance * other;
@@ -123,8 +118,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Multiplication_WhenOtherIsNumber_MultiplyNumberToXYZ()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
-        var other = Fixture.Create<T>();
+        var instance = Dummy.Create<Vector3<T>>();
+        var other = Dummy.Create<T>();
 
         //Act
         var result = instance * other;
@@ -137,8 +132,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Division_WhenDividingVector3ByVector3_DivideBothXYZ()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
-        var other = Fixture.Create<Vector3<T>>();
+        var instance = Dummy.Create<Vector3<T>>();
+        var other = Dummy.Create<Vector3<T>>();
 
         //Act
         var result = instance / other;
@@ -151,8 +146,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Division_WhenDividingVector3ByVector2_DivideBothXYAndSetZToZero()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
-        var other = Fixture.Create<Vector2<T>>();
+        var instance = Dummy.Create<Vector3<T>>();
+        var other = Dummy.Create<Vector2<T>>();
 
         //Act
         var result = instance / other;
@@ -165,8 +160,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Division_WhenDividingVector2ByVector3_DivideBothXYAndSetZToZero()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
-        var other = Fixture.Create<Vector2<T>>();
+        var instance = Dummy.Create<Vector3<T>>();
+        var other = Dummy.Create<Vector2<T>>();
 
         //Act
         var result = other / instance;
@@ -179,8 +174,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void Division_WhenDividingVector3ByNumber_DivideNumberToXYZ()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
-        var other = Fixture.Create<T>();
+        var instance = Dummy.Create<Vector3<T>>();
+        var other = Dummy.Create<T>();
 
         //Act
         var result = instance / other;
@@ -205,7 +200,7 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void FromString_WhenThereIsOnlyOneValue_Throw()
     {
         //Arrange
-        var value = $"({Fixture.Create<T>()})";
+        var value = $"({Dummy.Create<T>()})";
 
         //Act
         var action = () => Vector3<T>.FromString(value);
@@ -218,7 +213,7 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void FromString_WhenThereAreFourValues_Throw()
     {
         //Arrange
-        var value = $"({Fixture.Create<T>()}, {Fixture.Create<T>()}, {Fixture.Create<T>()}, {Fixture.Create<T>()})";
+        var value = $"({Dummy.Create<T>()}, {Dummy.Create<T>()}, {Dummy.Create<T>()}, {Dummy.Create<T>()})";
 
         //Act
         var action = () => Vector3<T>.FromString(value);
@@ -231,7 +226,7 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void FromString_WhenThereAreTwoValuesAndXIsNotNumeric_Throw()
     {
         //Arrange
-        var value = $"(three point five, {Fixture.Create<T>()})";
+        var value = $"(three point five, {Dummy.Create<T>()})";
 
         //Act
         var action = () => Vector3<T>.FromString(value);
@@ -244,7 +239,7 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void FromString_WhenThereAreTwoValuesAndYIsNotNumeric_Throw()
     {
         //Arrange
-        var value = $"({Fixture.Create<T>()}, forty-three point eighty-one)";
+        var value = $"({Dummy.Create<T>()}, forty-three point eighty-one)";
 
         //Act
         var action = () => Vector3<T>.FromString(value);
@@ -257,8 +252,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void FromString_WhenThereAreTwoNumericValues_ReturnVectorWithXAndY()
     {
         //Arrange
-        var x = Fixture.Create<T>();
-        var y = Fixture.Create<T>();
+        var x = Dummy.Create<T>();
+        var y = Dummy.Create<T>();
 
         var value = $"({x}, {y})";
 
@@ -273,7 +268,7 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void FromString_WhenThereAreThreeValuesAndZIsNotNumeric_Throw()
     {
         //Arrange
-        var value = $"({Fixture.Create<T>()}, {Fixture.Create<T>()}, forty-three point eighty-one)";
+        var value = $"({Dummy.Create<T>()}, {Dummy.Create<T>()}, forty-three point eighty-one)";
 
         //Act
         var action = () => Vector3<T>.FromString(value);
@@ -286,9 +281,9 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void WhenThereAreThreeNumericValues_ReturnVectorWithXYZ()
     {
         //Arrange
-        var x = Fixture.Create<T>();
-        var y = Fixture.Create<T>();
-        var z = Fixture.Create<T>();
+        var x = Dummy.Create<T>();
+        var y = Dummy.Create<T>();
+        var z = Dummy.Create<T>();
 
         var value = $"({x}, {y}, {z})";
 
@@ -303,8 +298,8 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void FromString_WhenThereAreTwoValuesWithoutParentheses_ReturnVectorWithXAndY()
     {
         //Arrange
-        var x = Fixture.Create<T>();
-        var y = Fixture.Create<T>();
+        var x = Dummy.Create<T>();
+        var y = Dummy.Create<T>();
 
         var value = $"{x}, {y}";
 
@@ -319,9 +314,9 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void FromString_WhenThereAreThreeValuesWithoutParentheses_ReturnVectorWithXYZ()
     {
         //Arrange
-        var x = Fixture.Create<T>();
-        var y = Fixture.Create<T>();
-        var z = Fixture.Create<T>();
+        var x = Dummy.Create<T>();
+        var y = Dummy.Create<T>();
+        var z = Dummy.Create<T>();
 
         var value = $"{x}, {y}, {z}";
 
@@ -336,7 +331,7 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void JsonSerialization_WhenAutoConverted_DeserializeBack()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
+        var instance = Dummy.Create<Vector3<T>>();
         var json = JsonSerializer.Serialize(instance);
 
         //Act
@@ -350,7 +345,7 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void JsonSerialization_WhenAutoConvertedArray_DeserializeBack()
     {
         //Arrange
-        var instance = Fixture.CreateMany<Vector3<T>>().ToArray();
+        var instance = Dummy.CreateMany<Vector3<T>>().ToArray();
         var json = JsonSerializer.Serialize(instance);
 
         //Act
@@ -364,7 +359,7 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void JsonSerialization_WhenFormatedWithParenthesisUsingJsonConverter_DeserializeBack()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
+        var instance = Dummy.Create<Vector3<T>>();
         var json = JsonSerializer.Serialize(instance, new JsonSerializerOptions().WithMathemancyConverters());
 
         //Act
@@ -378,7 +373,7 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void JsonSerialization_WhenAutoFormatedButDeserializedWithCustomConverter_DeserializeBack()
     {
         //Arrange
-        var instance = Fixture.Create<Vector3<T>>();
+        var instance = Dummy.Create<Vector3<T>>();
         var json = JsonSerializer.Serialize(instance);
 
         //Act
@@ -392,7 +387,7 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     public void JsonSerialization_WhenFormatedWithParenthesisUsingJsonConverterInsideArray_DeserializeBack()
     {
         //Arrange
-        var instance = Fixture.CreateMany<Vector3<T>>().ToArray();
+        var instance = Dummy.CreateMany<Vector3<T>>().ToArray();
         var json = JsonSerializer.Serialize(instance, new JsonSerializerOptions().WithMathemancyConverters());
 
         //Act
@@ -403,77 +398,44 @@ public abstract class Vector3Tester<T> : Tester where T : struct, INumber<T>
     }
 
     [TestMethod]
-    public void Ensure_ValueEquality() => Ensure.ValueEquality<Vector3<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
+    public void Ensure_ValueEquality() => Ensure.ValueEquality<Vector3<T>>(Dummy, JsonSerializerOptions.WithMathemancyConverters());
 
     [TestMethod]
-    public void Ensure_ValueHashCode() => Ensure.ValueHashCode<Vector3<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
+    public void Ensure_ValueHashCode() => Ensure.ValueHashCode<Vector3<T>>(Dummy, JsonSerializerOptions.WithMathemancyConverters());
 
     [TestMethod]
-    public void Ensure_IsJsonSerializable() => Ensure.IsJsonSerializable<Vector3<T>>(Fixture, JsonSerializerOptions.WithMathemancyConverters());
+    public void Ensure_IsJsonSerializable() => Ensure.IsJsonSerializable<Vector3<T>>(Dummy, JsonSerializerOptions.WithMathemancyConverters());
 }
 
 [TestClass]
-public class Vector3OfByteTest : Vector3Tester<byte>
-{
-
-}
+public class Vector3OfByteTest : Vector3Tester<byte>;
 
 [TestClass]
-public class Vector3OfSByteTest : Vector3Tester<sbyte>
-{
-
-}
+public class Vector3OfSByteTest : Vector3Tester<sbyte>;
 
 [TestClass]
-public class Vector3OfShortTest : Vector3Tester<short>
-{
-
-}
+public class Vector3OfShortTest : Vector3Tester<short>;
 
 [TestClass]
-public class Vector3OfUShortTest : Vector3Tester<ushort>
-{
-
-}
+public class Vector3OfUShortTest : Vector3Tester<ushort>;
 
 [TestClass]
-public class Vector3OfIntTest : Vector3Tester<int>
-{
-
-}
+public class Vector3OfIntTest : Vector3Tester<int>;
 
 [TestClass]
-public class Vector3OfUIntTest : Vector3Tester<uint>
-{
-
-}
+public class Vector3OfUIntTest : Vector3Tester<uint>;
 
 [TestClass]
-public class Vector3OfLongTest : Vector3Tester<long>
-{
-
-}
+public class Vector3OfLongTest : Vector3Tester<long>;
 
 [TestClass]
-public class Vector3OfULongTest : Vector3Tester<ulong>
-{
-
-}
+public class Vector3OfULongTest : Vector3Tester<ulong>;
 
 [TestClass]
-public class Vector3OfFloatTest : Vector3Tester<float>
-{
-
-}
+public class Vector3OfFloatTest : Vector3Tester<float>;
 
 [TestClass]
-public class Vector3OfDoubleTest : Vector3Tester<double>
-{
-
-}
+public class Vector3OfDoubleTest : Vector3Tester<double>;
 
 [TestClass]
-public class Vector3OfDecimalTest : Vector3Tester<decimal>
-{
-
-}
+public class Vector3OfDecimalTest : Vector3Tester<decimal>;

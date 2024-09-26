@@ -1,70 +1,37 @@
 namespace Mathemancy.Randomness.Tests;
 
 [TestClass]
-public class SBytePseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, sbyte>
-{
-
-}
+public class SBytePseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, sbyte>;
 
 [TestClass]
-public class BytePseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, byte>
-{
-
-}
+public class BytePseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, byte>;
 
 [TestClass]
-public class ShortPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, short>
-{
-
-}
+public class ShortPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, short>;
 
 [TestClass]
-public class UShortPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, ushort>
-{
-
-}
+public class UShortPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, ushort>;
 
 [TestClass]
-public class IntPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, int>
-{
-
-}
+public class IntPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, int>;
 
 [TestClass]
-public class UIntPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, uint>
-{
-
-}
+public class UIntPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, uint>;
 
 [TestClass]
-public class LongPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, long>
-{
-
-}
+public class LongPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, long>;
 
 [TestClass]
-public class ULongPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, ulong>
-{
-
-}
+public class ULongPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, ulong>;
 
 [TestClass]
-public class FloatPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, float>
-{
-
-}
+public class FloatPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, float>;
 
 [TestClass]
-public class DoublePseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, double>
-{
-
-}
+public class DoublePseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, double>;
 
 [TestClass]
-public class DecimalPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, decimal>
-{
-
-}
+public class DecimalPseudoRandomNumberGeneratorTest : RandomNumberGeneratorTester<PseudoRandomNumberGenerator, decimal>;
 
 [TestClass]
 public class PseudoRandomNumberGeneratorTest

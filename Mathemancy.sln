@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mathemancy.Interpolation", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mathemancy.Interpolation.Tests", "Mathemancy.InterpolationTests\Mathemancy.Interpolation.Tests.csproj", "{FE70521E-2C82-4FB7-83B7-2D1F9288B169}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mathemancy.Collisions.Tests", "Mathemancy.Collisions.Tests\Mathemancy.Collisions.Tests.csproj", "{0D5CF91D-3322-493A-8C79-4427959FBF87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mathemancy.Collisions.Tests", "Mathemancy.Collisions.Tests\Mathemancy.Collisions.Tests.csproj", "{0D5CF91D-3322-493A-8C79-4427959FBF87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

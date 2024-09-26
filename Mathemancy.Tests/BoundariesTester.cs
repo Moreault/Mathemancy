@@ -10,8 +10,8 @@ public class BoundariesTester
         public void Always_Subtract()
         {
             //Arrange
-            var a = Fixture.Create<Boundaries<int>>();
-            var b = Fixture.Create<Boundaries<int>>();
+            var a = Dummy.Create<Boundaries<int>>();
+            var b = Dummy.Create<Boundaries<int>>();
 
             //Act
             var result = a - b;
@@ -34,8 +34,8 @@ public class BoundariesTester
         public void Always_Add()
         {
             //Arrange
-            var a = Fixture.Create<Boundaries<int>>();
-            var b = Fixture.Create<Boundaries<int>>();
+            var a = Dummy.Create<Boundaries<int>>();
+            var b = Dummy.Create<Boundaries<int>>();
 
             //Act
             var result = a + b;
@@ -58,8 +58,8 @@ public class BoundariesTester
         public void Always_Multiply()
         {
             //Arrange
-            var a = Fixture.Create<Boundaries<int>>();
-            var b = Fixture.Create<Boundaries<int>>();
+            var a = Dummy.Create<Boundaries<int>>();
+            var b = Dummy.Create<Boundaries<int>>();
 
             //Act
             var result = a * b;
@@ -82,8 +82,8 @@ public class BoundariesTester
         public void Always_Divide()
         {
             //Arrange
-            var a = Fixture.Create<Boundaries<int>>();
-            var b = Fixture.Create<Boundaries<int>>();
+            var a = Dummy.Create<Boundaries<int>>();
+            var b = Dummy.Create<Boundaries<int>>();
 
             //Act
             var result = a / b;

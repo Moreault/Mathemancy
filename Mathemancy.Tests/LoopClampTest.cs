@@ -7,7 +7,7 @@ public class LoopClampTest : Tester
     public void WhenValueIsIntWithinRange_ReturnUnmodified()
     {
         //Arrange
-        var value = Fixture.Create<int>();
+        var value = Dummy.Create<int>();
         var min = value - 1;
         var max = value + 1;
 
@@ -56,7 +56,7 @@ public class LoopClampTest : Tester
     public void WhenValueIsDecimalWithinRange_ReturnUnmodified()
     {
         //Arrange
-        var value = Fixture.Create<decimal>();
+        var value = Dummy.Create<decimal>();
         var min = value - 1;
         var max = value + 1;
 
@@ -130,7 +130,7 @@ public class LoopClampTest : Tester
     public void WhenValueIsMinimum_ReturnUnmodifiedValue()
     {
         //Arrange
-        var value = Fixture.Create<float>();
+        var value = Dummy.Create<float>();
         var min = value;
         var max = value + 1;
 
@@ -145,7 +145,7 @@ public class LoopClampTest : Tester
     public void WhenValueIsMaximum_ReturnUnmodifiedValue()
     {
         //Arrange
-        var value = Fixture.Create<float>();
+        var value = Dummy.Create<float>();
         var min = value - 1;
         var max = value;
 
@@ -160,8 +160,8 @@ public class LoopClampTest : Tester
     public void WhenMinIsGreaterThanMax_Throw()
     {
         //Arrange
-        var value = Fixture.Create<float>();
-        var min = Fixture.Create<float>();
+        var value = Dummy.Create<float>();
+        var min = Dummy.Create<float>();
         var max = min - 1;
 
         //Act

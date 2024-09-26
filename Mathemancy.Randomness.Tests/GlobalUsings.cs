@@ -6,3 +6,4 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using ToolBX.Eloquentest;
 global using ToolBX.Mathemancy.Randomness;
+global using WhiteJackalStudio.TestTools;

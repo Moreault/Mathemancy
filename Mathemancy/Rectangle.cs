@@ -1,4 +1,6 @@
-﻿namespace ToolBX.Mathemancy;
+﻿using System.Text.RegularExpressions;
+
+namespace ToolBX.Mathemancy;
 
 /// <summary>
 /// Two-dimensional planar figure with four straight sides and four right angles.
@@ -78,7 +80,30 @@ public readonly record struct Rectangle<T>(Vector2<T> Position, Size<T> Size) : 
     public static bool operator <(Rectangle<T> a, Size<T> b) => a.Size < b;
     public static bool operator <=(Rectangle<T> a, Size<T> b) => a.Size <= b;
 
-    public override string ToString() => $"X: {X}, Y: {Y}, Width: {Width}, Height: {Height}";
+    public override string ToString() => $"{Position} {Size}";
+
+    public static Rectangle<T> FromString(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
+
+        var pattern = @"\((?<X>-?\d+(\.\d+)?)\,\s*(?<Y>-?\d+(\.\d+)?)\)\s*(?<W>\d+(\.\d+)?)x(?<H>\d+(\.\d+)?)";
+        var match = Regex.Match(value, pattern);
+
+        if (match.Success)
+        {
+            var xPart = match.Groups["X"].Value;
+            var yPart = match.Groups["Y"].Value;
+            var wPart = match.Groups["W"].Value;
+            var hPart = match.Groups["H"].Value;
+
+            var position = Vector2<T>.FromString($"({xPart}, {yPart})");
+            var size = Size<T>.FromString($"{wPart}x{hPart}");
+
+            return new Rectangle<T>(position, size);
+        }
+
+        throw new InvalidOperationException("The string was in an unexpected format");
+    }
 
     public static Rectangle<T> FromCoordinates(Vector2<T> point1, Vector2<T> point2)
     {

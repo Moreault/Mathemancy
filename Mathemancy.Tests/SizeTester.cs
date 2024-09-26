@@ -1,716 +1,659 @@
-﻿using System.Runtime.InteropServices.ComTypes;
-
-namespace Mathemancy.Tests;
+﻿namespace Mathemancy.Tests;
 
 [TestClass]
-public class SizeTester
+public class SizeOfIntTests : SizeTester<int>;
+
+[TestClass]
+public class SizeOfFloatTests : SizeTester<float>;
+
+public abstract class SizeTester<TNumber> : Tester where TNumber : struct, INumber<TNumber>
 {
-    [TestClass]
-    public class Constructors : Tester
+    [TestMethod]
+    public void Constructor_Always_SetValues()
     {
-        [TestMethod]
-        public void Always_SetValues()
+        //Arrange
+        var width = Dummy.Create<TNumber>();
+        var height = Dummy.Create<TNumber>();
+
+        //Act
+        var result = new Size<TNumber>(width, height);
+
+        //Assert
+        result.Should().Be(new Size<TNumber>
         {
-            //Arrange
-            var width = Fixture.Create<double>();
-            var height = Fixture.Create<double>();
-
-            //Act
-            var result = new Size<double>(width, height);
-
-            //Assert
-            result.Should().Be(new Size<double>
-            {
-                Width = width,
-                Height = height
-            });
-        }
+            Width = width,
+            Height = height
+        });
     }
 
-    [TestClass]
-    public class CompareTo_Size : Tester
+    [TestMethod]
+    public void CompareToSize_WhenThisIsBiggerThanOther_ReturnOne()
     {
-        [TestMethod]
-        public void WhenThisIsBiggerThanOther_ReturnOne()
-        {
-            //Arrange
-            var instance = new Size<float>(10, 10);
-            var other = new Size<float>(9, 8);
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var other = new Size<TNumber>(TNumber.CreateSaturating(9), TNumber.CreateSaturating(8));
 
-            //Act
-            var result = instance.CompareTo(other);
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().Be(1);
-        }
-
-        [TestMethod]
-        public void WhenThisIsShorterButLargerThanOther_ReturnOne()
-        {
-            //Arrange
-            var instance = new Size<long>(10, 6);
-            var other = new Size<long>(9, 8);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(1);
-        }
-
-        [TestMethod]
-        public void WhenThisIsTallerButThinnerThanOther_ReturnOne()
-        {
-            //Arrange
-            var instance = new Size<int>(8, 10);
-            var other = new Size<int>(9, 8);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(1);
-        }
-
-        [TestMethod]
-        public void WhenOtherIsBiggerThanThis_ReturnMinusOne()
-        {
-            //Arrange
-            var instance = new Size<int>(10, 10);
-            var other = new Size<int>(15, 15);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(-1);
-        }
-
-        [TestMethod]
-        public void WhenOtherIsShorterButLargerThanThis_ReturnOne()
-        {
-            //Arrange
-            var instance = new Size<int>(10, 10);
-            var other = new Size<int>(15, 9);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(1);
-        }
-
-        [TestMethod]
-        public void WhenOtherIsTallerButThinnerThanThis_ReturnOne()
-        {
-            //Arrange
-            var instance = new Size<int>(10, 10);
-            var other = new Size<int>(7, 15);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(1);
-        }
-
-        [TestMethod]
-        public void WhenThisIsEqualToOther_ReturnZero()
-        {
-            //Arrange
-            var instance = new Size<int>(10, 10);
-            var other = new Size<int>(10, 10);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(0);
-        }
+        //Assert
+        result.Should().Be(1);
     }
 
-    [TestClass]
-    public class CompareTo_Object : Tester
+    [TestMethod]
+    public void CompareToSize_WhenThisIsShorterButLargerThanOther_ReturnOne()
     {
-        [TestMethod]
-        public void WhenOtherIsNull_ReturnZero()
-        {
-            //Arrange
-            var instance = new Size<float>(10, 10);
-            object other = null!;
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(6));
+        var other = new Size<TNumber>(TNumber.CreateSaturating(9), TNumber.CreateSaturating(8));
 
-            //Act
-            var result = instance.CompareTo(other);
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().Be(0);
-        }
-
-        [TestMethod]
-        public void WhenOtherIsNotTheSameGenericType_ReturnZero()
-        {
-            //Arrange
-            var instance = new Size<float>(10, 10);
-            object other = new Size<double>(9, 8);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(0);
-        }
-
-        [TestMethod]
-        public void WhenOtherIsNotSize_ReturnZero()
-        {
-            //Arrange
-            var instance = new Size<float>(10, 10);
-            object other = Fixture.Create<long>();
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(0);
-        }
-
-        [TestMethod]
-        public void WhenThisIsBiggerThanOther_ReturnOne()
-        {
-            //Arrange
-            var instance = new Size<float>(10, 10);
-            object other = new Size<float>(9, 8);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(1);
-        }
-
-        [TestMethod]
-        public void WhenThisIsShorterButLargerThanOther_ReturnOne()
-        {
-            //Arrange
-            var instance = new Size<long>(10, 6);
-            object other = new Size<long>(9, 8);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(1);
-        }
-
-        [TestMethod]
-        public void WhenThisIsTallerButThinnerThanOther_ReturnOne()
-        {
-            //Arrange
-            var instance = new Size<int>(8, 10);
-            object other = new Size<int>(9, 8);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(1);
-        }
-
-        [TestMethod]
-        public void WhenOtherIsBiggerThanThis_ReturnMinusOne()
-        {
-            //Arrange
-            var instance = new Size<int>(10, 10);
-            object other = new Size<int>(15, 15);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(-1);
-        }
-
-        [TestMethod]
-        public void WhenOtherIsShorterButLargerThanThis_ReturnOne()
-        {
-            //Arrange
-            var instance = new Size<int>(10, 10);
-            object other = new Size<int>(15, 9);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(1);
-        }
-
-        [TestMethod]
-        public void WhenOtherIsTallerButThinnerThanThis_ReturnOne()
-        {
-            //Arrange
-            var instance = new Size<int>(10, 10);
-            object other = new Size<int>(7, 15);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(1);
-        }
-
-        [TestMethod]
-        public void WhenThisIsEqualToOther_ReturnZero()
-        {
-            //Arrange
-            var instance = new Size<int>(10, 10);
-            object other = new Size<int>(10, 10);
-
-            //Act
-            var result = instance.CompareTo(other);
-
-            //Assert
-            result.Should().Be(0);
-        }
+        //Assert
+        result.Should().Be(1);
     }
 
-    [TestClass]
-    public class PlusOperator_Size : Tester
+    [TestMethod]
+    public void CompareToSize_WhenThisIsTallerButThinnerThanOther_ReturnOne()
     {
-        [TestMethod]
-        public void Always_AddWidthAndHeightTogether()
-        {
-            //Arrange
-            var a = Fixture.Create<Size<int>>();
-            var b = Fixture.Create<Size<int>>();
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(10));
+        var other = new Size<TNumber>(TNumber.CreateSaturating(9), TNumber.CreateSaturating(8));
 
-            //Act
-            var result = a + b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().Be(new Size<int>(a.Width + b.Width, a.Height + b.Height));
-        }
+        //Assert
+        result.Should().Be(1);
     }
 
-    [TestClass]
-    public class MinusOperator_Size : Tester
+    [TestMethod]
+    public void CompareToSize_WhenOtherIsBiggerThanThis_ReturnMinusOne()
     {
-        [TestMethod]
-        public void Always_SubtractWidthAndHeightTogether()
-        {
-            //Arrange
-            var a = Fixture.Create<Size<int>>();
-            var b = Fixture.Create<Size<int>>();
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var other = new Size<TNumber>(TNumber.CreateSaturating(15), TNumber.CreateSaturating(15));
 
-            //Act
-            var result = a - b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().Be(new Size<int>(a.Width - b.Width, a.Height - b.Height));
-        }
+        //Assert
+        result.Should().Be(-1);
     }
 
-    [TestClass]
-    public class PlusOperator_Generic : Tester
+    [TestMethod]
+    public void CompareToSize_WhenOtherIsShorterButLargerThanThis_ReturnOne()
     {
-        [TestMethod]
-        public void Always_AddValueToBothWidthAndHeight()
-        {
-            //Arrange
-            var a = Fixture.Create<Size<int>>();
-            var b = Fixture.Create<int>();
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var other = new Size<TNumber>(TNumber.CreateSaturating(15), TNumber.CreateSaturating(9));
 
-            //Act
-            var result = a + b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().Be(new Size<int>(a.Width + b, a.Height + b));
-        }
+        //Assert
+        result.Should().Be(1);
     }
 
-    [TestClass]
-    public class MinusOperator_Generic : Tester
+    [TestMethod]
+    public void CompareToSize_WhenOtherIsTallerButThinnerThanThis_ReturnOne()
     {
-        [TestMethod]
-        public void Always_AddValueToBothWidthAndHeight()
-        {
-            //Arrange
-            var a = Fixture.Create<Size<int>>();
-            var b = Fixture.Create<int>();
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var other = new Size<TNumber>(TNumber.CreateSaturating(7), TNumber.CreateSaturating(15));
 
-            //Act
-            var result = a - b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().Be(new Size<int>(a.Width - b, a.Height - b));
-        }
+        //Assert
+        result.Should().Be(1);
     }
 
-    [TestClass]
-    public class MultiplyOperator_Size : Tester
+    [TestMethod]
+    public void CompareToSize_WhenThisIsEqualToOther_ReturnZero()
     {
-        [TestMethod]
-        public void Always_MultiplyWidthAndHeightTogether()
-        {
-            //Arrange
-            var a = Fixture.Create<Size<int>>();
-            var b = Fixture.Create<Size<int>>();
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var other = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
 
-            //Act
-            var result = a * b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().Be(new Size<int>(a.Width * b.Width, a.Height * b.Height));
-        }
+        //Assert
+        result.Should().Be(0);
     }
 
-    [TestClass]
-    public class MultiplyOperator_Generic : Tester
+    [TestMethod]
+    public void CompareToObject_WhenOtherIsNull_ReturnZero()
     {
-        [TestMethod]
-        public void Always_MultiplyWidthAndHeightTogether()
-        {
-            //Arrange
-            var a = Fixture.Create<Size<int>>();
-            var b = Fixture.Create<int>();
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        object other = null!;
 
-            //Act
-            var result = a * b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().Be(new Size<int>(a.Width * b, a.Height * b));
-        }
+        //Assert
+        result.Should().Be(0);
     }
 
-    [TestClass]
-    public class DivideOperator_Size : Tester
+    [TestMethod]
+    public void CompareToObject_WhenOtherIsNotTheSameGenericType_ReturnZero()
     {
-        [TestMethod]
-        public void Always_MultiplyWidthAndHeightTogether()
-        {
-            //Arrange
-            var a = Fixture.Create<Size<double>>();
-            var b = Fixture.Create<Size<double>>();
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        object other = typeof(TNumber) == typeof(double) ? new Size<float>(9, 8) : new Size<double>(9, 8);
 
-            //Act
-            var result = a / b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().Be(new Size<double>(a.Width / b.Width, a.Height / b.Height));
-        }
+        //Assert
+        result.Should().Be(0);
     }
 
-    [TestClass]
-    public class DivideOperator_Generic : Tester
+    [TestMethod]
+    public void CompareToObject_WhenOtherIsNotSize_ReturnZero()
     {
-        [TestMethod]
-        public void Always_MultiplyWidthAndHeightTogether()
-        {
-            //Arrange
-            var a = Fixture.Create<Size<double>>();
-            var b = Fixture.Create<double>();
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        object other = Dummy.Create<long>();
 
-            //Act
-            var result = a / b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().Be(new Size<double>(a.Width / b, a.Height / b));
-        }
+        //Assert
+        result.Should().Be(0);
     }
 
-    [TestClass]
-    public class GreaterThanOperator : Tester
+    [TestMethod]
+    public void CompareToObject_WhenThisIsBiggerThanOther_ReturnOne()
     {
-        [TestMethod]
-        public void WhenThisIsBiggerThanOther_ReturnTrue()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(8, 8);
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        object other = new Size<TNumber>(TNumber.CreateSaturating(9), TNumber.CreateSaturating(8));
 
-            //Act
-            var result = a > b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().BeTrue();
-        }
-
-        [TestMethod]
-        public void WhenThisIsLargerButShorterThanOther_ReturnTrue()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(8, 12);
-
-            //Act
-            var result = a > b;
-
-            //Assert
-            result.Should().BeTrue();
-        }
-
-        [TestMethod]
-        public void WhenThisIsThinnerButTallerThanOther_ReturnTrue()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(11, 8);
-
-            //Act
-            var result = a > b;
-
-            //Assert
-            result.Should().BeTrue();
-        }
-
-        [TestMethod]
-        public void WhenThisIsSmallerThanOther_ReturnFalse()
-        {
-            //Arrange
-            var a = new Size<int>(7, 6);
-            var b = new Size<int>(8, 8);
-
-            //Act
-            var result = a > b;
-
-            //Assert
-            result.Should().BeFalse();
-        }
-
-        [TestMethod]
-        public void WhenBothAreEqual_ReturnFalse()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(10, 10);
-
-            //Act
-            var result = a > b;
-
-            //Assert
-            result.Should().BeFalse();
-        }
+        //Assert
+        result.Should().Be(1);
     }
 
-    [TestClass]
-    public class GreaterThanOrEqualToOperator : Tester
+    [TestMethod]
+    public void CompareToObject_WhenThisIsShorterButLargerThanOther_ReturnOne()
     {
-        [TestMethod]
-        public void WhenThisIsBiggerThanOther_ReturnTrue()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(8, 8);
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(6));
+        object other = new Size<TNumber>(TNumber.CreateSaturating(9), TNumber.CreateSaturating(8));
 
-            //Act
-            var result = a >= b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().BeTrue();
-        }
-
-        [TestMethod]
-        public void WhenThisIsLargerButShorterThanOther_ReturnTrue()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(8, 12);
-
-            //Act
-            var result = a >= b;
-
-            //Assert
-            result.Should().BeTrue();
-        }
-
-        [TestMethod]
-        public void WhenThisIsThinnerButTallerThanOther_ReturnTrue()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(11, 8);
-
-            //Act
-            var result = a >= b;
-
-            //Assert
-            result.Should().BeTrue();
-        }
-
-        [TestMethod]
-        public void WhenThisIsSmallerThanOther_ReturnFalse()
-        {
-            //Arrange
-            var a = new Size<int>(7, 6);
-            var b = new Size<int>(8, 8);
-
-            //Act
-            var result = a >= b;
-
-            //Assert
-            result.Should().BeFalse();
-        }
-
-        [TestMethod]
-        public void WhenBothAreEqual_ReturnTrue()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(10, 10);
-
-            //Act
-            var result = a >= b;
-
-            //Assert
-            result.Should().BeTrue();
-        }
+        //Assert
+        result.Should().Be(1);
     }
 
-    [TestClass]
-    public class LesserThanOperator : Tester
+    [TestMethod]
+    public void CompareToObject_WhenThisIsTallerButThinnerThanOther_ReturnOne()
     {
-        [TestMethod]
-        public void WhenThisIsBiggerThanOther_ReturnFalse()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(8, 8);
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(10));
+        object other = new Size<TNumber>(TNumber.CreateSaturating(9), TNumber.CreateSaturating(8));
 
-            //Act
-            var result = a < b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().BeFalse();
-        }
-
-        [TestMethod]
-        public void WhenThisIsLargerButShorterThanOther_ReturnFalse()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(8, 12);
-
-            //Act
-            var result = a < b;
-
-            //Assert
-            result.Should().BeFalse();
-        }
-
-        [TestMethod]
-        public void WhenThisIsThinnerButTallerThanOther_ReturnFalse()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(11, 8);
-
-            //Act
-            var result = a < b;
-
-            //Assert
-            result.Should().BeFalse();
-        }
-
-        [TestMethod]
-        public void WhenThisIsSmallerThanOther_ReturnTrue()
-        {
-            //Arrange
-            var a = new Size<int>(7, 6);
-            var b = new Size<int>(8, 8);
-
-            //Act
-            var result = a < b;
-
-            //Assert
-            result.Should().BeTrue();
-        }
-
-        [TestMethod]
-        public void WhenBothAreEqual_ReturnFalse()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(10, 10);
-
-            //Act
-            var result = a < b;
-
-            //Assert
-            result.Should().BeFalse();
-        }
+        //Assert
+        result.Should().Be(1);
     }
 
-    [TestClass]
-    public class LesserThanOrEqualToOperator : Tester
+    [TestMethod]
+    public void CompareToObject_WhenOtherIsBiggerThanThis_ReturnMinusOne()
     {
-        [TestMethod]
-        public void WhenThisIsBiggerThanOther_ReturnFalse()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(8, 8);
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        object other = new Size<TNumber>(TNumber.CreateSaturating(15), TNumber.CreateSaturating(15));
 
-            //Act
-            var result = a <= b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().BeFalse();
-        }
+        //Assert
+        result.Should().Be(-1);
+    }
 
-        [TestMethod]
-        public void WhenThisIsLargerButShorterThanOther_ReturnFalse()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(8, 12);
+    [TestMethod]
+    public void CompareToObject_WhenOtherIsShorterButLargerThanThis_ReturnOne()
+    {
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        object other = new Size<TNumber>(TNumber.CreateSaturating(15), TNumber.CreateSaturating(9));
 
-            //Act
-            var result = a <= b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().BeFalse();
-        }
+        //Assert
+        result.Should().Be(1);
+    }
 
-        [TestMethod]
-        public void WhenThisIsThinnerButTallerThanOther_ReturnFalse()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(11, 8);
+    [TestMethod]
+    public void CompareToObject_WhenOtherIsTallerButThinnerThanThis_ReturnOne()
+    {
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        object other = new Size<TNumber>(TNumber.CreateSaturating(7), TNumber.CreateSaturating(15));
 
-            //Act
-            var result = a <= b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().BeFalse();
-        }
+        //Assert
+        result.Should().Be(1);
+    }
 
-        [TestMethod]
-        public void WhenThisIsSmallerThanOther_ReturnTrue()
-        {
-            //Arrange
-            var a = new Size<int>(7, 6);
-            var b = new Size<int>(8, 8);
+    [TestMethod]
+    public void CompareToObject_WhenThisIsEqualToOther_ReturnZero()
+    {
+        //Arrange
+        var instance = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        object other = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
 
-            //Act
-            var result = a <= b;
+        //Act
+        var result = instance.CompareTo(other);
 
-            //Assert
-            result.Should().BeTrue();
-        }
+        //Assert
+        result.Should().Be(0);
+    }
 
-        [TestMethod]
-        public void WhenBothAreEqual_ReturnFalse()
-        {
-            //Arrange
-            var a = new Size<int>(10, 10);
-            var b = new Size<int>(10, 10);
+    [TestMethod]
+    public void PlusOperatorSize_Always_AddWidthAndHeightTogether()
+    {
+        //Arrange
+        var a = Dummy.Create<Size<TNumber>>();
+        var b = Dummy.Create<Size<TNumber>>();
 
-            //Act
-            var result = a <= b;
+        //Act
+        var result = a + b;
 
-            //Assert
-            result.Should().BeTrue();
-        }
+        //Assert
+        result.Should().Be(new Size<TNumber>(a.Width + b.Width, a.Height + b.Height));
+    }
+
+    [TestMethod]
+    public void MinusOperatorSize_Always_SubtractWidthAndHeightTogether()
+    {
+        //Arrange
+        var a = Dummy.Create<Size<TNumber>>();
+        var b = Dummy.Create<Size<TNumber>>();
+
+        //Act
+        var result = a - b;
+
+        //Assert
+        result.Should().Be(new Size<TNumber>(a.Width - b.Width, a.Height - b.Height));
+    }
+
+    [TestMethod]
+    public void PlusOperatorGeneric_Always_AddValueToBothWidthAndHeight()
+    {
+        //Arrange
+        var a = Dummy.Create<Size<TNumber>>();
+        var b = Dummy.Create<TNumber>();
+
+        //Act
+        var result = a + b;
+
+        //Assert
+        result.Should().Be(new Size<TNumber>(a.Width + b, a.Height + b));
+    }
+
+    [TestMethod]
+    public void MinusOperatorGeneric_Always_AddValueToBothWidthAndHeight()
+    {
+        //Arrange
+        var a = Dummy.Create<Size<TNumber>>();
+        var b = Dummy.Create<TNumber>();
+
+        //Act
+        var result = a - b;
+
+        //Assert
+        result.Should().Be(new Size<TNumber>(a.Width - b, a.Height - b));
+    }
+
+    [TestMethod]
+    public void MultiplyOperatorSize_Always_MultiplyWidthAndHeightTogether()
+    {
+        //Arrange
+        var a = Dummy.Create<Size<TNumber>>();
+        var b = Dummy.Create<Size<TNumber>>();
+
+        //Act
+        var result = a * b;
+
+        //Assert
+        result.Should().Be(new Size<TNumber>(a.Width * b.Width, a.Height * b.Height));
+    }
+
+    [TestMethod]
+    public void MultiplyOperatorGeneric_Always_MultiplyWidthAndHeightTogether()
+    {
+        //Arrange
+        var a = Dummy.Create<Size<TNumber>>();
+        var b = Dummy.Create<TNumber>();
+
+        //Act
+        var result = a * b;
+
+        //Assert
+        result.Should().Be(new Size<TNumber>(a.Width * b, a.Height * b));
+    }
+
+    [TestMethod]
+    public void DivideOperatorSize_Always_MultiplyWidthAndHeightTogether()
+    {
+        //Arrange
+        var a = Dummy.Create<Size<TNumber>>();
+        var b = Dummy.Create<Size<TNumber>>();
+
+        //Act
+        var result = a / b;
+
+        //Assert
+        result.Should().Be(new Size<TNumber>(a.Width / b.Width, a.Height / b.Height));
+    }
+
+    [TestMethod]
+    public void DivideOperatorGeneric_Always_MultiplyWidthAndHeightTogether()
+    {
+        //Arrange
+        var a = Dummy.Create<Size<TNumber>>();
+        var b = Dummy.Create<TNumber>();
+
+        //Act
+        var result = a / b;
+
+        //Assert
+        result.Should().Be(new Size<TNumber>(a.Width / b, a.Height / b));
+    }
+
+    [TestMethod]
+    public void GreaterThanOperator_WhenThisIsBiggerThanOther_ReturnTrue()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(8));
+
+        //Act
+        var result = a > b;
+
+        //Assert
+        result.Should().BeTrue();
+    }
+
+    [TestMethod]
+    public void GreaterThanOperator_WhenThisIsLargerButShorterThanOther_ReturnTrue()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(12));
+
+        //Act
+        var result = a > b;
+
+        //Assert
+        result.Should().BeTrue();
+    }
+
+    [TestMethod]
+    public void GreaterThanOperator_WhenThisIsThinnerButTallerThanOther_ReturnTrue()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(11), TNumber.CreateSaturating(8));
+
+        //Act
+        var result = a > b;
+
+        //Assert
+        result.Should().BeTrue();
+    }
+
+    [TestMethod]
+    public void GreaterThanOperator_WhenThisIsSmallerThanOther_ReturnFalse()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(7), TNumber.CreateSaturating(6));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(8));
+
+        //Act
+        var result = a > b;
+
+        //Assert
+        result.Should().BeFalse();
+    }
+
+    [TestMethod]
+    public void GreaterThanOperator_WhenBothAreEqual_ReturnFalse()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+
+        //Act
+        var result = a > b;
+
+        //Assert
+        result.Should().BeFalse();
+    }
+
+    [TestMethod]
+    public void GreaterThanOrEqualToOperator_WhenThisIsBiggerThanOther_ReturnTrue()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(8));
+
+        //Act
+        var result = a >= b;
+
+        //Assert
+        result.Should().BeTrue();
+    }
+
+    [TestMethod]
+    public void GreaterThanOrEqualToOperator_WhenThisIsLargerButShorterThanOther_ReturnTrue()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(12));
+
+        //Act
+        var result = a >= b;
+
+        //Assert
+        result.Should().BeTrue();
+    }
+
+    [TestMethod]
+    public void GreaterThanOrEqualToOperator_WhenThisIsThinnerButTallerThanOther_ReturnTrue()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(11), TNumber.CreateSaturating(8));
+
+        //Act
+        var result = a >= b;
+
+        //Assert
+        result.Should().BeTrue();
+    }
+
+    [TestMethod]
+    public void GreaterThanOrEqualToOperator_WhenThisIsSmallerThanOther_ReturnFalse()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(7), TNumber.CreateSaturating(6));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(8));
+
+        //Act
+        var result = a >= b;
+
+        //Assert
+        result.Should().BeFalse();
+    }
+
+    [TestMethod]
+    public void GreaterThanOrEqualToOperator_WhenBothAreEqual_ReturnTrue()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+
+        //Act
+        var result = a >= b;
+
+        //Assert
+        result.Should().BeTrue();
+    }
+
+    [TestMethod]
+    public void LesserThanOperator_WhenThisIsBiggerThanOther_ReturnFalse()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(8));
+
+        //Act
+        var result = a < b;
+
+        //Assert
+        result.Should().BeFalse();
+    }
+
+    [TestMethod]
+    public void LesserThanOperator_WhenThisIsLargerButShorterThanOther_ReturnFalse()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(12));
+
+        //Act
+        var result = a < b;
+
+        //Assert
+        result.Should().BeFalse();
+    }
+
+    [TestMethod]
+    public void LesserThanOperator_WhenThisIsThinnerButTallerThanOther_ReturnFalse()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(11), TNumber.CreateSaturating(8));
+
+        //Act
+        var result = a < b;
+
+        //Assert
+        result.Should().BeFalse();
+    }
+
+    [TestMethod]
+    public void LesserThanOperator_WhenThisIsSmallerThanOther_ReturnTrue()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(7), TNumber.CreateSaturating(6));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(8));
+
+        //Act
+        var result = a < b;
+
+        //Assert
+        result.Should().BeTrue();
+    }
+
+    [TestMethod]
+    public void LesserThanOperator_WhenBothAreEqual_ReturnFalse()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+
+        //Act
+        var result = a < b;
+
+        //Assert
+        result.Should().BeFalse();
+    }
+
+    [TestMethod]
+    public void LesserThanOrEqualToOperator_WhenThisIsBiggerThanOther_ReturnFalse()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(8));
+
+        //Act
+        var result = a <= b;
+
+        //Assert
+        result.Should().BeFalse();
+    }
+
+    [TestMethod]
+    public void LesserThanOrEqualToOperator_WhenThisIsLargerButShorterThanOther_ReturnFalse()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(12));
+
+        //Act
+        var result = a <= b;
+
+        //Assert
+        result.Should().BeFalse();
+    }
+
+    [TestMethod]
+    public void LesserThanOrEqualToOperator_WhenThisIsThinnerButTallerThanOther_ReturnFalse()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(11), TNumber.CreateSaturating(8));
+
+        //Act
+        var result = a <= b;
+
+        //Assert
+        result.Should().BeFalse();
+    }
+
+    [TestMethod]
+    public void LesserThanOrEqualToOperator_WhenThisIsSmallerThanOther_ReturnTrue()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(7), TNumber.CreateSaturating(6));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(8), TNumber.CreateSaturating(8));
+
+        //Act
+        var result = a <= b;
+
+        //Assert
+        result.Should().BeTrue();
+    }
+
+    [TestMethod]
+    public void LesserThanOrEqualToOperator_WhenBothAreEqual_ReturnFalse()
+    {
+        //Arrange
+        var a = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+        var b = new Size<TNumber>(TNumber.CreateSaturating(10), TNumber.CreateSaturating(10));
+
+        //Act
+        var result = a <= b;
+
+        //Assert
+        result.Should().BeTrue();
     }
 
     [TestClass]
@@ -720,7 +663,7 @@ public class SizeTester
         public void Always_ReturnValues()
         {
             //Arrange
-            var instance = Fixture.Create<Size<float>>();
+            var instance = Dummy.Create<Size<TNumber>>();
 
             //Act
             var result = instance.ToString();
@@ -730,20 +673,42 @@ public class SizeTester
         }
     }
 
-    [TestClass]
-    public class Size3DOperator : Tester
+    [TestMethod]
+    public void Size3DOperator_Always_ConvertToSize3D()
     {
-        [TestMethod]
-        public void Always_ConvertToSize3D()
-        {
-            //Arrange
-            var instance = Fixture.Create<Size<float>>();
+        //Arrange
+        var instance = Dummy.Create<Size<TNumber>>();
 
-            //Act
-            Size3D<float> result = instance;
+        //Act
+        Size3D<TNumber> result = instance;
 
-            //Assert
-            result.Should().BeEquivalentTo(new Size3D<float> { Length = instance.Width, Width = instance.Height });
-        }
+        //Assert
+        result.Should().BeEquivalentTo(new Size3D<TNumber> { Length = instance.Width, Width = instance.Height });
     }
+
+    [TestMethod]
+    public void JsonSerialization_WhenSerializedWithDefaultAndDeserializedWithCustom_ConvertProperly()
+    {
+        //Arrange
+        var instance = Dummy.Create<Size<TNumber>>();
+        var json = JsonSerializer.Serialize(instance);
+
+        //Act
+        var result = JsonSerializer.Deserialize<Size<TNumber>>(json, JsonSerializerOptions.WithMathemancyConverters());
+
+        //Assert
+        result.Should().BeEquivalentTo(instance);
+    }
+
+    [TestMethod]
+    public void Ensure_ValueEquality() => Ensure.ValueEquality<Size<TNumber>>(Dummy, JsonSerializerOptions.WithMathemancyConverters());
+
+    [TestMethod]
+    public void Ensure_ValueHashCode() => Ensure.ValueHashCode<Size<TNumber>>(Dummy, JsonSerializerOptions.WithMathemancyConverters());
+
+    [TestMethod]
+    public void Ensure_IsJsonSerializable() => Ensure.IsJsonSerializable<Size<TNumber>>(Dummy, JsonSerializerOptions.WithMathemancyConverters());
+
+    [TestMethod]
+    public void Ensure_IsJsonSerializableByDefault() => Ensure.IsJsonSerializable<Size<TNumber>>(Dummy);
 }
