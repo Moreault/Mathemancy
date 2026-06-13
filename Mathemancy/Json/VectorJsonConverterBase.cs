@@ -31,7 +31,7 @@ public abstract class VectorJsonConverterBase<TVector, TNumber> : JsonConverter<
 
     public override void Write(Utf8JsonWriter writer, TVector value, JsonSerializerOptions options)
     {
-        writer.WriteStringValue(value.ToString());
+        writer.WriteStringValue(value?.ToString());
     }
 
 }

@@ -656,21 +656,17 @@ public abstract class SizeTester<TNumber> : Tester where TNumber : struct, INumb
         result.Should().BeTrue();
     }
 
-    [TestClass]
-    public class ToStringMethod : Tester
+    [TestMethod]
+    public void ToString_Always_ReturnValues()
     {
-        [TestMethod]
-        public void Always_ReturnValues()
-        {
-            //Arrange
-            var instance = Dummy.Create<Size<TNumber>>();
+        //Arrange
+        var instance = Dummy.Create<Size<TNumber>>();
 
-            //Act
-            var result = instance.ToString();
+        //Act
+        var result = instance.ToString();
 
-            //Assert
-            result.Should().Be($"{instance.Width}x{instance.Height}");
-        }
+        //Assert
+        result.Should().Be($"{instance.Width}x{instance.Height}");
     }
 
     [TestMethod]

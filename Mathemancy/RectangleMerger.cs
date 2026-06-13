@@ -3,7 +3,7 @@
 public interface IRectangleMerger
 {
     /// <summary>
-    /// Merges adjascent rectangles into as few rectangles as possible.
+    /// Merges adjacent rectangles into as few rectangles as possible.
     /// </summary>
     IReadOnlyList<Rectangle<float>> Merge(IReadOnlyList<Rectangle<float>> rectangles);
 }
