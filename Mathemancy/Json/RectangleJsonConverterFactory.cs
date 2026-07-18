@@ -29,10 +29,6 @@ public sealed class RectangleJsonConverter<TNumber> : JsonConverter<Rectangle<TN
         if (reader.TokenType == JsonTokenType.StartObject)
         {
             var jsonObject = JsonDocument.ParseValue(ref reader).RootElement;
-
-            // The element types are statically known here (Vector2<TNumber>, Size<TNumber>), so the
-            // converters are used directly instead of reflection-based JsonSerializer.Deserialize,
-            // keeping this trim- and native-AOT-safe.
             var position = ReadElement(new Vector2JsonConverter<TNumber>(), jsonObject.GetProperty(nameof(Rectangle<TNumber>.Position)), options);
             var size = ReadElement(new SizeJsonConverter<TNumber>(), jsonObject.GetProperty(nameof(Rectangle<TNumber>.Size)), options);
             return new Rectangle<TNumber>(position, size);
