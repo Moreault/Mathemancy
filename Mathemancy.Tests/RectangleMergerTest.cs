@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Mathemancy.Tests;
+﻿namespace Mathemancy.Tests;
 
 public class RectangleMergerTestBase : Tester<RectangleMerger>;
 

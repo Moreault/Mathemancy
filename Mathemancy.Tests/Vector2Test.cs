@@ -959,7 +959,7 @@ public abstract class Vector2Tester<T> : Tester where T : struct, INumber<T>
         var result = JsonSerializer.Deserialize<Garbage>(json, new JsonSerializerOptions().WithMathemancyConverters());
 
         //Assert
-        result.Coordinates.Should().BeEquivalentTo(new Rectangle<T>(new Vector2<T>(T.Zero, T.Zero), new Size<T>(T.CreateChecked(11), T.CreateChecked(11))));
+        result!.Coordinates.Should().BeEquivalentTo(new Rectangle<T>(new Vector2<T>(T.Zero, T.Zero), new Size<T>(T.CreateChecked(11), T.CreateChecked(11))));
     }
 
     [TestMethod]

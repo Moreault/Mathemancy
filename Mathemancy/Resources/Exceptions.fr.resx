@@ -107,4 +107,7 @@
 	<data name="MaximumValueMustBeGreaterThanMinimum" xml:space="preserve">
 		<value>La valeur maximale doit être plus grande que la valeur minimale mais elles étaient {0} et {1} respectivement</value>
 	</data>
+	<data name="PolygonRequiresThreeVertices" xml:space="preserve">
+		<value>Un polygone doit avoir trois sommets</value>
+	</data>
 </root>

@@ -7,7 +7,8 @@ public static class JsonConverterExtensions
         new Vector2JsonConverterFactory(), 
         new Vector3JsonConverterFactory(), 
         new SizeJsonConverterFactory(), 
-        new RectangleJsonConverterFactory()
+        new RectangleJsonConverterFactory(),
+        new PolygonJsonConverterFactory()
     ]);
 
     /// <summary>

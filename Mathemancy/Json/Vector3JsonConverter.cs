@@ -4,11 +4,12 @@ public sealed class Vector3JsonConverterFactory : JsonConverterFactory
 {
     public override bool CanConvert(Type typeToConvert) => typeToConvert.IsGenericType && typeToConvert.GetGenericTypeDefinition() == typeof(Vector3<>);
 
-    public override JsonConverter? CreateConverter(Type typeToConvert, JsonSerializerOptions options)
+    public override JsonConverter? CreateConverter(Type typeToConvert, JsonSerializerOptions options) =>
+        NumberTypeDispatcher.Invoke(typeToConvert.GetGenericArguments()[0], new ConverterVisitor());
+
+    private sealed class ConverterVisitor : INumberTypeVisitor<JsonConverter>
     {
-        var elementType = typeToConvert.GetGenericArguments()[0];
-        var converterType = typeof(Vector3JsonConverter<>).MakeGenericType(elementType);
-        return (JsonConverter?)Activator.CreateInstance(converterType);
+        public JsonConverter Visit<TNumber>() where TNumber : struct, INumber<TNumber> => new Vector3JsonConverter<TNumber>();
     }
 }
 
