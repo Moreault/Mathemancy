@@ -8,7 +8,7 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<RootNamespace>ToolBX.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 		<Description>A bundle for generic geometry types such as Vector2&lt;T&gt;, Size&lt;T&gt; and Rectangle&lt;T&gt;</Description>
-		<Version>4.0.0-beta.1</Version>
+		<Version>4.0.0</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>ToolBX.$(AssemblyName)</PackageId>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -53,8 +53,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="ToolBX.AutoInject" Version="4.0.0-beta.2" />
-	  <PackageReference Include="ToolBX.EasyTypeParsing" Version="4.0.0-beta.1" />
+	  <PackageReference Include="ToolBX.AutoInject" Version="4.0.0" />
+	  <PackageReference Include="ToolBX.EasyTypeParsing" Version="4.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
